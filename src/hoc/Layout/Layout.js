@@ -4,7 +4,9 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                
+                {/* header */}
+                {/* content */}
+                {/* footer */}
             </div>
         );
     }
