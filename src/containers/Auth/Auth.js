@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/Button';
+
 
 class Auth extends Component {
 
-    componentDidMount() {
+    constructor(){
+        super();
+        this.state = {
+            open: true,
+        };
+    }
 
+    handleClose = ()=>{
+        this.setState({open:false});
     }
 
     render() {
         return (
-            <div >
-                {/* create a modal */}
-                <Button label="Login"
-                    onClickHandler={this.props.loginClickedHandler}
-                    classname="login" />
-                <Button label="SignUp"
-                    onClickHandler={this.props.signUpClickedHandler}
-                    classname="signUp" />
+            <div>
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="login-dialog"
+                    aria-describedby="login-dialog-description">
+
+                    <DialogTitle id="login-dialog">{"LOG IN"}</DialogTitle>
+                    
+                    <DialogContent>
+                        {/* <DialogContentText id="login-dialog-description">
+                            Let Google help apps determine location. This means sending anonymous location data to
+                            Google, even when no apps are running.
+                        </DialogContentText> */}
+                    </DialogContent>
+                </Dialog>
             </div>
         );
     }
@@ -25,7 +43,7 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        
+
     }
 }
 
