@@ -4,13 +4,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { firebaseConfig } from './firebaseConfig';
-import { uiConfig } from './firebaseConfig';
+import { firebaseConfig, uiConfig } from './firebaseConfig';
 import { connect } from 'react-redux';
 import './Auth.css';
 
 class Auth extends Component {
-
 
     constructor(props) {
         super(props);
@@ -19,20 +17,34 @@ class Auth extends Component {
             open: true,
         };
 
+        firebase.auth().onAuthStateChanged((user)=>{
+            if (user) {
+              // User is signed in.
+              const userData = {
+                  name: user.displayName,
+                  email : user.email,
+                  emailVerified : user.emailVerified,
+                  photoURL : user.photoURL,
+                  isAnonymous : user.isAnonymous,
+                  uid : user.uid,
+                  providerData : user.providerData,
+              };
+              
+              console.log(userData);
+              this.props.setUserData(userData);
+              this.handleClose();
+            }
+          });
     }
 
     handleClose = () => {
         this.setState({ open: false });
+        this.props.history.replace('/');
     }
-    anonymousLogin() {
+
+    guestLogin = () => {
         firebase.auth().signInAnonymously();
-
-        firebase.auth().onAuthStateChanged(function (user) {
-            console.log(user);
-        });
-    }
-
-    componentDidMount() {
+        this.handleClose();
     }
 
     render() {
@@ -50,7 +62,7 @@ class Auth extends Component {
                         <StyledFirebaseAuth uiConfig={uiConfig}
                             firebaseAuth={firebase.auth()} />
                         <button id="GuestBtn"
-                            onClick={this.anonymousLogin}>
+                            onClick={this.guestLogin}>
                             Login as Guest
                         </button>
                     </DialogContent>
@@ -62,12 +74,14 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        isSigned: !!state.user,
     }
 }
 
-const mapDispatchToProps = (state) => {
-
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUserData: (userData) => dispatch({ type: 'SET_USERDATA', userData }),
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

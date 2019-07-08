@@ -16,7 +16,7 @@ import firebase from 'firebase';
         // User successfully signed in.
         // Return type determines whether we continue the redirect automatically
         // or whether we leave that to developer to handle.
-        
+        console.log('SignIn succesfull');
         return true;
       },
       uiShown: function() {
@@ -27,7 +27,7 @@ import firebase from 'firebase';
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: '<url-to-redirect-to-on-success>',
+    signInSuccessUrl: '/login_success',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,

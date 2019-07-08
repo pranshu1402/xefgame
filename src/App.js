@@ -8,17 +8,15 @@ import Auth from './containers/Auth/Auth';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
         <CssBaseline>
           <Layout>
             <Switch>
-              <Route path="/auth" component={Auth} />
+              <Route path="/auth" component={Auth}/>
               {/* <Route path="/" exact component={BurgerBuilder} /> */}
               <Redirect to="/" />
             </Switch>
           </Layout>
         </CssBaseline>
-      </div>
     );
   }
 }
