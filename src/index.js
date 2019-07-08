@@ -8,6 +8,8 @@ import MainReducer from './store/reducers';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
+import LandingPage from './components/LandingPage/LandingPage.js';
+
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const store = createStore(MainReducer, composeEnhancers(applyMiddleware(thunk)));
 
@@ -17,5 +19,6 @@ const app = (
             <App />
         </BrowserRouter>
     </Provider>
+   
 );
 ReactDOM.render(app, document.getElementById('root'));
