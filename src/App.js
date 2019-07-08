@@ -4,6 +4,7 @@ import { CssBaseline } from '@material-ui/core';
 import Layout from './hoc/Layout/Layout';
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
+import LandingPage from './containers/LandingPage/LandingPage';
 
 class App extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class App extends React.Component {
           <Layout>
             <Switch>
               <Route path="/auth" component={Auth}/>
-              {/* <Route path="/" exact component={BurgerBuilder} /> */}
+              <Route path="/" exact component={LandingPage} />
               <Redirect to="/" />
             </Switch>
           </Layout>
