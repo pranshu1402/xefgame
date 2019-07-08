@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/Button';
+
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { firebaseConfig } from './firebaseConfig';
+import { uiConfig } from './firebaseConfig';
+
+import './Auth.css';
 
 class Auth extends Component {
 
-    componentDidMount() {
 
+    constructor(props) {
+        super(props);
+        firebase.initializeApp(firebaseConfig);
+
+    }
+    anonymousLogin() {
+        firebase.auth().signInAnonymously();
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            console.log(user);
+        });
+    }
+
+    componentDidMount() {
     }
 
     render() {
         return (
-            <div >
+            <div>
+                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                <button id="GuestBtn" onClick={this.anonymousLogin}>Login as Guest</button>
                 {/* create a modal */}
-                <Button label="Login"
-                    onClickHandler={this.props.loginClickedHandler}
-                    classname="login" />
-                <Button label="SignUp"
-                    onClickHandler={this.props.signUpClickedHandler}
-                    classname="signUp" />
+
             </div>
         );
     }
@@ -25,15 +41,10 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        
+
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loginClickedHandler: () => dispatch({ type: "LOGIN" }),
-        signUpClickedHandler: () => dispatch({ type: "SIGN_UP" }),
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+
+export default Auth;
