@@ -5,6 +5,7 @@ import Layout from './hoc/Layout/Layout';
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
 import LandingPage from './containers/LandingPage/LandingPage';
+import Matches from './containers/Matches/Matches';
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
           <Layout>
             <Switch>
               <Route path="/auth" component={Auth}/>
+              <Route path="/matches" component={Matches}/>
               <Route path="/" exact component={LandingPage} />
               <Redirect to="/" />
             </Switch>

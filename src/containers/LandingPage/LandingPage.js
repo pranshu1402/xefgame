@@ -22,7 +22,7 @@ class LandingPage extends Component {
                         players must work towards attaining the maximum points and the highest
                         rank on the leaderboard.
                     </Typography>
-                    <Button variant="contained" color="primary" className="matchButton">
+                    <Button variant="contained" color="primary" className="matchButton" href="/matches">
                         Matches
                     </Button>
                 </Paper>
