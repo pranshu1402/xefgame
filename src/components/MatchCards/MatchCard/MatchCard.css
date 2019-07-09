@@ -1,0 +1,23 @@
+div .contentCard{
+    width: 350px;
+    height: auto;
+    margin:  auto;
+    margin-top: 20px;
+    text-align: center;
+    background-image: linear-gradient(to right,rgb(70, 140, 206),rgb(122, 122, 202));
+    color: whitesmoke;
+}
+
+.contentCard .avatar{
+    width: 75px;
+    height: 75px;
+    color: black;
+    background: rgb(237, 239, 241);
+    border: 1px solid white;
+}
+
+.contentBody{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
