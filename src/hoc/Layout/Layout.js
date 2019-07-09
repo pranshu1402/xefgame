@@ -31,7 +31,7 @@ class Layout extends Component {
 
 const mapStateToProps = state =>{
     return {
-        isSigned: !!state.user
+        isSigned: !!state.auth.user
     }
 }
 

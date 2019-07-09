@@ -1,13 +1,10 @@
-const initial_state = {
-    user: null,
-}
+import {combineReducers} from 'redux';
+import AuthReducer from './AuthReducer';
+import StepperReducer from './StepperReducer';
 
-const authReducer = (state=initial_state, action) => {
-    switch(action.type){
-        case 'SET_USERDATA': return {user: action.userData};
-        case 'RESET_USERDATA': return {user: null};
-        default: return state;
-    }
-}
+const rootReducer = combineReducers({
+    auth: AuthReducer,
+    stepper: StepperReducer
+});
 
-export default authReducer;
+export default rootReducer;
