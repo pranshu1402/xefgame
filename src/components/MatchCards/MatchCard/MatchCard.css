@@ -13,7 +13,7 @@ div .contentCard{
     height: 75px;
     color: black;
     background: rgb(237, 239, 241);
-    border: 1px solid white;
+    border: 1px solid rgb(212, 201, 201);
 }
 
 .contentBody{
@@ -21,3 +21,32 @@ div .contentCard{
     justify-content: space-around;
     align-items: center;
 }
+div .gridList{
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+@media screen and (max-width: 950px) {
+    div .contentCard {
+      width: 200px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    div .gridList{
+        flex-direction: column;
+        justify-content: space-around; 
+          
+    }
+    div .gridTile{
+        width: 350px!important;
+        margin: auto!important;  
+          }
+    div  .contentCard{
+        width: 350px!important;
+       
+          } 
+  }
