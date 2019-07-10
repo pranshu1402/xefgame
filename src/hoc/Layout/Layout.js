@@ -1,25 +1,30 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../../components/header_footer/Header';
 import Footer from '../../components/header_footer/Footer';
-import firebase from 'firebase';
 import {connect} from 'react-redux';
+import * as actions from '../../store/actions/authActions';
+import firebase from 'firebase';
+import { firebaseConfig } from '../../store/utility/firebaseConfig';
 import './Layout.css';
 
 class Layout extends Component {
-    logout= ()=>{
-        firebase.auth().signOut().then(function() {
-            console.log(" Sign-out successful.");
-          }).catch(function(error) {
-            // An error happened.
-            console.log(error);
-          });
-        this.props.resetUserData();
+
+    constructor(props){
+        super(props);
+        firebase.initializeApp(firebaseConfig);
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+               this.props.onLogin();
+               this.props.history.replace('/');
+            }
+        });
     }
 
     render() {
         return (
             <Fragment>
-                <Header isSigned={this.props.isSigned} onLogout={this.logout}/>
+                <Header isSigned={this.props.isSigned} onLogout={this.props.onLogout}/>
                 <main>
                     {this.props.children}
                 </main>
@@ -31,13 +36,14 @@ class Layout extends Component {
 
 const mapStateToProps = state =>{
     return {
-        isSigned: !!state.user
+        isSigned: !!state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch=>{
     return {
-        resetUserData: ()=>dispatch({type:'RESET_USERDATA'})
+        onLogin: ()=>dispatch(actions.authStart()),
+        onLogout: ()=>dispatch(actions.authLogout())
     }
 }
 

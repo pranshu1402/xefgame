@@ -7,13 +7,13 @@ const Footer = ()=>{
 
             <div className="leftFooter">
                <p style={{display:'inline-block'}}>XEFXEBIA</p>
-               <a href="#">Xebia</a>                
+               <a href="https://xebia.com">Xebia</a>                
             </div>
             
             <div className="rightFooter">
-                <a href="/#">About Us</a>
-                <a href="/#">How to Play</a>
-                <a href="/#">Contact Us</a>
+                <a href="/about">About Us</a>
+                <a href="/how_to_play">How to Play</a>
+                <a href="/contact">Contact Us</a>
             </div>
         </div>
     );
