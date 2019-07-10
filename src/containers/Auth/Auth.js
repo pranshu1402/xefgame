@@ -4,37 +4,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { firebaseConfig, uiConfig } from './firebaseConfig';
+import { uiConfig } from './firebaseConfig';
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/authActions';
 import './Auth.css';
 
 class Auth extends Component {
 
     constructor(props) {
         super(props);
-        firebase.initializeApp(firebaseConfig);
         this.state = {
             open: true,
         };
-
-        firebase.auth().onAuthStateChanged((user)=>{
-            if (user) {
-              // User is signed in.
-              const userData = {
-                  name: user.displayName,
-                  email : user.email,
-                  emailVerified : user.emailVerified,
-                  photoURL : user.photoURL,
-                  isAnonymous : user.isAnonymous,
-                  uid : user.uid,
-                  providerData : user.providerData,
-              };
-              
-              console.log(userData);
-              this.props.setUserData(userData);
-              this.handleClose();
-            }
-          });
     }
 
     handleClose = () => {
@@ -51,7 +32,7 @@ class Auth extends Component {
         return (
             <div>
                 <Dialog
-                    open={this.state.open}
+                    open={!this.props.isSigned && this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="login-dialog"
                     aria-describedby="login-dialog-description">
@@ -74,13 +55,13 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isSigned: !!state.user,
+        isSigned: !!state.auth.user,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setUserData: (userData) => dispatch({ type: 'SET_USERDATA', userData }),
+        onLoginComplete: () => dispatch(actions.authSuccess())
     }
 }
 
