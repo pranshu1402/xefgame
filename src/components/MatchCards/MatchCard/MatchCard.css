@@ -1,0 +1,54 @@
+div .contentCard{
+    width: 350px;
+    height: auto;
+    margin:  auto;
+    margin-top: 20px;
+    text-align: center;
+    background-image: linear-gradient(to right,rgb(70, 140, 206),rgb(122, 122, 202));
+    color: whitesmoke;
+}
+
+.contentCard .avatar{
+    width: 75px;
+    height: 75px;
+    color: black;
+    background: rgb(237, 239, 241);
+    border: 1px solid rgb(212, 201, 201);
+}
+
+.contentBody{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+div .gridList{
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+@media screen and (max-width: 1200px) {
+   
+    div .gridTile{
+      width: 350px!important;
+      margin: auto 20px!important;  
+        }
+  }
+
+  @media screen and (max-width: 600px) {
+    div .gridList{
+        flex-direction: column;
+        justify-content: space-around; 
+          
+    }
+    div .gridTile{
+        width: 350px!important;
+        margin: auto!important;  
+          }
+    div  .contentCard{
+        width: 350px!important;
+       
+          } 
+  }
