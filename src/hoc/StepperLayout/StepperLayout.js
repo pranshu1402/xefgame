@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel'
@@ -23,32 +23,46 @@ class StepperLayout extends React.Component {
         this.props.history.replace(route);
     }
 
+    handleConfirmButtonDisable = ()=>{
+        switch(this.props.activeStep){
+            case 1: return !this.props.isMatchSelected;
+            case 2: return !!this.props.isTeamCompleted;
+            case 3: return !!this.props.isContestSelected;
+            default: return false;
+        }
+    }
+
     render() {
         return (
             // {this.state.activeStep===steps.length? <Redirect to=''/>}
-            <Fragment>
-                <Stepper activeStep={this.props.activeStep} alternativeLabel>
+            <div className="stepperContainer">
+                <Stepper activeStep={this.props.activeStep} alternativeLabel className="stepper">
                     {this.props.steps.map(label => (
                         <Step key={label}>
                             <StepLabel>{label}</StepLabel>
                         </Step>
                     ))}
                 </Stepper>
+
+                <div className="stepperBody">
                 {this.props.children}
-                <div>
+                </div>
+                
+                <div className="stepperControls">
                     <Button variant="contained"
                         color="primary"
-                        disabled={this.props.activeStep === 0}
+                        disabled={!this.props.activeStep}
                         onClick={this.handleBack}>
                         Back
-                </Button>
+                    </Button>
                     <Button variant="contained"
                         color="primary"
-                        onClick={this.handleNext}>
-                        {this.props.activeStep === this.props.steps.length - 1 ? 'Finish' : 'Next'}
+                        onClick={this.handleNext}
+                        disabled={!this.props.isMatchSelected}>
+                        {this.props.activeStep === this.props.steps.length - 1 ? 'Finish' : 'Confirm'}
                     </Button>
                 </div>
-            </Fragment>
+            </div>
         );
     }
 }

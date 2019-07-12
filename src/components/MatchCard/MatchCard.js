@@ -9,14 +9,14 @@ import './MatchCard.css';
 export default function MatchCard(props) {
     if (props.match !== undefined) {
         return (
-            <div>
-                <Card className="contentCard">
+            <div onClick={() => props.onClicked(props.match.unique_id)}>
+                <Card className={"matchCard" + (props.isFocus?" matchCardFocused":"")}>
                     <CardHeader
                         title={props.match.date} />
 
-                    <CardContent className="contentBody">
+                    <CardContent className="matchDetails">
 
-                        <Avatar className="avatar">
+                        <Avatar className="matchTeamAvatar">
                             {props.match["team-1"]}
                         </Avatar>
 
@@ -24,7 +24,7 @@ export default function MatchCard(props) {
                             {props.match.type}
                         </Typography>
 
-                        <Avatar className="avatar">
+                        <Avatar className="matchTeamAvatar">
                             {props.match["team-2"]}
                         </Avatar>
 

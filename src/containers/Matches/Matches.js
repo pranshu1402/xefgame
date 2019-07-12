@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
 import StepperLayout from '../../hoc/StepperLayout/StepperLayout';
+import MatchCards from './MatchCardsContainer/MatchCardsContainer';
 import {Switch, Route} from 'react-router-dom';
-import MatchCards from '../../components/MatchCards/MatchCards';
-import './Matches.css';
+import {connect} from 'react-redux';
 
 class Matches extends Component {
     render() {
         return (
-            // stepper
-            <div className="stepperContainer">
-                <StepperLayout {...this.props}>
+                <StepperLayout {...this.props} isMatchSelected={this.props.matchSelected}>
                     <Switch>
-                        <Route path='/matches/team' component={MatchCards}/>
-                        <Route path='/matches/contest' render={()=>(<div>contests</div>)}/>
+                        <Route path='/matches/team' render={()=>(<div>Create your team</div>)}/>
+                        <Route path='/matches/contest' render={()=>(<div>Enter in a contest</div>)}/>
                         <Route path='/matches' component={MatchCards}/>
                     </Switch>
-                    <div>
-                        match
-                    </div>
                 </StepperLayout>
-            </div>
-            // route
-            // matches
-            // players selection
-            // contests participation
         );
     }
 }
 
-export default Matches;
+const mapStateToProps = state =>{
+    return {
+        matchSelected : state.matches.selectedMatchId,
+    }
+}
+
+
+export default connect(mapStateToProps)(Matches);

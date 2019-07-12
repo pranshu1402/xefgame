@@ -1,15 +1,16 @@
 import axios from 'axios';
+import * as actions from './actionTypes';
 
 export const addMatches = parsedJson => ({
-  type: 'ADD_MATCHES',
+  type: actions.ADD_MATCHES,
   payload: parsedJson
 })
 
 export const matchRequestFailed = () => ({
-  type: 'MATCH_REQUEST_FAILED'
+  type: actions.MATCH_REQUEST_FAILED
 })
 
-function getTeamMappedName() {
+function getTeamNameAliasMap() {
   return new Map(
     [["Australia", "AUS"],
     ["India", "IND"],
@@ -27,16 +28,23 @@ function getTeamMappedName() {
 }
 
 export const fetchData = () => {
+  const teamAliasMap = getTeamNameAliasMap();
+
   return dispatch => {
     axios.get('https://cricapi.com/api/matches?apikey=ZfGRjHQn94RV6fUQKwrYDTmZWTn1')
       .then(response => {
-        let parsedData = response.data.matches.filter(item => getTeamMappedName()
-        .get(item["team-1"])!==undefined &&getTeamMappedName()
-        .get(item["team-2"])).map(filteredItem =>{
-          filteredItem["team-1"]=getTeamMappedName().get(filteredItem["team-1"]);
-          filteredItem["team-2"]=getTeamMappedName().get(filteredItem["team-2"]);
-          filteredItem.date=new Date(filteredItem.date).toDateString();
-          return filteredItem;
+        let parsedData = response.data.matches.filter(match =>
+          teamAliasMap.has(match["team-1"]) && teamAliasMap.has(match["team-2"])
+        ).map(filteredMatch => {
+          
+          const matchDetails = { ...filteredMatch };
+          
+          matchDetails["team-1"] = teamAliasMap.get(filteredMatch["team-1"]);
+          matchDetails["team-2"] = teamAliasMap.get(filteredMatch["team-2"]);
+          
+          matchDetails.date = new Date(filteredMatch.date).toDateString();
+
+          return matchDetails;
         });
         dispatch(addMatches(parsedData));
       })

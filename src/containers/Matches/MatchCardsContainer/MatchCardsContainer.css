@@ -1,0 +1,34 @@
+.matchCardsContainer {
+    width: 100%;
+    padding: 20px;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+div .matchCardList {
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+    margin: 0 !important;
+}
+
+div .matchCardTile {
+    width: 350px !important;
+    height: 200px;
+    margin: 0 10px !important;
+}
+
+@media screen and (max-width: 600px) {
+    .matchCardsContainer {
+        padding: 0px;
+    }
+
+    div .matchCardList {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    div .matchCardTile {
+        width: 320px !important;
+        margin: 0 auto !important;
+    }
+}

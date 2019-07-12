@@ -1,0 +1,36 @@
+.stepperContainer{
+    position: relative;
+    top: 100px;
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.stepper{
+    order: 1;
+}
+
+.stepperBody{
+    order: 2;
+}
+
+.stepperControls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 50px;
+    order: 3;
+}
+
+@media screen and (max-width: 600px) {
+    
+    .stepperBody{
+        order: 3;
+    }
+
+    .stepperControls{
+        order: 2;
+    }
+}
