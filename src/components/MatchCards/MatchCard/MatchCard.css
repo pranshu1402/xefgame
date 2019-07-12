@@ -1,3 +1,18 @@
+.matchCardsContainer{
+    width: 100%;
+    margin: 20px;
+}
+
+div .gridList{
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+}
+
+div .gridTile{
+    width: 350px!important;
+    margin: auto 10px!important;  
+}
+
 div .contentCard{
     width: 350px;
     height: auto;
@@ -20,10 +35,6 @@ div .contentCard{
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-div .gridList{
-    flex-wrap: nowrap;
-    transform: translateZ(0);
 }
 
 ::-webkit-scrollbar{

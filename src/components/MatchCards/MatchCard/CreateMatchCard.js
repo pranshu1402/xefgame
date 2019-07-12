@@ -1,55 +1,39 @@
 import React from 'react';
-
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-
 import './MatchCard.css';
 
+export default function MatchCard(props) {
+    if (props.match !== undefined) {
+        return (
+            <div>
+                <Card className="contentCard">
+                    <CardHeader
+                        title={props.match.date} />
 
+                    <CardContent className="contentBody">
 
-function CreateMatch(props) {
+                        <Avatar className="avatar">
+                            {props.match["team-1"]}
+                        </Avatar>
 
-        if (props.matchData !== undefined) {
-            return (
-                <div>
-                    <GridList cols={3.4} className="gridList" >
-                        {props.matchData.map(tile => (
-                            <GridListTile className="gridTile" key={tile}>
+                        <Typography variant="h6">
+                            {props.match.type}
+                        </Typography>
 
-                                <Card className="contentCard">
-                                    <CardHeader
-                                        title={tile.date} />
+                        <Avatar className="avatar">
+                            {props.match["team-2"]}
+                        </Avatar>
 
-                                    <CardContent className="contentBody">
-
-                                        <Avatar className="avatar">
-                                            {tile["team-1"]}
-                                        </Avatar>
-
-                                        <Typography variant="h6">
-                                            {tile.type}
-                                        </Typography>
-
-                                        <Avatar className="avatar">
-                                            {tile["team-2"]}
-                                        </Avatar>
-
-                                    </CardContent>
-                                </Card>
-                            </GridListTile>
-                        ))}
-                    </GridList>
-            
-                </div>);
-        }
-        else {
-            return <div>Some Error Occur</div>;
-        }
- }
-
-export default CreateMatch;
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+    else {
+        return <Typography variant="h5">Cannot find Any matches at the moment!!</Typography>;
+    }
+}

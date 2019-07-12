@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StepperLayout from '../../hoc/StepperLayout/StepperLayout';
 import {Switch, Route} from 'react-router-dom';
+import MatchCards from '../../components/MatchCards/MatchCards';
 import './Matches.css';
 
 class Matches extends Component {
@@ -10,9 +11,9 @@ class Matches extends Component {
             <div className="stepperContainer">
                 <StepperLayout {...this.props}>
                     <Switch>
-                        <Route path='/matches/team' render={()=>(<div>team</div>)}/>
+                        <Route path='/matches/team' component={MatchCards}/>
                         <Route path='/matches/contest' render={()=>(<div>contests</div>)}/>
-                        <Route path='/matches' render={()=>(<div>matches</div>)}/>
+                        <Route path='/matches' component={MatchCards}/>
                     </Switch>
                     <div>
                         match

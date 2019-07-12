@@ -1,20 +1,28 @@
 import React, { Component } from "react";
-
-
-
-import CreateMatch from './MatchCard/CreateMatchCard';
+import MatchCard from './MatchCard/CreateMatchCard';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import { fetchData } from '../../store/actions/matchAction';
-
 import { connect } from 'react-redux';
 
-class DisplayMatchCards extends Component {
+class MatchCards extends Component {
 
     componentDidMount() {
         this.props.onReceiveMatchDetails();
     }
+
     render() {
         return (
-            <CreateMatch matchData={this.props.Matches}></CreateMatch>
+            <div className="matchCardsContainer">
+            <GridList cols={3.4} className="gridList" >
+                        {   console.log(this.props.matchData)}
+                        {    this.props.matchData.map(match => (
+                            <GridListTile className="gridTile" key={match.unique_id}>
+                                <MatchCard match={match}></MatchCard>
+                            </GridListTile>
+                        ))}
+            </GridList>            
+            </div>
         );
     }
 
@@ -22,7 +30,7 @@ class DisplayMatchCards extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        Matches: state.matches.Matches
+        matchData : state.matches.matchData
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -30,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
         onReceiveMatchDetails: () => dispatch(fetchData())
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DisplayMatchCards);
+export default connect(mapStateToProps, mapDispatchToProps)(MatchCards);
