@@ -1,0 +1,14 @@
+.playerTypeTabContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    height: 40px;
+    margin: 2px 0;
+}
+
+.playerTypeTab{
+    display: inline-block;
+    width: 100px;
+}

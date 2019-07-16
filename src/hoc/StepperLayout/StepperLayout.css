@@ -1,11 +1,10 @@
 .stepperContainer{
     position: relative;
-    top: 100px;
+    top: 60px;
     height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .stepper{
@@ -17,11 +16,15 @@
 }
 
 .stepperControls{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 50px;
+    width: 100%;
     order: 3;
+    position: absolute;
+    top: 70vh;
+    text-align: center;
+}
+
+.stepperControls Button{
+    margin: 0 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -32,5 +35,6 @@
 
     .stepperControls{
         order: 2;
+        top: 75vh;
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './Header_Footer.css';
 
 const Footer = ()=>{
@@ -6,14 +7,14 @@ const Footer = ()=>{
         <div className="footer">
 
             <div className="leftFooter">
-               <p style={{display:'inline-block'}}>XEFXEBIA</p>
-               <a href="https://xebia.com">Xebia</a>                
+               <Link to="/">XEFGAME</Link>
+               <a href="https://xebia.com">XEBIA</a>               
             </div>
             
             <div className="rightFooter">
-                <a href="/about">About Us</a>
-                <a href="/how_to_play">How to Play</a>
-                <a href="/contact">Contact Us</a>
+                <Link to="/about">About Us</Link>
+                <Link to="/how_to_play">How to Play</Link>
+                <Link to="/contact">Contact Us</Link>
             </div>
         </div>
     );

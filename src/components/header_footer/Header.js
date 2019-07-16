@@ -4,8 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import './Header_Footer.css';
+import {NavLink} from 'react-router-dom'
 import { Avatar } from '@material-ui/core';
+import './Header_Footer.css';
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = (props) => {
     const classes = useStyles();
-    const loginButton = (<Button color="inherit" href="/auth">LogIn</Button>);
+    const loginButton = (<NavLink activeClassName='login' to='/auth'><Button variant="contained" color="primary">Login</Button></NavLink>);
     const userMenu = (<div className="userMenu">
         <Avatar/>
         <Button color="inherit" onClick={props.onLogout}>Log Out</Button>
