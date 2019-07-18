@@ -1,20 +1,27 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
+import faker from 'faker';
+import './Player.css';
 
 const Player = (props) => {
+    const disableClassName = "disableCard" + (props.disablePlayer?" disable":"");
     return (
-        <div className="playerCard">
+        <div className="playerCard"
+            onClick={()=> props.onSelect(props)}>
+            
+            <div className={disableClassName}></div>
+            
             <div className="playerAvatar">
-                <Avatar src={props.player.imageURL}/>
+                <Avatar src={faker.image.avatar()}/>
             </div>
 
             <div className="playerInfo">
                 <div className="playerNameBox">
-                    <div className="playerName">{props.player.name}</div>
-                    <div className="playerTeamTitle">{props.player.majorTeams.split(',')[0]} {props.player.playingRole.slice(0,3)}</div>
+                    <span className="playerName">{props.player.name}</span>
+                    <span className="playerTeamTitle">{props.teamName.slice(0,3).toUpperCase()} {props.player.role}</span>
                 </div>
-                <div className="playerPoints"> {props.points}</div>
-                <div className="playerCredits"> {props.credits}</div>
+                <span className="playerPoints"> {props.player.points}</span>
+                <span className="playerCredits"> {props.player.credits}</span>
             </div>
         </div>
     );

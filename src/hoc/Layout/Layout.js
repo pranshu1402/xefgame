@@ -16,17 +16,20 @@ class Layout extends Component {
             if (user) {
                 // User is signed in.
                this.props.onLogin();
-               this.props.history.replace('/');
+            //    this.props.history.replace('/');
             }
         });
     }
 
     render() {
+        const {isSigned, userDetails, onLogout, children} = this.props;
         return (
             <Fragment>
-                <Header isSigned={this.props.isSigned} onLogout={this.props.onLogout}/>
+                <Header isSigned={isSigned} 
+                userImage={!!userDetails?userDetails.photoURL:''} 
+                onLogout={onLogout}/>
                 <main>
-                    {this.props.children}
+                    {children}
                 </main>
                 <Footer/>
             </Fragment>
@@ -36,7 +39,8 @@ class Layout extends Component {
 
 const mapStateToProps = state =>{
     return {
-        isSigned: !!state.auth.user
+        isSigned: !!state.auth.user,
+        userDetails: state.auth.user
     }
 }
 

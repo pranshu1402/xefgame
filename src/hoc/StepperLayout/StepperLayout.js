@@ -25,9 +25,9 @@ class StepperLayout extends React.Component {
 
     handleConfirmButtonDisable = ()=>{
         switch(this.props.activeStep){
-            case 1: return !this.props.isMatchSelected;
-            case 2: return !!this.props.isTeamCompleted;
-            case 3: return !!this.props.isContestSelected;
+            case 0: return !this.props.isMatchSelected;
+            case 1: return !this.props.isTeamCompleted;
+            case 2: return !!this.props.isContestSelected;
             default: return false;
         }
     }
@@ -58,7 +58,7 @@ class StepperLayout extends React.Component {
                     <Button variant="contained"
                         color="primary"
                         onClick={this.handleNext}
-                        disabled={!this.props.isMatchSelected}>
+                        disabled={this.handleConfirmButtonDisable()}>
                         {this.props.activeStep === this.props.steps.length - 1 ? 'Finish' : 'Confirm'}
                     </Button>
                 </div>
@@ -72,6 +72,8 @@ const mapStateToProps = state=>{
         activeStep: state.stepper.activeStep,
         steps: state.stepper.steps,
         routeForStep: state.stepper.routes,
+        isMatchSelected: state.matches.selectedMatchId,
+        isTeamCompleted: (state.teams.numPlayers===11)
     }
 }
 

@@ -5,6 +5,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .stepper{
@@ -18,13 +19,14 @@
 .stepperControls{
     width: 100%;
     order: 3;
-    position: absolute;
-    top: 70vh;
+    position: fixed;
+    bottom: 80px;
     text-align: center;
 }
 
 .stepperControls Button{
     margin: 0 10px;
+    width: 100px;
 }
 
 @media screen and (max-width: 600px) {
@@ -35,6 +37,7 @@
 
     .stepperControls{
         order: 2;
-        top: 75vh;
+        /* top: 85vh; */
+        bottom: 80px;
     }
 }

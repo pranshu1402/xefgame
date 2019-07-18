@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {NavLink} from 'react-router-dom';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -22,9 +23,12 @@ class LandingPage extends Component {
                         players must work towards attaining the maximum points and the highest
                         rank on the leaderboard.
                     </Typography>
-                    <Button variant="contained" color="primary" className="matchButton" href="/matches">
-                        Matches
-                    </Button>
+                    <NavLink activeClassName="matchButton" to='/matches'>
+                        <Button variant="contained" color="primary">
+                            Matches
+                        </Button>
+                    </NavLink>
+                    
                 </Paper>
             </div>
         );

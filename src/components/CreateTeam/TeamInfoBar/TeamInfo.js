@@ -1,30 +1,28 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import './TeamInfo.css';
 
 const TeamInfo = (props) => {
+    const teams = Object.keys(props.teams);
     return (
-        <Paper className="teamInstructions">
-            <div className="instruction">
-                Max 7 players from a team
-            </div>
-            <div className="midInfoPanel">
+        <div className="teamInstructions">
+            <div className="infoPanel">
                 <div className="playersCount">
                     Players:
                     <div className="counter">{props.numPlayers}</div>/11
                 </div>
-
-                <div>{props.teams[0].name}: <span>{props.teams[0].count}</span></div>
-                <div>{props.teams[1].name}: <span>{props.teams[1].count}</span></div>
+                {console.log(teams, props.teams)}
+                <div className="teamName">{teams[0]}: <span>{props.teams[teams[0]]}</span></div>
+                <div className="teamName">{teams[1]}: <span>{props.teams[teams[1]]}</span></div>
                 
-                <div>
+                <div className="creditsInfo">
                     Credits: <div className="counter">{props.credits}</div>
                 </div>
+                {/* progress bar */}
+
             </div>
+        </div>
 
-            {/* progress bar */}
 
-        </Paper>
     );
 };
 

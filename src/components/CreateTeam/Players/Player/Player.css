@@ -1,20 +1,41 @@
 .playerCard{
     width: 100%;
-    height: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.disableCard{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    background-color: rgba(204, 190, 190, 0.288);
+    border-radius: 10px;
+    color: rgba(128, 128, 128, 0.904);
+    cursor: initial;
+    z-index: 10;
+}
+
+.disable{
+    height: 50px;
 }
 
 .playerAvatar{
-    width: 100px;
-    height: 100px;
+    margin: 0 10px;
 }
 
 .playerInfo{
-    width: 80%;
+    width: 90%;
     display: flex;
-    flex-direction: row;  
+    flex-direction: row;
+    border-bottom: 1px solid rgba(134, 125, 125, 0.548);
 }
 
 .playerNameBox{
+    width: 80%;
     display: flex;
     flex-direction: column;
 }
@@ -28,10 +49,14 @@
     flex-direction: row
 }
 
-/* .playerPoints{
-
+.playerPoints{
+    width: 10%;
+    align-self: center;
+    text-align: center;
 }
 
 .playerCredits{
-
-} */
+    width: 10%;
+    align-self: center;
+    text-align: center;
+}

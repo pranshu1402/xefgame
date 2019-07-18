@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import AuthReducer from './AuthReducer';
-import StepperReducer from './StepperReducer';
+import AuthReducer from './authReducer';
+import StepperReducer from './stepperReducer';
 import MatchReducer from './matchReducer';
-import TeamsReducer from './TeamsReducer';
+import TeamsReducer from './teamsReducer';
 
 const rootReducer = combineReducers({
     auth: AuthReducer,

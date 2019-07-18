@@ -23,7 +23,8 @@ class MatchCards extends Component {
                         let isFocus = (this.props.selectedMatchId===match.unique_id);
                         return (
                             <GridListTile className="matchCardTile" key={match.unique_id}>
-                                <MatchCard match={match} isFocus={isFocus} onClicked={this.props.onMatchCardClicked}></MatchCard>
+                                <MatchCard match={match} isFocus={isFocus} 
+                                        onClicked={this.props.onMatchCardClicked}/>
                             </GridListTile>          
                         )}
                     )}

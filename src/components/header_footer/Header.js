@@ -33,7 +33,7 @@ const Header = (props) => {
     const avatar = (
         <div>
             <Button aria-describedby="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <Avatar />
+                <Avatar src={props.userImage}/>
             </Button>
             <Popover
                 id="simple-menu"

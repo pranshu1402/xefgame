@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
         <CssBaseline>
-          <Layout>
+          <Layout {...this.props}>
             <Switch>
               <Route path="/auth" component={Auth}/>
               <Route path="/matches" component={Matches}/>
