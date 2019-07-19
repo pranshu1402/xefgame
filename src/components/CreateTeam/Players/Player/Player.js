@@ -5,6 +5,7 @@ import './Player.css';
 
 const Player = (props) => {
     const disableClassName = "disableCard" + (props.disablePlayer?" disable":"");
+
     return (
         <div className="playerCard"
             onClick={()=> props.onSelect(props)}>
@@ -12,7 +13,7 @@ const Player = (props) => {
             <div className={disableClassName}></div>
             
             <div className="playerAvatar">
-                <Avatar src={faker.image.avatar()}/>
+                <Avatar alt='' src={faker.image.avatar()}/>
             </div>
 
             <div className="playerInfo">
