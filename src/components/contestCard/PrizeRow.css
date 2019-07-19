@@ -1,0 +1,11 @@
+.prizeRow{
+    display: flex;
+    justify-content: space-between;
+    height:40px;
+    padding: 0px 10px;
+}
+
+.rankSeparator{
+    margin: 0;
+}
+
