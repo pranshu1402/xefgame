@@ -8,16 +8,13 @@ import MainReducer from './store/reducers';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
-import Contests from './containers/Contests/Contests.js';
-
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const store = createStore(MainReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            {/* <App /> */}
-            <Contests/>
+            <App />
         </BrowserRouter>
     </Provider>
    
