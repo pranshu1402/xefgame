@@ -1,0 +1,25 @@
+.playerTypeTabContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    height: 40px;
+    margin: 2px 0;
+}
+
+div .playerTypeTab{
+    display: inline-block;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgb(106, 106, 204);
+}
+
+div .activeTypeTab{
+    border: 1px solid green;
+    border-bottom: 1px solid #5856c0d0;
+    background-color: rgba(150, 243, 88, 0.603);
+    color: green;
+    font-weight: bold;
+}

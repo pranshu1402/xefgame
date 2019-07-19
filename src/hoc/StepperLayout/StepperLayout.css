@@ -1,15 +1,21 @@
 .stepperContainer{
     position: relative;
-    top: 100px;
+    top: 60px;
     height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    justify-content: space-evenly;
 }
 
-.stepper{
+div .stepper{
     order: 1;
+    width: 90%;
+    padding: 20px 0 5px 0;
+    box-shadow: 0px 0px 4px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
 .stepperBody{
@@ -17,11 +23,16 @@
 }
 
 .stepperControls{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 50px;
+    width: 100%;
     order: 3;
+    position: fixed;
+    bottom: 80px;
+    text-align: center;
+}
+
+.stepperControls Button{
+    margin: 0 10px;
+    width: 100px;
 }
 
 @media screen and (max-width: 600px) {
@@ -32,5 +43,7 @@
 
     .stepperControls{
         order: 2;
+        /* top: 85vh; */
+        bottom: 80px;
     }
 }

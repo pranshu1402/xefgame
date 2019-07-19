@@ -33,6 +33,7 @@ export const fetchData = () => {
   return dispatch => {
     axios.get('https://cricapi.com/api/matches?apikey=ZfGRjHQn94RV6fUQKwrYDTmZWTn1')
       .then(response => {
+        // remove past matches (match date< current date discard)
         let parsedData = response.data.matches.filter(match =>
           teamAliasMap.has(match["team-1"]) && teamAliasMap.has(match["team-2"])
         ).map(filteredMatch => {
