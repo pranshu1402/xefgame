@@ -6,8 +6,16 @@
     align-items: center;
     margin-top: 100px;
 }
+.bgImage{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -5;
+    width: 100%;
+    height: 100%;;
+}
 
-.sportsCard {
+.sportsCard{
     width: 80%;
     height: 400px;
     text-align: center;
@@ -16,9 +24,8 @@
     align-content: center;
     align-items: center;
     justify-content: space-around;
-    background-image: url('../../assets/images/landingPage.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: transparent!important;
+    
 }
 
 .sportsBackground {
@@ -29,19 +36,28 @@
 }
 
 .sportsGenre {
-    font-size: 4em;
+    font-size: 100px!important;
     color: white;
     text-align: center;
     transition: font-size 0.5s;
-    text-shadow: 1px 1px 2px red,
+    text-shadow: 1px 1px 2px rgb(108, 71, 212),
         3px 3px 3px white,
-        5px 5px 5px rgb(5, 50, 248);
+        5px 5px 5px rgb(169, 171, 177);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    animation: rotateHeader 3s;
+    z-index: 50;
 }
 
 .sportsGenre:hover {
-
-    font-size: 6em;
+    font-size: 120px!important; 
+}
+@keyframes rotateHeader{
+    from {
+transform: rotateY(0deg);
+    }
+    to{
+transform: rotateY(-360deg);
+    }
 }
 
 .sportsDescription {
@@ -49,8 +65,22 @@
     width: 80%;
     text-align: center;
     text-shadow: 1px 1px 2px gray;
+    font-size: 25px!important;
 }
 
 .matchButton {
     width: 100px;
+    text-decoration: none!important;
 }
+
+@media only screen and (max-width: 900px) {
+    .sportsGenre{
+        font-size: 80px!important;
+    }
+    .sportsDescription{
+        font-size: 20px!important;
+        text-align: justify;
+    }
+   
+  }
+  
