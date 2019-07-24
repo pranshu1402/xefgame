@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faRupeeSign, faClock } from "@fortawesome/free-solid-svg-icons";
 import timer from '../../utility/timer';
 
+
 class Participate extends Component {
     constructor(props) {
         super(props);
@@ -13,9 +14,12 @@ class Participate extends Component {
     }
 
     componentDidMount() {
-        setInterval(() => {
+        this.tick = setInterval(() => {
             this.setState({ timeLeft: timer("2019-07-29T10:00:00.000Z") });
         }, Infinity);
+    }
+    componentWillUnmount() {
+        clearInterval(this.tick);
     }
 
     render() {
@@ -35,7 +39,7 @@ class Participate extends Component {
                     <p className="entryTag">Entry</p>
                     <p className="entryValue"><FontAwesomeIcon className="rupeeIcon" icon={faRupeeSign} />49</p>
                 </div>
-                {true ? (
+                {false ? (
                     <div className="addCoins">
                         <input className="inputCoins" type="text" placeholder="amount" />
                         <button className="addCash">ADD CASH</button>
