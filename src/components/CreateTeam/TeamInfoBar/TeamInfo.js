@@ -10,7 +10,6 @@ const TeamInfo = (props) => {
                     Players:
                     <div className="counter">{props.numPlayers}</div>/11
                 </div>
-                {console.log(teams, props.teams)}
                 <div className="teamName">{teams[0]}: <span>{props.teams[teams[0]]}</span></div>
                 <div className="teamName">{teams[1]}: <span>{props.teams[teams[1]]}</span></div>
                 

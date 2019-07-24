@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './PrizeRow.css';
 
 function PrizeRow(props) {
@@ -14,16 +13,8 @@ function PrizeRow(props) {
                     </div>
                     <hr className="rankSeparator"></hr>
                 </div>
-
-
-
             )
-
-
         })
-
-
-
     )
 }
 

@@ -17,7 +17,6 @@ function setPlayerData(data) {
         team2Players[index].points = (Math.random() * 100).toFixed(1);
         team2Players[index].credits = (Math.random() * 10).toFixed(1);
     }
-    console.log(data);
     return {
         type: actionTypes.SET_PLAYER_DATA,
         data
@@ -43,7 +42,6 @@ export const changeTypeHandler = (playerType) => {
 
 export const selectPlayer = (props) => {
     const { player: playerDetails, teamName, disablePlayer: isDisabled } = props;
-    console.log(props);
     return {
         type: actionTypes.SELECT_PLAYER,
         playerDetails,

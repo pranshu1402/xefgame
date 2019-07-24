@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { uiConfig } from './firebaseConfig';
 import { connect } from 'react-redux';
@@ -20,12 +21,7 @@ class Auth extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
-        this.props.history.replace('/');
-    }
-
-    guestLogin = () => {
-        firebase.auth().signInAnonymously();
-        this.handleClose();
+        this.props.history.goBack();
     }
 
     render() {
@@ -42,10 +38,6 @@ class Auth extends Component {
                     <DialogContent>
                         <StyledFirebaseAuth uiConfig={uiConfig}
                             firebaseAuth={firebase.auth()} />
-                        <button id="GuestBtn"
-                            onClick={this.guestLogin}>
-                            Login as Guest
-                        </button>
                     </DialogContent>
                 </Dialog>
             </div>

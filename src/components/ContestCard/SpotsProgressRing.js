@@ -38,7 +38,7 @@ class SpotsProgressRing extends Component {
 
     render() {
         return (
-            <canvas width="70" height="70" className="spotsLeftIndicator"></canvas>
+            <canvas width="70" height="70" className="spotsLeftIndicator"/>
         );
     }
 }

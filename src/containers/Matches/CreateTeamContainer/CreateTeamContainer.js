@@ -13,25 +13,27 @@ class CreateTeamContainer extends Component {
         if (this.props.matchUniqueId === 0) {
             this.props.history.replace('/matches');
         }
-        this.props.fetchPlayerData(this.props.matchUniqueId);
+        if(props.playersData.length===0){
+            this.props.fetchPlayerData(this.props.matchUniqueId);
+        }        
     }
 
     render() {
-        const { playersData, credits, numPlayers, teamsPlayerCounter, onChangeType, currentPlayersRole, loading, selectedPlayers, onSelectPlayer, types} = this.props;
+        const { playersData, credits, numPlayers, teamsPlayerCounter, onChangeType, currentPlayersRole, loading, selectedPlayers, onSelectPlayer, typesData} = this.props;
 
         return (
             <div className="createTeamContainer">
                 <TeamInfo numPlayers={numPlayers}
                     teams={teamsPlayerCounter}
                     credits={credits} />
-                <PlayerTypeTabs onChangeType={onChangeType} currentType={currentPlayersRole} />
+                <PlayerTypeTabs onChangeType={onChangeType} currentType={currentPlayersRole} playerTypes={typesData}/>
                 {loading ? <Spinner /> : (<Players  playersData={playersData}
                                                     currentPlayersType={currentPlayersRole}
                                                     selectedPlayersId={selectedPlayers}
                                                     selectHandler={onSelectPlayer}
                                                     teamsPlayerCounter={teamsPlayerCounter}
                                                     numPlayers={numPlayers}
-                                                    typesData={types} /> )
+                                                    typesData={typesData} /> )
                 }
             </div>
         );
@@ -39,7 +41,7 @@ class CreateTeamContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { playersData, credits, numPlayers, currentPlayersRole, teamsPlayerCounter, loading, selectedPlayers, types } = state.teams;
+    const { playersData, credits, numPlayers, currentPlayersRole, teamsPlayerCounter, loading, selectedPlayers, types:typesData } = state.teams;
     return {
         matchUniqueId: state.matches.selectedMatchId,
         playersData,
@@ -49,7 +51,7 @@ const mapStateToProps = (state) => {
         teamsPlayerCounter,
         loading,
         selectedPlayers,
-        types
+        typesData
     };
 }
 

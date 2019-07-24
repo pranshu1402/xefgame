@@ -1,46 +1,45 @@
 import React, { Component } from 'react';
-
 import SpotsProgressRing from './SpotsProgressRing';
-
+import { connect } from 'react-redux';
+import { addPrizeDist,isModalOpen } from '../../store/actions/contestAction'
 import './ContestCard.css';
 
-import { connect } from 'react-redux';
+class ContestCard extends Component {
 
-import { addPrizeDist,isModalOpen } from '../../store/actions/contestAction'
-
-
-class Contest extends Component {
-    constructor(props) {
-        super(props);
-        this.openModalForPMD = this.openModalForPMD.bind(this);
-    }
-
-    openModalForPMD() {
+    openModalForPMD = ()=>{
         this.props.openModal(true);
         this.props.sendPrizeDist(this.props.contestDetails.prizeMoneyDist);
     }
 
     render() {
+        const {contestDetails, index, clickHandler, selectedContest} = this.props;
+        
+        let activeClassName = "";
+        if(selectedContest!==null && selectedContest.id===contestDetails.id){
+            activeClassName = " activeContestCard";
+        }
+        const cardClassName = "contestCard" + activeClassName;
+
         return (
-            <div className="contestCard">
+            <div className={cardClassName} onClick={()=> clickHandler(contestDetails)}>
                 <div className="contestHeader">
-                    <p>{`pool: ${this.props.contestDetails.prizeMoney / 100000} Lakh`}</p>
-                    <p>{`Entry: ${this.props.contestDetails.entryFee}`}</p>
+                    <p>{`pool: ${contestDetails.prizeMoney / 100000} Lakh`}</p>
+                    <p>{`Entry: ${contestDetails.entryFee}`}</p>
                 </div>
 
                 <div className="contestBody">
                     <SpotsProgressRing
-                        index={this.props.index}
-                        availableSpots={this.props.contestDetails.totalParticipants}
-                        totalSpots={this.props.contestDetails.totalSeats}>
+                        index={index}
+                        availableSpots={contestDetails.totalParticipants}
+                        totalSpots={contestDetails.totalSeats}>
                     </SpotsProgressRing>
 
-                    <h1>{this.props.contestDetails.contestWinner}</h1>
+                    <h1>{contestDetails.contestWinner}</h1>
 
                 </div>
                 <div className="contestFooter">
-                    <p>{`${this.props.contestDetails.totalSeats - this.props.contestDetails.totalParticipants} spots left`}</p>
-                    <p>{`${this.props.contestDetails.totalSeats} spots`}</p>
+                    <p>{`${contestDetails.totalSeats - contestDetails.totalParticipants} spots left`}</p>
+                    <p>{`${contestDetails.totalSeats} spots`}</p>
                 </div>
 
                 <button onClick={this.openModalForPMD} className="btnForPMD">PMD</button>
@@ -59,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Contest);
+export default connect(null, mapDispatchToProps)(ContestCard);

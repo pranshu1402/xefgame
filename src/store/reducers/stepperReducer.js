@@ -15,6 +15,7 @@ const stepperReducer = (state = initialState, action) => {
         case actions.INCREMENT_ACTIVE_STEP: return changeActiveStep(state, +1);
         case actions.DECREMENT_ACTIVE_STEP: return changeActiveStep(state, -1);
         case actions.RESET_ACTIVE_STEP: return initialState;
+        case actions.AUTH_LOGOUT: return initialState;
         default: return state;
     }
 }

@@ -5,9 +5,14 @@ import Contest from './ContestCard.js';
 function ContestRowCards(props){
         return (
             <div className="contestCardContainer">
-                {props.Contests.map((item,index) => {
+                {props.contests.map((contest,index) => {
                     return (
-                        <Contest index={index+props.size} contestDetails={item}></Contest>)
+                        <Contest key={index}
+                                clickHandler={props.clickHandler} 
+                                index={index+props.size} 
+                                contestDetails={contest}
+                                selectedContest={props.selectedContest} />
+                    );
                 })
                 }
             </div>

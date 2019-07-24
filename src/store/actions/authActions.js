@@ -1,27 +1,15 @@
-import firebase from 'firebase';
+import {auth} from 'firebase/app';
 
 export const authStart = () => {
-    if (!!firebase.auth().currentUser) {
+    if (!!auth().currentUser) {
         return authSuccess();
     }
     return authFail('Please Sign In to continue');
 }
-
+ 
 export const authSuccess = () => {
-    const user = firebase.auth().currentUser;
-    let userData;
-    if (user.isAnonymous) {
-        userData = {
-            name: 'Player',
-            email: 'guest@gmail.com',
-            emailVerified: user.emailVerified,
-            photoURL: user.photoURL,
-            isAnonymous: user.isAnonymous,
-            uid: user.uid,
-            providerData: user.providerData,
-        }
-    } else {
-            userData = {
+    const user = auth().currentUser;
+    let userData = {
             name: user.displayName,
             email: user.email,
             emailVerified: user.emailVerified,
@@ -29,8 +17,8 @@ export const authSuccess = () => {
             isAnonymous: user.isAnonymous,
             uid: user.uid,
             providerData: user.providerData,
-        };
-    }
+    };
+    
     return {
         type: 'AUTH_SUCCESS',
         userData
@@ -45,7 +33,7 @@ const authFail = (error) => {
 }
 
 export const authLogout = () => {
-    firebase.auth().signOut().then(function () {
+    auth().signOut().then(function () {
         console.log(" Sign-out successful.");
     }).catch(error => console.log(error));
 
@@ -53,27 +41,3 @@ export const authLogout = () => {
         type: 'AUTH_LOGOUT',
     }
 }
-
-// export const auth = () => {
-
-//     firebase.auth().onAuthStateChanged((user) => {
-//         if (user) {
-//             // User is signed in.
-//             const userData = {
-//                 name: user.displayName,
-//                 email: user.email,
-//                 emailVerified: user.emailVerified,
-//                 photoURL: user.photoURL,
-//                 isAnonymous: user.isAnonymous,
-//                 uid: user.uid,
-//                 providerData: user.providerData,
-//             };
-
-//             localStorage.setItem('userData', userData.uid.toString());
-//         }
-//     });
-
-//     return {
-//         type: 'AUTH_STARTED',
-//     }
-// };

@@ -2,18 +2,35 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import './PlayerTypeTabs.css';
 
+function getPlayerTypeClassName(currentType, playerType, typeData) {
+    let classname = "playerTypeTab ";
+    if (currentType === playerType) {
+        classname += "currentTypeTab ";
+    }
+
+    if (typeData[0] === typeData[2]) {
+        classname += "maxSelectedTypeTab";
+    }
+
+    return classname;
+}
+
 const PlayerTypeTabs = (props) => {
-    const playerTypes = ['WK', 'BAT', 'AR', 'BOWL'];
+    const { playerTypes: typesData, currentType } = props;
 
     return (
         <div className="playerTypeTabContainer">
-            {playerTypes.map((playerType, index)=> (
-                <Paper className={"playerTypeTab" + (props.currentType===playerType?" activeTypeTab":"")}
-                     key={index}
-                     onClick={()=>props.onChangeType(playerType)}>
-                    {playerType}
-                </Paper>
+            {Object.keys(typesData).map((playerType, index) => {
+                const classname = getPlayerTypeClassName(currentType, playerType, typesData[playerType]);
+                return (
+                    <Paper  className={classname}
+                            key={index}
+                            onClick={() => props.onChangeType(playerType)}>
+                        {playerType}
+                        <div className="counter">({typesData[playerType][0]})</div>
+                    </Paper>
                 )
+            }
             )}
         </div>
     )

@@ -1,33 +1,43 @@
 import React, { Component, Fragment } from 'react';
-import Header from '../../components/header_footer/Header';
-import Footer from '../../components/header_footer/Footer';
+import Header from '../../components/HeaderFooter/Header';
+import Footer from '../../components/HeaderFooter/Footer';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/authActions';
-import firebase from 'firebase';
-import { firebaseConfig } from '../../store/utility/firebaseConfig';
+import firebase from '../../store/utility/firebaseConfig';
 import './Layout.css';
-
+ 
 class Layout extends Component {
 
     constructor(props){
         super(props);
-        firebase.initializeApp(firebaseConfig);
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
-               this.props.onLogin();
-            //    this.props.history.replace('/');
+                props.onLogin();
+                this.redirectUser();
             }
         });
     }
 
+    redirectUser = (redirectTo = this.props.redirectTo)=>{
+        this.props.history.replace(redirectTo);
+    }
+
+    logoutUser = ()=>{
+        console.log("logging Out"+this.props.redirectTo);
+        this.props.onLogoutUser();
+        this.redirectUser('/');
+    } 
+
     render() {
-        const {isSigned, userDetails, onLogout, children} = this.props;
+
+        const {isSigned, userDetails, children} = this.props;
         return (
             <Fragment>
                 <Header isSigned={isSigned} 
                 userImage={!!userDetails?userDetails.photoURL:''} 
-                onLogout={onLogout}/>
+                onLogout={this.logoutUser}
+                history={this.props.history}/>
                 <main>
                     {children}
                 </main>
@@ -40,14 +50,15 @@ class Layout extends Component {
 const mapStateToProps = state =>{
     return {
         isSigned: !!state.auth.user,
-        userDetails: state.auth.user
+        userDetails: state.auth.user,
+        redirectTo: state.auth.redirectTo
     }
 }
 
 const mapDispatchToProps = dispatch=>{
     return {
         onLogin: ()=>dispatch(actions.authStart()),
-        onLogout: ()=>dispatch(actions.authLogout())
+        onLogoutUser: ()=>dispatch(actions.authLogout())
     }
 }
 

@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     playersData: [],
-    currentPlayersRole: 'BAT',
+    currentPlayersRole: 'WK',
     credits: 100.0,
     numPlayers: 0,
     teamsPlayerCounter: { 'TEAM-A': 0 , 'TEAM-B': 0 },
@@ -15,7 +15,7 @@ function setTeamData(data) {
     const teamsPlayerCounter = {};
     teamsPlayerCounter[data[0].name] = 0;
     teamsPlayerCounter[data[1].name] = 0;
-    return { teamsPlayerCounter, playersData: data, loading: false }
+    return { ...initialState, teamsPlayerCounter, playersData: data, loading: false }
 }
 
 function checkPlayerSelected(state, actions) {
@@ -30,7 +30,7 @@ function checkPlayerSelected(state, actions) {
     let credits = state.credits;
     let numPlayers = state.numPlayers;
     let teamsPlayerCounter = {...state.teamsPlayerCounter};
-    let typesData = {...state.types};
+    let typesData = JSON.parse(JSON.stringify(state.types));
 
     if (indexSelected === -1) {
         newSelectedPlayers.push(playerDetails.pid);
@@ -61,6 +61,8 @@ const teamReducer = (state = initialState, action) => {
         case actionTypes.CHANGE_PLAYER_TYPE: return { ...state, currentPlayersRole: action.playerType };
         case actionTypes.SET_PLAYER_DATA: return { ...state, ...setTeamData(action.data) };
         case actionTypes.SELECT_PLAYER: return checkPlayerSelected(state, action);
+        case actionTypes.AUTH_LOGOUT: return initialState;
+        case actionTypes.MATCH_SELECTED: return initialState;
         default: return state;
     }
 }

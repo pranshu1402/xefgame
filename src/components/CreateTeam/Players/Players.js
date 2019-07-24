@@ -9,7 +9,13 @@ function getPlayerList(props, playersPool, selectedPlayersPool) {
 
     teams.map(team => (
         team.players.map((player) => {
-            if (player.role === currentPlayersType) {
+            if (selectedPlayersId.indexOf(player.pid) !== -1) {
+                selectedPlayersPool.push(<Player teamName={team.name}
+                    player={player}
+                    key={player.pid}
+                    onSelect={selectHandler}
+                />);
+            }else if (player.role === currentPlayersType) {
                 if (numPlayers === 11) {
                     disablePlayer = true;
                 } else if (teamsPlayerCounter[team] === 7) {
@@ -18,23 +24,16 @@ function getPlayerList(props, playersPool, selectedPlayersPool) {
                     disablePlayer = true;
                 }
 
-                if (selectedPlayersId.indexOf(player.pid) !== -1) {
-                    selectedPlayersPool.push(<Player teamName={team.name}
-                        player={player}
-                        key={player.pid}
-                        onSelect={selectHandler}
-                    />);
-                } else {
-                    playersPool.push(<Player teamName={team.name}
-                        player={player}
-                        key={player.pid}
-                        onSelect={selectHandler}
-                        disablePlayer={disablePlayer}
-                    />);
+                playersPool.push(<Player teamName={team.name}
+                    player={player}
+                    key={player.pid}
+                    onSelect={selectHandler}
+                    disablePlayer={disablePlayer}
+                />);
                 }
+                return 0;
             }
-            return 0;
-        })
+            )
     )
     );
     return playersPool;

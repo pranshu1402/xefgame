@@ -8,18 +8,25 @@
     margin: 2px 0;
 }
 
-div .playerTypeTab{
+.playerTypeTab{
     display: inline-block;
     width: 100px;
     cursor: pointer;
     text-align: center;
-    border: 1px solid rgb(106, 106, 204);
+    border: 1px solid greenyellow;
 }
 
-div .activeTypeTab{
-    border: 1px solid green;
-    border-bottom: 1px solid #5856c0d0;
-    background-color: rgba(150, 243, 88, 0.603);
+.playerTypeTab.currentTypeTab{
+    border: 2px solid green;
     color: green;
     font-weight: bold;
+    box-shadow: 0 0 1px 1px #777;
+}
+
+.playerTypeTab.maxSelectedTypeTab{
+    border: 1px solid red;
+}
+
+.currentTypeTab.maxSelectedTypeTab{
+    color: rgba(212, 66, 66, 0.795);
 }

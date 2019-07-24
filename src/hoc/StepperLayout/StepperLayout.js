@@ -7,34 +7,50 @@ import {connect} from 'react-redux';
 import './StepperLayout.css';
 
 class StepperLayout extends React.Component {
+    constructor(props){
+        super(props);
+        this.props.resetStep();
+        this.confirmButtonText = 'confirm';
+        this.handleConfirmButton = this.handleNext;
+    }
 
     handleBack = () => {
-        let route = '/matches/';
-        route+= this.props.routeForStep[this.props.activeStep-1];
         this.props.decrementStep();
-        this.props.history.replace(route);
+        this.props.history.goBack();
     }
 
     handleNext = () => {
-        let route = '/matches/';
-        route+= this.props.routeForStep[this.props.activeStep + 1];
-        console.log(route);
+        let route = '/matches/' + this.props.routeForStep[this.props.activeStep + 1];
+        // this.props.setRedirect(route);
         this.props.incrementStep();
-        this.props.history.replace(route);
+        this.props.history.push(route);
+    }
+
+    handleLoginToParticipate = () => {
+        this.props.history.push('/matches/auth');
     }
 
     handleConfirmButtonDisable = ()=>{
-        switch(this.props.activeStep){
-            case 0: return !this.props.isMatchSelected;
-            case 1: return !this.props.isTeamCompleted;
-            case 2: return !!this.props.isContestSelected;
+        const {activeStep, isMatchSelected, isTeamCompleted, isContestSelected, isSigned} = this.props;
+        this.handleConfirmButton = this.handleNext;
+        switch(activeStep){
+            case 0: this.confirmButtonText = 'Enter';
+                    return !isMatchSelected;
+            case 1: this.confirmButtonText = 'Confirm';
+                    return !isTeamCompleted;
+            case 2: if(!isSigned){
+                        this.confirmButtonText = 'SignIn to Continue';
+                        this.handleConfirmButton = this.handleLoginToParticipate;
+                    }else{
+                        this.confirmButtonText = 'Participate';
+                    }
+                    return !isContestSelected;
             default: return false;
         }
     }
 
     render() {
         return (
-            // {this.state.activeStep===steps.length? <Redirect to=''/>}
             <div className="stepperContainer">
                 <Stepper activeStep={this.props.activeStep} alternativeLabel className="stepper">
                     {this.props.steps.map(label => (
@@ -57,9 +73,9 @@ class StepperLayout extends React.Component {
                     </Button>
                     <Button variant="contained"
                         color="primary"
-                        onClick={this.handleNext}
+                        onClick={this.handleConfirmButton}
                         disabled={this.handleConfirmButtonDisable()}>
-                        {this.props.activeStep === this.props.steps.length - 1 ? 'Finish' : 'Confirm'}
+                        {this.confirmButtonText}
                     </Button>
                 </div>
             </div>
@@ -72,8 +88,10 @@ const mapStateToProps = state=>{
         activeStep: state.stepper.activeStep,
         steps: state.stepper.steps,
         routeForStep: state.stepper.routes,
+        isSigned: !!state.auth.user,
         isMatchSelected: state.matches.selectedMatchId,
-        isTeamCompleted: (state.teams.numPlayers===11)
+        isTeamCompleted: (state.teams.numPlayers===11),
+        isContestSelected: state.contest.selectedContest
     }
 }
 
@@ -81,7 +99,8 @@ const mapDispatchToProps = dispatch=>{
     return {
         incrementStep: ()=> dispatch({type:'INCREMENT_ACTIVE_STEP'}),
         decrementStep: ()=> dispatch({type:'DECREMENT_ACTIVE_STEP'}),
-        resetStep: ()=> dispatch({type:'RESET_ACTIVE_STEP'})
+        resetStep: ()=> dispatch({type:'RESET_ACTIVE_STEP'}),
+        setRedirect: (route)=> dispatch({type: 'AUTH_SET_REDIRECT', redirectTo: route}),
     }
 }
 
