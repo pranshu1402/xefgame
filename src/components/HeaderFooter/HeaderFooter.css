@@ -1,3 +1,7 @@
+div .navbar{
+    position: sticky;
+}
+
 .login{
     position: absolute;
     right: 10px;
@@ -25,7 +29,6 @@
     padding-left: 120px;
     padding-right: 120px;
     font-size: 14px;
-    
 }
 
 p{

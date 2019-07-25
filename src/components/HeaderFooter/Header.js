@@ -25,7 +25,7 @@ const Header = (props) => {
     );
 
     return (
-        <AppBar>
+        <AppBar className="navbar">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                     XEFGAME

@@ -1,10 +1,12 @@
 body {
   margin: 0;
+  height: 100%;
   background: url('./assets/images/bg-cricket-image.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: transparent!important;
   background-attachment: fixed;
+  /* box-shadow:inset 0 0 25px 500px rgba(255,0,150,0.3); */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,3 +20,9 @@ html{
   height:100%;
 }
 
+#root{
+  height: 100%;
+  background: linear-gradient(rgba(230, 102, 102, 0.479), rgba(109, 109, 230, 0.486));
+  background-attachment: fixed; 
+  overflow: scroll;
+}
