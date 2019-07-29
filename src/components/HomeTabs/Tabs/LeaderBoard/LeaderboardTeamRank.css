@@ -1,0 +1,36 @@
+.userRankAndName {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    font-size: 3rem;
+    font-family: sans-serif;
+    color: blue;
+    text-shadow: 0 1px 0 blue, 0 2px 0 blue, 0 2px 0 white,
+        0 3px 0 white, 0 3px 0 blue,
+        0 4px 0 blue, 0 5px 0 blue, 0 6px 0 blue;
+        /* perspective: 700px; */
+
+}
+.leaderBoard {
+    width: 49%;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 
+    0 2px 1px -1px rgba(0, 0, 0, 0.12), 
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    border-radius: 4px;
+}
+.leaderboardUserName{
+    transform: rotateX(-0deg);
+}
+.leaderboardUserRank{
+    animation: animate 1.5s ease-in-out infinite;
+}
+
+@keyframes animate{
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(360deg);
+    }
+}

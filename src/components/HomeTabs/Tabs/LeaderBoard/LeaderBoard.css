@@ -1,0 +1,108 @@
+.rootLeaderboard {
+    position: relative;
+    
+}
+
+.leaderboardChoser {
+    padding-top: 20px;
+    width: 275px;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+}
+
+.leaderboardChoser span {
+    display: block;
+    border: 1px solid blue;
+    border-radius: 4px;
+    color: white;
+    background: rgba(22, 22, 153);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboardChoser ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    position: absolute;
+    z-index: 1;
+   
+}
+
+.leaderboardChoser ul li {
+    font-size: 17px;
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 0px 5px;
+    background: white;
+    color: blue;
+    height: 30px;
+    border-radius: 4px;
+    line-height: 30px;
+    border: 1px solid blue;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.leaderboardChoser span:hover+ul,
+.leaderboardChoser ul:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.leaderboardContent {
+    position: absolute;
+    top: 50px;
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-around;
+    
+}
+.playerList{
+    display: flex;
+    flex-direction: column;
+}
+.playerListHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: blue;
+    font-size: 17px;
+
+}
+
+.player {
+    display: flex;
+    border-bottom: 1px solid blue;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.playerList{
+    width: 49%;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 
+    0 2px 1px -1px rgba(0, 0, 0, 0.12), 
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    border-radius: 4px;
+}
+
+.playerPointsDataPoint,.playerPointsDataScore,.playerPointsDataName{
+    flex-basis: 33%;
+}
+.playerPointsDataName{
+    text-align: start;
+}
+.playerPointsDataPoint{
+    text-align:end;
+}
+.playerPointsDataScore{
+    text-align: center;
+}
