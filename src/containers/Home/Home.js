@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import HomeTabs from '../../components/HomeTabs/HomeTabs';
 import Leaderboard from '../../components/HomeTabs/Tabs/LeaderBoard/Leaderboard';
-import MyMatches from '../../components/HomeTabs/Tabs/MyMatches';
+import MyMatches from '../../components/HomeTabs/Tabs/MyMatches/MyMatches';
 import Profile from '../../components/HomeTabs/Tabs/Profile';
 
 

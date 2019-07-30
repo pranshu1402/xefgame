@@ -12,7 +12,7 @@ class LeaderboardTeamRank extends Component {
         return (
             <div className="leaderBoard">
                 <div className="userRankAndName">
-                    <div className="leaderboardUserName">XEBIA</div>
+                    <div className="leaderboardUserName">RANK</div>
                     <div className="leaderboardUserRank">7</div>
                 </div>
 
