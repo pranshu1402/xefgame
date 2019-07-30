@@ -42,22 +42,33 @@ function getPlayerList(props, playersPool, selectedPlayersPool) {
 const Players = (props) => {
     const playersPool = [];
     const selectedPlayersPool = [];
+    const playersPoolClassName =  "playersPool" + (props.showSelected?' hidePanel':' showPanel');
+    const selectedPoolClassName = "playersPool selectedPlayersPool"+(props.showSelected?' showPanel':' hidePanel');
+
     getPlayerList(props, playersPool, selectedPlayersPool);
+
     return (
         <div className="playerSelectionPanel">
-            <Paper elevation={5} className="playersPool">
-                <div className="playerListLabel">
-                    <div className="labelPlayer">Player</div>
-                    <div className="labelPoints">Points</div>
-                    <div className="labelCredits">Credits</div>
+            <Paper elevation={5} className={playersPoolClassName}>
+            <div className="playerLabels">  
+                    <div className="playerAvatarLabel">
+                    </div>
+                    <div className="playerListLabel">
+                        <div className="labelPlayer">Player</div>
+                        <div className="labelPoints">Points</div>
+                        <div className="labelCredits">Credits</div>
+                    </div>
                 </div>
                 {playersPool}
             </Paper>
-            <Paper elevation={5} className="playersPool selectedPlayersPool">
-                <div className="playerListLabel">
-                    <div className="labelPlayer">Player</div>
-                    <div className="labelPoints">Points</div>
-                    <div className="labelCredits">Credits</div>
+            <Paper elevation={5} className={selectedPoolClassName}>
+                <div className="playerLabels"> 
+                    <div className="playerAvatarLabel"></div>
+                    <div className="playerListLabel">
+                        <div className="labelPlayer">Player</div>
+                        <div className="labelPoints">Points</div>
+                        <div className="labelCredits">Credits</div>
+                    </div>
                 </div>
                 {selectedPlayersPool}
             </Paper>

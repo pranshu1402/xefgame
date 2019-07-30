@@ -49,3 +49,9 @@ export const selectPlayer = (props) => {
         isDisabled
     };
 }
+
+export const toggleView = ()=>{
+    return {
+        type: actionTypes.TOGGLE_VIEW
+    }
+}

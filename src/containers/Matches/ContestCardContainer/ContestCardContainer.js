@@ -9,6 +9,7 @@ import './ContestCardContainer.css'
 class ContestCardContainer extends Component {
     constructor(props){
         super(props);
+        console.log(props.activeStep);
         if(props.activeStep!==2){
             props.history.replace(props.routes[props.activeStep]);
         }

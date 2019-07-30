@@ -7,21 +7,26 @@ const TeamInfo = (props) => {
         <div className="teamInstructions">
             <div className="infoPanel">
                 <div className="playersCount">
-                    Players:
+                    Players
                     <div className="counter">{props.numPlayers}</div>/11
                 </div>
-                <div className="teamName">{teams[0]}: <span>{props.teams[teams[0]]}</span></div>
-                <div className="teamName">{teams[1]}: <span>{props.teams[teams[1]]}</span></div>
-                
+                <div className="teamName">{teams[0].slice(0, 3).toUpperCase()} <div className="counter">{props.teams[teams[0]]}</div></div>
+                <div className="teamName">{teams[1].slice(0, 3).toUpperCase()} <div className="counter">{props.teams[teams[1]]}</div></div>
+
                 <div className="creditsInfo">
-                    Credits: <div className="counter">{props.credits}</div>
+                    Credits <div className="counter">{props.credits}</div>
                 </div>
                 {/* progress bar */}
-
+            </div>
+            <div className="playerPanelControls">
+                <span>Players</span> 
+                <label className="switch" >
+                    <input type="checkbox"/>
+                    <span className="slider round" onClick={props.toggleViewHandler}></span>
+                </label> 
+                <span>My Team</span>
             </div>
         </div>
-
-
     );
 };
 

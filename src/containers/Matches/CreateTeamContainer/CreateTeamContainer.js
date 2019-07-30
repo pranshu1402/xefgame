@@ -19,13 +19,14 @@ class CreateTeamContainer extends Component {
     }
 
     render() {
-        const { playersData, credits, numPlayers, teamsPlayerCounter, onChangeType, currentPlayersRole, loading, selectedPlayers, onSelectPlayer, typesData} = this.props;
+        const { playersData, credits, numPlayers, teamsPlayerCounter, onChangeType, currentPlayersRole, loading, selectedPlayers, onSelectPlayer, typesData, showSelectedPlayers, toggleViewHandler} = this.props;
 
         return (
             <div className="createTeamContainer">
                 <TeamInfo numPlayers={numPlayers}
                     teams={teamsPlayerCounter}
-                    credits={credits} />
+                    credits={credits}
+                    toggleViewHandler={toggleViewHandler} />
                 <PlayerTypeTabs onChangeType={onChangeType} currentType={currentPlayersRole} playerTypes={typesData}/>
                 {loading ? <Spinner /> : (<Players  playersData={playersData}
                                                     currentPlayersType={currentPlayersRole}
@@ -33,7 +34,8 @@ class CreateTeamContainer extends Component {
                                                     selectHandler={onSelectPlayer}
                                                     teamsPlayerCounter={teamsPlayerCounter}
                                                     numPlayers={numPlayers}
-                                                    typesData={typesData} /> )
+                                                    typesData={typesData}
+                                                    showSelected={showSelectedPlayers} /> )
                 }
             </div>
         );
@@ -41,7 +43,7 @@ class CreateTeamContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { playersData, credits, numPlayers, currentPlayersRole, teamsPlayerCounter, loading, selectedPlayers, types:typesData } = state.teams;
+    const { playersData, credits, numPlayers, currentPlayersRole, teamsPlayerCounter, loading, selectedPlayers, types:typesData, showSelectedPlayers } = state.teams;
     return {
         matchUniqueId: state.matches.selectedMatchId,
         playersData,
@@ -51,7 +53,8 @@ const mapStateToProps = (state) => {
         teamsPlayerCounter,
         loading,
         selectedPlayers,
-        typesData
+        typesData,
+        showSelectedPlayers
     };
 }
 
@@ -60,6 +63,7 @@ const mapDispatchToProps = dispatch => {
         fetchPlayerData: (matchId) => dispatch(actions.fetchPlayerData(matchId)),
         onChangeType: (playerRole) => dispatch(actions.changeTypeHandler(playerRole)),
         onSelectPlayer: (playerDetails, teamName) => dispatch(actions.selectPlayer(playerDetails, teamName)),
+        toggleViewHandler: ()=> dispatch(actions.toggleView()),
     };
 }
 

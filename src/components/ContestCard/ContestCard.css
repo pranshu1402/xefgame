@@ -1,4 +1,4 @@
-.contestCardContainer{
+.contestCardContainer {
     display: grid;
     display: flex;
     justify-content: space-around;
@@ -8,57 +8,58 @@
     margin-left: 20px;
     height: 200px;
     padding-top: 10px;
-    background: rgba(231, 230, 230, 0.288);  
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
-            0px 1px 1px 0px rgba(0,0,0,0.14),
-            0px 2px 1px -1px rgba(0,0,0,0.12);  
-    border-radius: 5px;           
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
 }
 
-.contestCard{
-position: relative;
-background: white;
-width: 300px;
-height: 180px;
-border-radius: 8px;
-color: white;
-background-image: linear-gradient(to right, rgb(70, 140, 206), rgb(122, 122, 202));
-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
-            0px 1px 1px 0px rgba(0,0,0,0.14),
-            0px 2px 1px -1px rgba(0,0,0,0.12);
+.contestCard {
+    position: relative;
+    background: white;
+    width: 300px;
+    height: 180px;
+    border-radius: 8px;
+    color: white;
+    background-image: linear-gradient(to right, rgb(70, 140, 206), rgb(122, 122, 202));
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-.activeContestCard{
+.activeContestCard {
     background-image: linear-gradient(to right, rgba(235, 231, 44, 0.911), rgb(147, 241, 83));
 }
 
-.contestHeader{
+.contestHeader {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    
+
 }
 
-.contestBody{
+.contestBody {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
-    height: 100px;;
+    height: 100px;
+    ;
 }
+
 /* .spotsLeftIndicator{
    
 } */
-.contestFooter{
+.contestFooter {
     display: flex;
     justify-content: space-between;
     font-size: 12px
 }
 
-.btnForPMD{
+.btnForPMD {
     display: block;
     margin: auto;
     background: white;
-    color:rgb(58, 8, 238);
+    color: rgb(58, 8, 238);
     border-radius: 6px;
     border: none;
     text-align: center;
@@ -67,15 +68,16 @@ box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
     position: absolute;
     left: 44%;
     bottom: -5%;
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
-            0px 1px 1px 0px rgba(0,0,0,0.14),
-            0px 2px 1px -1px rgba(0,0,0,0.12);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 @media screen and (max-width: 1100px) {
     .contestCard {
         width: 250px;
-        height: 180px;;  
+        height: 180px;
+        ;
     }
 }
 
@@ -83,16 +85,19 @@ box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
 @media screen and (max-width: 800px) {
     .contestCard {
         width: 200px;
-        height: 140px;;
+        height: 140px;
     }
-    .contestBody{
+
+    .contestBody {
         height: 70px;
     }
-    .btnForPMD{
+
+    .btnForPMD {
         width: 40px;
-        height: 15px;;
+        height: 15px;
     }
 }
+
 @media screen and (max-width: 600px) {
     .contestCardContainer {
         display: grid;
@@ -100,16 +105,22 @@ box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2),
         grid-row-gap: 20px;
         height: auto;
         padding-bottom: 20px;
+        margin-left: 0;
     }
+
     .contestCard {
-        width: 350px;
-        height: 180px;;
+        width: 300px;
+        height: 180px;
+        ;
     }
-    .contestBody{
+
+    .contestBody {
         height: 100px;
     }
-    .btnForPMD{
+
+    .btnForPMD {
         width: 50px;
-        height: 25px;;
+        height: 25px;
+        ;
     }
 }

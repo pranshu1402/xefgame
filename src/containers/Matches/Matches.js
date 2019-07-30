@@ -31,7 +31,6 @@ class Matches extends Component {
                         <Route path='/matches/team' component={CreateTeamContainer}/>
                         <Route path='/matches/contest' component={ContestCardContainer}/>
                         <Route path='/matches/auth' component={Auth}/>
-                        <Route path='/matches/participate' render={()=>(<div>Pay to enter this contest</div>)}/>
                         <Route path='/matches' component={MatchCards}/>
                     </Switch>
                 </StepperLayout>

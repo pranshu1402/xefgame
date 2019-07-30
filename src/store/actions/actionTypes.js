@@ -15,3 +15,9 @@ export const RESET_ACTIVE_STEP = 'RESET_ACTIVE_STEP';
 export const SET_PLAYER_DATA = 'SET_PLAYER_DATA';
 export const SELECT_PLAYER = 'SELECT_PLAYER';
 export const CHANGE_PLAYER_TYPE = 'CHANGE_PLAYER_TYPE';
+export const TOGGLE_VIEW = 'TOGGLE_VIEW';
+
+export const GET_PROFILE = 'GET_PROFILE';
+export const SET_PROFILE = 'SET_PROFILE';
+export const EDIT_TOGGLE = 'EDIT_TOGGLE';
+export const EDIT_PROFILE = 'EDIT_PROFILE';

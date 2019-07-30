@@ -6,14 +6,6 @@
     align-items: center;
     margin-top: 100px;
 }
-.bgImage{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -5;
-    width: 100%;
-    height: 100%;;
-}
 
 .sportsCard{
     width: 80%;
@@ -25,7 +17,6 @@
     align-items: center;
     justify-content: space-around;
     background: transparent!important;
-    
 }
 
 .sportsBackground {
@@ -75,12 +66,29 @@ transform: rotateY(-360deg);
 
 @media only screen and (max-width: 900px) {
     .sportsGenre{
-        font-size: 80px!important;
+        font-size: 70px!important;
     }
     .sportsDescription{
         font-size: 20px!important;
         text-align: justify;
     }
    
-  }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .sportsGenre{
+        font-size: 40px!important;
+    }
+    .sportsDescription{
+        font-size: 16px!important;
+        text-align: justify;
+    }
+   
+}
   
+@media only screen and (max-height: 800px){
+    .sportsCardContainer{
+        margin-top: 20px;
+    }
+}  

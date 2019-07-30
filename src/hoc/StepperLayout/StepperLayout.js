@@ -20,10 +20,14 @@ class StepperLayout extends React.Component {
     }
 
     handleNext = () => {
-        let route = '/matches/' + this.props.routeForStep[this.props.activeStep + 1];
-        // this.props.setRedirect(route);
-        this.props.incrementStep();
-        this.props.history.push(route);
+        const {routeForStep, activeStep, incrementStep, history} = this.props;
+        const route = routeForStep[activeStep + 1];
+        incrementStep();
+
+        if(activeStep===2)
+            history.push('/' + route);
+        else
+            history.push( '/matches/' + route);
     }
 
     handleLoginToParticipate = () => {

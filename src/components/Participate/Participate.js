@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
-import './Participate.css';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faRupeeSign, faClock } from "@fortawesome/free-solid-svg-icons";
 import timer from '../../utility/timer';
-
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/participationAction';
+import './Participate.css';
 
 class Participate extends Component {
     constructor(props) {
@@ -18,8 +17,14 @@ class Participate extends Component {
             this.setState({ timeLeft: timer("2019-07-29T10:00:00.000Z") });
         }, Infinity);
     }
+
     componentWillUnmount() {
         clearInterval(this.tick);
+    }
+
+    enrollContest = ()=>{
+        actions.setContestParticipationData(this.props.data);
+        this.props.history.push('/');
     }
 
     render() {
@@ -39,16 +44,28 @@ class Participate extends Component {
                     <p className="entryTag">Entry</p>
                     <p className="entryValue"><FontAwesomeIcon className="rupeeIcon" icon={faRupeeSign} />49</p>
                 </div>
+                {/* change this condition when implementing payment portal */}
                 {false ? (
                     <div className="addCoins">
                         <input className="inputCoins" type="text" placeholder="amount" />
                         <button className="addCash">ADD CASH</button>
                     </div>
-                ) :
-                    (<button className="btnEnroll">ENROLL </button>)}
+                    ) : (
+                        <button className="btnEnroll"
+                            onClick={this.enrollContest}>
+                            ENROLL
+                        </button>
+                    )
+                }
             </div>
         )
     }
 }
 
-export default Participate;
+const mapStateToProps = state => {
+    return {
+        data: state
+    }
+}
+
+export default connect(mapStateToProps)(Participate);

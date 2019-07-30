@@ -25,6 +25,8 @@
 
 .playerAvatar{
     margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 50%;
     z-index: 0;
 }
 
@@ -39,6 +41,7 @@
     width: 80%;
     display: flex;
     flex-direction: column;
+    flex-basis: 50%;
 }
 
 .playerName{
@@ -54,10 +57,30 @@
     width: 10%;
     align-self: center;
     text-align: center;
+    flex-basis: 25%;
 }
 
 .playerCredits{
     width: 10%;
     align-self: center;
     text-align: center;
+    flex-basis: 25%;
+}
+
+@media screen and (max-width: 600px) {
+    .playerAvatar{
+        margin: 0 3px;
+    }
+
+    .playerNameBox{
+        width: 70%;
+    }
+
+    .playerPoints{
+        width: 15%;
+    }
+    
+    .playerCredits{
+        width: 15%;
+    }
 }

@@ -5,10 +5,11 @@ const initialState = {
     currentPlayersRole: 'WK',
     credits: 100.0,
     numPlayers: 0,
-    teamsPlayerCounter: { 'TEAM-A': 0 , 'TEAM-B': 0 },
+    teamsPlayerCounter: { 'TEAM-A': 0, 'TEAM-B': 0 },
     loading: true,
     selectedPlayers: [],
-    types: {'WK': [0, 1, 1], 'BAT': [0, 5, 6], 'BOWL': [0, 5,5], 'AR': [0, 1, 1]},
+    types: { 'WK': [0, 1, 1], 'BAT': [0, 5, 6], 'BOWL': [0, 5, 5], 'AR': [0, 1, 1] },
+    showSelectedPlayers: false,
 }
 
 function setTeamData(data) {
@@ -19,9 +20,9 @@ function setTeamData(data) {
 }
 
 function checkPlayerSelected(state, actions) {
-    const {playerDetails, teamName, isDisabled} = actions;
+    const { playerDetails, teamName, isDisabled } = actions;
 
-    if(isDisabled){
+    if (isDisabled) {
         return state;
     }
 
@@ -29,21 +30,21 @@ function checkPlayerSelected(state, actions) {
     let indexSelected = newSelectedPlayers.indexOf(playerDetails.pid);
     let credits = state.credits;
     let numPlayers = state.numPlayers;
-    let teamsPlayerCounter = {...state.teamsPlayerCounter};
+    let teamsPlayerCounter = { ...state.teamsPlayerCounter };
     let typesData = JSON.parse(JSON.stringify(state.types));
 
     if (indexSelected === -1) {
         newSelectedPlayers.push(playerDetails.pid);
-        credits= Number.parseFloat(credits) - Number.parseFloat(playerDetails.credits);
+        credits = Number.parseFloat(credits) - Number.parseFloat(playerDetails.credits);
         numPlayers++;
-        teamsPlayerCounter[teamName]+= 1;
-        typesData[playerDetails.role][0]+= 1;
+        teamsPlayerCounter[teamName] += 1;
+        typesData[playerDetails.role][0] += 1;
     } else {
         newSelectedPlayers.splice(indexSelected, 1);
-        credits= Number.parseFloat(credits) + Number.parseFloat(playerDetails.credits);
+        credits = Number.parseFloat(credits) + Number.parseFloat(playerDetails.credits);
         numPlayers--;
-        teamsPlayerCounter[teamName]-= 1; 
-        typesData[playerDetails.role][0]-= 1;
+        teamsPlayerCounter[teamName] -= 1;
+        typesData[playerDetails.role][0] -= 1;
     }
 
     return {
@@ -61,6 +62,7 @@ const teamReducer = (state = initialState, action) => {
         case actionTypes.CHANGE_PLAYER_TYPE: return { ...state, currentPlayersRole: action.playerType };
         case actionTypes.SET_PLAYER_DATA: return { ...state, ...setTeamData(action.data) };
         case actionTypes.SELECT_PLAYER: return checkPlayerSelected(state, action);
+        case actionTypes.TOGGLE_VIEW: return { ...state, showSelectedPlayers: !state.showSelectedPlayers };
         case actionTypes.AUTH_LOGOUT: return initialState;
         case actionTypes.MATCH_SELECTED: return initialState;
         default: return state;

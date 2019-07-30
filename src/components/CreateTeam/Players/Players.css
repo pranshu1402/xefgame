@@ -8,32 +8,73 @@ div .playersPool{
     margin: 10px;
     width: 50%;
     padding: 10px;
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 div .selectedPlayersPool{
-    border: 1px solid green;
+    border: 2px solid green;
+}
+
+.playerLabels{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.playerAvatarLabel{
+    width: 44px;
+    margin: 0 10px;
 }
 
 .playerListLabel{
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;   
 }
 
 .playerListLabel>div{
+    display: flex;
+    justify-content: space-evenly;
     text-align: center;
 }
 
-.labelPlayer{
-    width: 80%;
-
+div.labelPlayer{
+    flex-basis: 50%;
+    justify-content: start;
 }
 
 .labelPoints{
-    width: 10%;
+    flex-basis: 25%;
 }
 
 .labelCredits{
-    width: 10%;
+    flex-basis: 25%;
+}
+
+@media screen and (max-width: 600px) {
+
+    div .playersPool{
+        margin: 0;
+        width: 100%;
+    }
+    
+    .playerAvatarLabel{
+        margin: 0 3px;
+    }
+    
+    .labelPoints{
+        width: 50px;
+    }
+    
+    .labelCredits{
+        width: 50px;
+    }
+
+    .hidePanel{
+        display: none;
+    }
+    
+    .showPanel{
+        display: initial;
+    }
 }

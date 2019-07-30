@@ -1,0 +1,58 @@
+.profileContainer{
+    width: 350px;
+    min-height: 300px;
+    text-align: center;
+    margin: 100px auto;
+    background-color: white;
+}
+
+.profileElements{
+    padding: 50px;
+}
+
+.profileInputBox{
+    width: 300px;
+}
+
+.profilePic{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    border: 2px solid black;
+}
+
+.profileInput{
+    min-width: 200px;
+    height: 25px;
+    margin: 10px 0;
+}
+
+.editButton{
+    position: relative;
+    right:  30px;
+    bottom: 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.editButton Button{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2px;
+}
+
+img~.editButton{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background: whitesmoke;
+    position: relative;
+    right: 50px;
+}
+
+img~.editButton Button{
+    display: relative;
+    bottom: 2px;
+}

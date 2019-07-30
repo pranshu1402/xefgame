@@ -13,6 +13,7 @@ class Layout extends Component {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
+                console.log("User is Authenticated");
                 props.onLogin();
                 this.redirectUser();
             }

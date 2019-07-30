@@ -19,7 +19,7 @@ div .matchCardTile {
 
 @media screen and (max-width: 600px) {
     .matchCardsContainer {
-        padding: 0px;
+        padding-top: 10px;
     }
 
     div .matchCardList {

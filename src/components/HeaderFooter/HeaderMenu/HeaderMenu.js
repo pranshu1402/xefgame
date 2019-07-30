@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import {NavLink} from 'react-router-dom';
 
 function HeaderMenu(props) {
 
@@ -28,7 +29,7 @@ function HeaderMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
                 <MenuList>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}><NavLink to='/Profile'>Profile</NavLink></MenuItem>
                     <MenuItem onClick={handleClose}>Contests</MenuItem>
                     <MenuItem onClick={props.onLogout}>Logout</MenuItem>
                 </MenuList>
