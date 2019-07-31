@@ -11,7 +11,7 @@ function EditInput(props) {
                    type={props.type}
                    placeholder={props.label}
                    value={props.value}
-                   //disabled={props.editLabel!==props.label}
+                   disabled={props.editLabel!==props.label}
                    onChange={props.changeHandler}/>
             }
             <span className={props.childClassName}>{props.children}</span>

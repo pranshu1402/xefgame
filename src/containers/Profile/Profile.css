@@ -1,24 +1,29 @@
 .profileContainer{
-    width: 350px;
+    width: 300px;
     min-height: 300px;
     text-align: center;
     margin: 100px auto;
     background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px black;
 }
 
 .profileElements{
-    padding: 50px;
+    width: 300px;
+    text-align: center;
 }
 
 .profileInputBox{
     width: 300px;
+    margin-left: 20px;
 }
 
 .profilePic{
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
     border: 2px solid black;
+    margin-top: 10px;
 }
 
 .profileInput{
@@ -43,16 +48,17 @@
 
 img~.editButton{
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: 1px solid black;
-    border-radius: 20px;
+    border-radius: 15px;
     background: whitesmoke;
     position: relative;
-    right: 50px;
+    right: 30px;
 }
 
 img~.editButton Button{
     display: relative;
-    bottom: 2px;
+    bottom: 6px;
+    right: 6px;
 }

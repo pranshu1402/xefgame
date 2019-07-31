@@ -10,21 +10,24 @@ class Profile extends Component {
 
     constructor(props){
         super(props);
-        props.fetchFormData(props.userId); 
+        props.fetchFormData(props.userData); 
     }
 
-    componentDidMount(){
+    componentDidUpdate(){
         const {editLabel} = this.props;
-        if((editLabel!==null && editLabel!=='image')){
-            console.log(document.getElementById(editLabel));
+        if((editLabel!==null && editLabel!=='photoURL')){
             document.getElementById(editLabel).focus();
         }
     }
 
+    resetChanges = ()=>{
+        this.props.fetchFormData(this.props.userData);
+    }
+
     render() {
+
         let formElements = [];
         const {inputs, editLabel, toggleEditHandler, inputEditHandler, submitHandler} = this.props;
-
         for(let inputKey in inputs){
             formElements.push(<EditInput key={inputKey}
                                          label={inputKey}
@@ -36,7 +39,7 @@ class Profile extends Component {
                                     <IconButton color="secondary" 
                                                 aria-label="editInput" 
                                                 onClick={()=>toggleEditHandler(inputKey)}>
-                                            <EditIcon fontSize='small'/>
+                                        <EditIcon fontSize='small'/>
                                     </IconButton>
                               </EditInput>
             );
@@ -47,8 +50,13 @@ class Profile extends Component {
                 <form onSubmit={submitHandler} className="profileElements">
                     {formElements}
                     <button type="submit" 
-                            value="Submit">
-                                Submit
+                            value="Submit"
+                            className="profileButton">
+                                Save
+                    </button>
+                    <button onClick={this.resetChanges}
+                            className="profileButton">
+                                Cancel
                     </button>
                 </form>
             </div>
@@ -61,13 +69,13 @@ const mapStateToProps = (state) => {
         inputs: state.profile.inputs,
         editLabel: state.profile.edit,
         avatar: state.profile.avatar,
-        userId: state.auth.user.uid,
+        userData: state.auth.user,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchFormData: (userId)=> dispatch(actions.fetchFormData(userId)),
+        fetchFormData: (userData)=> dispatch(actions.fetchFormData(userData)),
         submitHandler: ()=> dispatch(actions.submitForm()),
         inputEditHandler: (event)=> dispatch(actions.editFormInput(event)),
         toggleEditHandler: (editLabel)=> dispatch(actions.editToggle(editLabel)),
