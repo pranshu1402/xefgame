@@ -1,6 +1,5 @@
 .rootLeaderboard {
     position: relative;
-    
 }
 
 .leaderboardChoser {
@@ -53,8 +52,6 @@
 }
 
 .leaderboardContent {
-    position: absolute;
-    top: 50px;
     display: flex;
     margin-top: 20px;
     width: 100%;

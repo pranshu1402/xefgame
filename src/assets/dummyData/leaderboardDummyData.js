@@ -40,27 +40,27 @@ export const dummyTeam=[
     },
     {
         playerId:"123459",
-        playerName:"Pransu",
+        playerName:"Hardik",
         point:"2"   
     },
     {
         playerId:"123460",
-        playerName:"Kusal",
+        playerName:"Kedar",
         point:"82"   
     },
     {
         playerId:"123461",
-        playerName:"kanisak",
+        playerName:"Rishabh",
         point:"124"   
     },
     {
         playerId:"123462",
-        playerName:"risabh",
+        playerName:"R. Jadeja",
         point:"1"   
     },
     {
         playerId:"123463",
-        playerName:"Bhuvi",
+        playerName:"Bhuvneshwar",
         point:"23"   
     },
     {

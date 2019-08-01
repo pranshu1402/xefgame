@@ -17,8 +17,8 @@ html{
 #root{
   height: 100%;
   overflow: scroll;
-  background: linear-gradient(rgba(0, 0, 255, 0.329), rgba(68, 151, 179, 0.336)),url('./assets/images/bg-cricket-image-min.jpg');
+  /* background: linear-gradient(rgba(0, 0, 255, 0.329), rgba(68, 151, 179, 0.336)),url('./assets/images/bg-cricket-image-min.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;  */
 }

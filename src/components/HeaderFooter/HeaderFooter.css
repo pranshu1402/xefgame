@@ -8,11 +8,22 @@ div .navbar{
     color: white;
 }
 
+.navItems,.navItems span{
+    color: white!important;
+    text-decoration: none;
+    margin: 0 3px;
+}
+
 .userMenu{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
+}
+
+.menuItems, .menuItems:active{
+    text-decoration: none;
+    color: black;
 }
 
 .footer{

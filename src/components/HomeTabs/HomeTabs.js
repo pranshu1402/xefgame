@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import Tab from './Tab.js';
-
 import './HomeTabs.css';
 
 class HomeTabs extends Component {
@@ -31,7 +29,7 @@ class HomeTabs extends Component {
                     {
                         this.props.children.map((child) => {
                             if (child.props.label !== this.state.activeTab) 
-                            return undefined;
+                                return undefined;
                             return child.props.children;
                         })
                     }

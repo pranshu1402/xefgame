@@ -9,6 +9,8 @@ import './Participate.css';
 class Participate extends Component {
     constructor(props) {
         super(props);
+        if(!this.props.data.matches.selectedMatchId)
+            this.props.history.goBack();
         this.state = { timeLeft: "00:00:00" };
     }
 
@@ -24,7 +26,7 @@ class Participate extends Component {
 
     enrollContest = ()=>{
         actions.setContestParticipationData(this.props.data);
-        this.props.history.push('/');
+        this.props.history.push('/home');
     }
 
     render() {

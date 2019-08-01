@@ -2,10 +2,10 @@
     width: 300px;
     min-height: 300px;
     text-align: center;
-    margin: 100px auto;
+    margin: 10px auto;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 0 10px 5px black;
+    box-shadow: 0 0 15px 1px black;
 }
 
 .profileElements{

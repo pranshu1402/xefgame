@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-
-
 import HomeTabs from '../../components/HomeTabs/HomeTabs';
 import Leaderboard from '../../components/HomeTabs/Tabs/LeaderBoard/Leaderboard';
 import MyMatches from '../../components/HomeTabs/Tabs/MyMatches/MyMatches';
-import Profile from '../../components/HomeTabs/Tabs/Profile';
-
+import Profile from '../Profile/Profile';
 
 class Home extends Component {
-
-
     render() {
         return (
                 <HomeTabs>
-                    <div label="LEADERBOARD">
-                        <Leaderboard/>
+                    <div label="MY CONTESTS">
+                        <MyMatches/>
                     </div>
 
-                    <div label="MY MATCHES">
-                        <MyMatches/>
+                    <div label="LEADERBOARD">
+                        <Leaderboard/>
                     </div>
 
                     <div label="PROFILE">

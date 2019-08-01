@@ -6,7 +6,8 @@ import Auth from './containers/Auth/Auth';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Matches from './containers/Matches/Matches';
 import Participate from './components/Participate/Participate';
-import Profile from './containers/Profile/Profile';
+import Home from './containers/Home/Home';
+
 
 class App extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class App extends React.Component {
               <Route path="/auth" component={Auth}/>
               <Route path="/matches" component={Matches}/>
               <Route path="/participate" component={Participate}/>
-              <Route path="/profile" component={Profile}/>
+              <Route path="/home" component={Home}/>
               <Route path="/" exact component={LandingPage} />
               <Redirect to="/" />
             </Switch>
