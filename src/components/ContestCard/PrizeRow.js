@@ -1,15 +1,16 @@
 import React from 'react';
 import './PrizeRow.css';
+import { sortPMD } from '../../utility/sort';
 
 function PrizeRow(props) {
 
-    return (
-        Object.keys(props.prizeMoneyDist).map(key => {
+    return (   
+        sortPMD(props.prizeMoneyDist).map(prizeMoneyCategory=> {
             return (
                 <div>
                     <div className="prizeRow">
-                        <p >{`Rank ${key}:`}</p>
-                        <p>{props.prizeMoneyDist[key]}</p>
+                        <p >{`Rank ${prizeMoneyCategory[0]}:`}</p>
+                        <p>{prizeMoneyCategory[1]}</p>
                     </div>
                     <hr className="rankSeparator"></hr>
                 </div>
