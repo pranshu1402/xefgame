@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+
 export const setContestParticipationData = (state) => {
     const matchId = state.matches.selectedMatchId;
     const contestId = state.contest.selectedContest.id;
@@ -8,7 +9,8 @@ export const setContestParticipationData = (state) => {
     const userId = String(state.auth.user.uid);
     const selectedPlayers = state.teams.selectedPlayers;
     const newPoints = state.auth.user.points - state.contest.selectedContest.entryFee;
-    console.log(matchId, contestId, userId);
+    //set new coins in redux
+    state.auth.user.points=newPoints;
 
     firebase.firestore().collection("users").doc(userId).set(
         {

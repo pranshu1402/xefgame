@@ -19,13 +19,13 @@ export const authSuccess = () => {
         isAnonymous: user.isAnonymous,
         uid: user.uid,
         providerData: user.providerData[0].providerId,
+        points: 250 
     };
 
     firebase.firestore().collection("users").doc(userData.uid).set(
         {
             profile: { 
-                ...userData,
-                points: 250 
+                ...userData
             }
         },
         { merge: true }
