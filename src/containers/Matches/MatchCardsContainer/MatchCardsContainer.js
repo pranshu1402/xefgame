@@ -11,7 +11,7 @@ import './MatchCardsContainer.css';
 class MatchCards extends Component {
 
     componentDidMount() {
-        this.props.onReceiveMatchDetails();
+        this.props.onReceiveMatchDetails(this.props.sportSelected);
     }
 
     render() {
@@ -41,12 +41,13 @@ const mapStateToProps = (state) => {
         matchData: state.matches.matchData,
         selectedMatchId: state.matches.selectedMatchId,
         isLoading: state.matches.loading,
+        sportSelected:state.landingPage.sportSelected
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onReceiveMatchDetails: () => dispatch(fetchData()),
+        onReceiveMatchDetails: (sportSelected) => dispatch(fetchData(sportSelected)),
         onMatchCardClicked: (matchId) => dispatch({type: MATCH_SELECTED, matchId}),
     }
 }

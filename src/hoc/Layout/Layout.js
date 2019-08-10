@@ -39,7 +39,7 @@ class Layout extends Component {
                 userImage={!!userDetails?userDetails.photoURL:''} 
                 onLogout={this.logoutUser}
                 history={this.props.history}/>
-                <main>
+                <main style={{paddingBottom:"70px"}}>
                     {children}
                 </main>
                 <Footer/>

@@ -27,7 +27,7 @@ function getTeamNameAliasMap() {
 
 }
 
-export const fetchData = () => {
+export const fetchData = (sport) => {
   const teamAliasMap = getTeamNameAliasMap();
 
   return dispatch => {

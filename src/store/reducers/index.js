@@ -5,6 +5,7 @@ import MatchReducer from './matchReducer';
 import TeamsReducer from './teamsReducer';
 import ContestReducer from './contestReducer';
 import profileReducer from './profileReducer';
+import { landingPageReducer } from './landingPageReducer';
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     matches:MatchReducer,
     teams: TeamsReducer,
     contest:ContestReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    landingPage:landingPageReducer
 });
 
 export default rootReducer;

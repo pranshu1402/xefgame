@@ -1,7 +1,7 @@
 .sportsCardContainer {
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -16,6 +16,7 @@
     width: 60%;
     height: 300px;
     text-align: center;
+    margin-top: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,8 +94,11 @@
 
     .sportsCard{
         width: 90%;
+        height: 200px;
     }
-
+     .sportsCard img{
+         height: 180px;;
+     }
     .sportsGenre{
         font-size: 40px!important;
     }
@@ -105,8 +109,3 @@
    
 }
   
-@media only screen and (max-height: 850px){
-    .sportsCardContainer{
-        margin-top: 20px;
-    }
-}  
