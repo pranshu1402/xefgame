@@ -30,7 +30,7 @@ const Header = (props) => {
                 <Button variant="text">HOME</Button>
             </NavLink>
             <NavLink className="navItems" to='/matches'>
-                <Button variant="text">MATCH</Button>
+                <Button variant="text">SPORT</Button>
             </NavLink>
             <HeaderMenu onLogout={props.onLogout}>
                 <Avatar src={props.userImage} />
