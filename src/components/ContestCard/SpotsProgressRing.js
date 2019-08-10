@@ -32,7 +32,7 @@ class SpotsProgressRing extends Component {
         let canvasElementArray = Array.from(document.getElementsByClassName("spotsLeftIndicator"));
         
         this.refForbuildProgressRing = setInterval(() => {
-            this.buildProgressRing(canvasElementArray[this.props.index].getContext("2d"), 10000)
+            this.buildProgressRing(canvasElementArray[this.props.index].getContext("2d"), 100)
         }, 1);
     }
 

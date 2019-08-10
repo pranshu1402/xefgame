@@ -29,8 +29,8 @@ function HeaderMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
                 <MenuList>
-                    <MenuItem onClick={handleClose}><NavLink className='menuItems' to='/Profile'>Profile</NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}>Contests</MenuItem>
+                    {/* <MenuItem onClick={handleClose}><NavLink className='menuItems' to='/home'>Profile</NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}>Contests</MenuItem> */}
                     <MenuItem onClick={props.onLogout}>Logout</MenuItem>
                 </MenuList>
             </Popover>
