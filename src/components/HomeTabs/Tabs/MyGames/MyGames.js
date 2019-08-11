@@ -4,6 +4,7 @@ import './MyGames.css';
 import { loadMyGamesData } from '../../../../utility/firebaseOps/getMyGamesData';
 import { connect } from 'react-redux';
 import MyGame from './MyGame';
+import {  changeTabOnGameClick } from '../../../../store/actions/tabsAction';
 
 class MyMatches extends Component {
 
@@ -13,25 +14,33 @@ class MyMatches extends Component {
 
     render() {
         let myGamesKeys;
-        if (this.props.myEnrolledGames!==null) {
+        if (this.props.myEnrolledGames !== null) {
             myGamesKeys = Object.keys(this.props.myEnrolledGames);
-            console.log("keys",this.props.myEnrolledGames,myGamesKeys);
+            // console.log("keys", this.props.myEnrolledGames, myGamesKeys);
         }
 
         return (
-            myGamesKeys?
-            <div className="rootMyMatches">
-                {
-                    myGamesKeys.map((myGamesKey) =>
-                        this.props.myEnrolledGames[myGamesKey].map((enrolledMatch,index) =>
-                        <div>
-                            <label className="myGameTag">{myGamesKey}</label>
-                            <MyGame key={index} gameData={enrolledMatch} />
-                        </div>
-                           ))
-                }
+            myGamesKeys ?
+                <div className="rootMyMatches">
+                    {
+                        myGamesKeys.map((myGamesKey) =>
+                            this.props.myEnrolledGames[myGamesKey].map((enrolledMatch, index) =>
+                                <div>
+                                    <label className="myGameTag">{myGamesKey}</label>
+                                    <div onClick={() => this.props.makeChangeTab(
+                                        {
+                                            label: "LEADERBOARD",
+                                            matchToShowOnLeaderboard:enrolledMatch
+                                        }
+                                        )}>
+                                        <MyGame key={index} gameData={enrolledMatch} />
+                                    </div>
 
-            </div>:<div></div>
+                                </div>
+                            ))
+                    }
+
+                </div> : <div></div>
         )
     }
 }
@@ -40,4 +49,9 @@ const mapStateToProps = (state) => {
         myEnrolledGames: state.myGames.myEnrolledGames
     }
 }
-export default connect(mapStateToProps)(MyMatches);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        makeChangeTab: (data) => dispatch(changeTabOnGameClick(data))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MyMatches);

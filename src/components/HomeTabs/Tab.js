@@ -1,16 +1,11 @@
-import React ,{Component} from 'react';
+import React from 'react';
 
 
-class Tab extends Component{
-
-
-    render(){
+const Tab=(props)=>{
         return (
-           <div className="singleTab" onClick={()=>this.props.onChangeTab(this.props.label)}>
-               {this.props.label}
+           <div className={`singleTab ${props.applyClass}`} onClick={()=>props.onChangeTab(props.label)}>
+               {props.label}
            </div>
         )
     }
-}
-
 export default Tab;

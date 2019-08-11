@@ -7,6 +7,7 @@ import ContestReducer from './contestReducer';
 import profileReducer from './profileReducer';
 import { landingPageReducer } from './landingPageReducer';
 import { myGamesReducer } from './myGamesReducer';
+import { tabsReducer } from './tabsReducer';
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     contest:ContestReducer,
     profile: profileReducer,
     landingPage:landingPageReducer,
-    myGames:myGamesReducer
+    myGames:myGamesReducer,
+    tabs:tabsReducer
 });
 
 export default rootReducer;

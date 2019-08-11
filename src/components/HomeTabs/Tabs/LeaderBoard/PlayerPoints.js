@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {  dummyTeam } from '../../../../assets/dummyData/leaderboardDummyData';
-
+import './PlayerPoints.css';
 class PlayerPoints extends Component {
 
 

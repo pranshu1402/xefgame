@@ -1,0 +1,45 @@
+.playerList{
+    display: flex;
+    flex-direction: column;
+}
+.playerListHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: blue;
+    font-size: 17px;
+
+}
+
+.player {
+    display: flex;
+    border-bottom: 1px solid blue;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.playerList{
+    width: 49%;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 
+    0 2px 1px -1px rgba(0, 0, 0, 0.12), 
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    border-radius: 4px;
+}
+
+.playerPointsDataPoint,.playerPointsDataScore,.playerPointsDataName{
+    flex-basis: 33%;
+}
+.playerPointsDataName{
+    text-align: start;
+}
+.playerPointsDataPoint{
+    text-align:end;
+}
+.playerPointsDataScore{
+    text-align: center;
+}
