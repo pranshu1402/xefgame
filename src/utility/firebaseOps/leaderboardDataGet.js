@@ -45,7 +45,6 @@ export const  getLeaderboardSelectContestData = (state) => {
 
                 })
             });
-            console.log(contestData,"jfdfas");
             return contestData;
         })
 }
