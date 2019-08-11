@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     teams: TeamsReducer,
     contest:ContestReducer,
     profile: profileReducer,
-    landingPage:landingPageReducer
+    sports:landingPageReducer
 });
 
 export default rootReducer;

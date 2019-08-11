@@ -20,6 +20,7 @@ const matchReducer = (state = initialState, action) => {
         case actions.MATCH_REQUEST_FAILED: return state;
         case actions.MATCH_SELECTED: return checkSelectedMatchId(state, action.matchId);
         case actions.AUTH_LOGOUT: return initialState;
+        case actions.MATCH_RESET: return initialState;
         default: return state;
     }
 }

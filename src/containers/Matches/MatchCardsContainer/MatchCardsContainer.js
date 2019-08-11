@@ -10,21 +10,25 @@ import './MatchCardsContainer.css';
 
 class MatchCards extends Component {
 
-    componentDidMount() {
-        this.props.onReceiveMatchDetails(this.props.sportSelected);
+    constructor(props) {
+        super();
+        props.onReceiveMatchDetails(props.sportSelected);
     }
 
     render() {
         return (
-            this.props.isLoading? <Spinner/>: (
+            this.props.isLoading? <Spinner/> : (
             <div className="matchCardsContainer">
                 <GridList cols={3.4} className="matchCardList">
                     {this.props.matchData.map(match => {
+                        console.log("match", match);
                         let isFocus = (this.props.selectedMatchId===match.unique_id);
                         return (
                             <GridListTile className="matchCardTile" key={match.unique_id}>
-                                <MatchCard match={match} isFocus={isFocus} 
-                                        onClicked={this.props.onMatchCardClicked}/>
+                                <MatchCard match={match} 
+                                        isFocus={isFocus} 
+                                        onClicked={this.props.onMatchCardClicked}
+                                        sport={this.props.sportSelected}/>
                             </GridListTile>          
                         )}
                     )}
@@ -41,7 +45,7 @@ const mapStateToProps = (state) => {
         matchData: state.matches.matchData,
         selectedMatchId: state.matches.selectedMatchId,
         isLoading: state.matches.loading,
-        sportSelected:state.landingPage.sportSelected
+        sportSelected:state.sports.sportSelected
     }
 }
 

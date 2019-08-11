@@ -7,28 +7,51 @@ import Avatar from '@material-ui/core/Avatar';
 import './MatchCard.css';
 
 export default function MatchCard(props) {
+    console.log(props.match);
     if (props.match !== undefined) {
+        const cardContent = props.sport === 'Cricket' ? (
+            <CardContent className="matchContent">
+                <Avatar className="matchTeamAvatar">
+                    {props.match["team-1"]}
+                </Avatar>
+
+                <Typography variant="h6">
+                    {props.match.type}
+                </Typography>
+
+                <Avatar className="matchTeamAvatar">
+                    {props.match["team-2"]}
+                </Avatar>
+            </CardContent>
+        ) : (
+            <CardContent className="matchContents">
+                <div className="matchDetails">
+                    <Typography variant="h6">
+                        {props.match.type}
+                    </Typography>
+                    <Typography variant="h6">
+                        | {props.match.venue}
+                    </Typography>
+                    <Typography variant="h6">
+                        , {props.match.time}
+                    </Typography>
+                </div>
+                <div className="matchTeams">
+                {props.match.teams.map( team => (
+                        <p key={team}>
+                            {team.slice(0,2).toUpperCase()}
+                        </p>
+                        )
+                )}
+                </div>    
+            </CardContent>
+            );
         return (
             <div onClick={() => props.onClicked(props.match.unique_id)}>
-                <Card className={"matchCard" + (props.isFocus?" matchCardFocused":"")}>
+                <Card className={"matchCard" + (props.isFocus ? " matchCardFocused" : "")}>
                     <CardHeader
                         title={props.match.date} />
-
-                    <CardContent className="matchDetails">
-
-                        <Avatar className="matchTeamAvatar">
-                            {props.match["team-1"]}
-                        </Avatar>
-
-                        <Typography variant="h6">
-                            {props.match.type}
-                        </Typography>
-
-                        <Avatar className="matchTeamAvatar">
-                            {props.match["team-2"]}
-                        </Avatar>
-
-                    </CardContent>
+                    {cardContent}
                 </Card>
             </div>
         );

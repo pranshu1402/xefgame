@@ -9,7 +9,11 @@ import './StepperLayout.css';
 class StepperLayout extends React.Component {
     constructor(props){
         super(props);
-        this.props.resetStep();
+        if(props.sport!=='Cricket'){
+            props.toggleSteps('other');
+        }else{
+            props.toggleSteps('cricket');
+        }
         this.confirmButtonText = 'confirm';
         this.handleConfirmButton = this.handleNext;
     }
@@ -56,7 +60,9 @@ class StepperLayout extends React.Component {
     render() {
         return (
             <div className="stepperContainer">
-                <Stepper activeStep={this.props.activeStep} alternativeLabel className="stepper">
+                <Stepper activeStep={this.props.activeStep} 
+                        alternativeLabel 
+                        className="stepper">
                     {this.props.steps.map(label => (
                         <Step key={label}>
                             <StepLabel>{label}</StepLabel>
@@ -95,7 +101,8 @@ const mapStateToProps = state=>{
         isSigned: !!state.auth.user,
         isMatchSelected: state.matches.selectedMatchId,
         isTeamCompleted: (state.teams.numPlayers===11),
-        isContestSelected: state.contest.selectedContest
+        isContestSelected: state.contest.selectedContest,
+        sport: state.sports.sportSelected,
     }
 }
 
@@ -105,6 +112,7 @@ const mapDispatchToProps = dispatch=>{
         decrementStep: ()=> dispatch({type:'DECREMENT_ACTIVE_STEP'}),
         resetStep: ()=> dispatch({type:'RESET_ACTIVE_STEP'}),
         setRedirect: (route)=> dispatch({type: 'AUTH_SET_REDIRECT', redirectTo: route}),
+        toggleSteps: (stepsType) => dispatch({type: 'SET_OTHER_STEPS', stepsType}),
     }
 }
 

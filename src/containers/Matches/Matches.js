@@ -3,6 +3,7 @@ import StepperLayout from '../../hoc/StepperLayout/StepperLayout';
 import MatchCards from './MatchCardsContainer/MatchCardsContainer';
 import CreateTeamContainer from './CreateTeamContainer/CreateTeamContainer';
 import ContestCardContainer from './ContestCardContainer/ContestCardContainer';
+import BettingContainer from './BettingContainer/BettingContainer';
 import Auth from '../Auth/Auth';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -29,6 +30,7 @@ class Matches extends Component {
                 <StepperLayout {...this.props} isMatchSelected={this.props.matchSelected}>
                     <Switch>
                         <Route path='/matches/team' component={CreateTeamContainer}/>
+                        <Route path='/matches/bet' component={BettingContainer}/>
                         <Route path='/matches/contest' component={ContestCardContainer}/>
                         <Route path='/matches/auth' component={Auth}/>
                         <Route path='/matches' component={MatchCards}/>

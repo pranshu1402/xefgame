@@ -24,26 +24,31 @@ export const  getLeaderboardSelectContestData = (state) => {
                     idNtypeContest.push([
                         data.match[key1].contest[key2].contestId,
                         data.match[key1].contest[key2].contestType]);
+                    return 0;
                 })
+
+                return 0;
             })
             state.matches.matchData.map(item => {
                 keyEnrolledMatches.map(key => {
-                    if (item.unique_id == key) {
+                    if (item.unique_id === key) {
                         selectContestObj.match = `${item["team-1"]} vs ${item["team-2"]}`;
                         selectContestObj.date = item.date;
 
                         idNtypeContest.map(item => {
                             state.contest.contests[item[1]].map(singleContest => {
-                                if (singleContest.id == item[0]) {
+                                if (singleContest.id === item[0]) {
                                     selectContestObj.entryFee = singleContest.entryFee;
                                     contestData.push(selectContestObj);
                                 }
+                                return 0;
                             })
+                            return 0;
                         })
                     }
-
-
+                    return 0;  
                 })
+                return 0;
             });
             console.log(contestData,"jfdfas");
             return contestData;

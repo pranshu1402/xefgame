@@ -25,10 +25,32 @@ div .matchCardFocused {
     border: 1px solid rgb(212, 201, 201);
 }
 
-.matchDetails {
+div .matchContent {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 0;
+}
+
+div .matchContents{
+    text-align: center;
+    padding: 0;
+}
+
+.matchDetails{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.matchTeams{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 ::-webkit-scrollbar {
