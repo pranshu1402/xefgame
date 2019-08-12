@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import { betFoosBallData } from '../../../assets/dummyData/betDummyData';
 import BetCard from '../../../components/Bet/BetCard';
+import {connect} from 'react-redux';
 import './BettingContainer.css';
 
 class Bet extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {
-            selected : ''
+        if (this.props.matchUniqueId === 0) {
+            this.props.history.replace('/matches');
         }
+        // props.setAllTeams(props.teamData);
     }
 
     betCardSelectHandler = (teamName) => {
-        if(this.state.selected===teamName){
-            this.setState({
-                selected : ''
-            });
+        if(this.props.selected===teamName){
+            this.props.onSelectTeamCard('');
         }else{
-            this.setState({
-                selected : teamName
-            });
+            this.props.onSelectTeamCard(teamName);
         }
+    }
+
+    betHandler = (event)=>{
+        this.props.onChangeBetAmount(event.target.value);
     }
 
     render() {
@@ -35,7 +37,7 @@ class Bet extends Component {
                                     key={index}
                                     teamData={data} 
                                     clickHandler={this.betCardSelectHandler}
-                                    selected={this.state.selected===data.teamName}
+                                    selected={this.props.selected===data.teamName}
                                     />
                         )
                     )}
@@ -45,13 +47,16 @@ class Bet extends Component {
                         <label>BET:</label>
                         <input type ="number" 
                            id="inputBetBox" 
-                           placeholder="100" />
+                           placeholder="100"
+                           onChange={this.betHandler}
+                           disabled={this.props.selected===''} />
                     </div>
                     <div className="winChanceBox">
                         <label>WIN:</label>
                         <input type ="number" 
                            id="outputBetBox" 
-                           placeholder="100" />
+                           placeholder={this.props.winAmount}
+                           disabled={true} />
                     </div>
                 </div>
             </div>
@@ -59,10 +64,22 @@ class Bet extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         teams: state.matches.matchData.teams,
-//     }
-// };
+const mapStateToProps = state => {
+    return {
+        teams: state.bet.teams,
+        // teamData: state.matches.matchData.teams,
+        selected: state.bet.selected,
+        winAmount: state.bet.winAmount,
+        matchUniqueId: state.matches.selectedMatchId,
+    }
+};
 
-export default Bet;
+const mapDispatchToProps = dispatch =>{
+    return {
+        onSelectTeamCard: (selectTeam) => dispatch({type: 'SELECT_BET_TEAM', selectTeam}),
+        setAllTeams: (teamData) => dispatch({type: 'SET_ALL_TEAMS', teamData}),
+        onChangeBetAmount: (betAmount) => dispatch({type: 'SET_BET_AMOUNT', betAmount})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bet);

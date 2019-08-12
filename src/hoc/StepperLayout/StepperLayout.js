@@ -24,11 +24,11 @@ class StepperLayout extends React.Component {
     }
 
     handleNext = () => {
-        const {routeForStep, activeStep, incrementStep, history} = this.props;
+        const {routeForStep, activeStep, steps, incrementStep, history} = this.props;
         const route = routeForStep[activeStep + 1];
         incrementStep();
 
-        if(activeStep===2)
+        if(activeStep===steps.length-1)
             history.push('/' + route);
         else
             history.push( '/matches/' + route);
@@ -39,13 +39,13 @@ class StepperLayout extends React.Component {
     }
 
     handleConfirmButtonDisable = ()=>{
-        const {activeStep, isMatchSelected, isTeamCompleted, isContestSelected, isSigned} = this.props;
+        const {activeStep, isMatchSelected, isTeamCompleted, isBetInitiated, isContestSelected, isSigned} = this.props;
         this.handleConfirmButton = this.handleNext;
         switch(activeStep){
             case 0: this.confirmButtonText = 'Enter';
                     return !isMatchSelected;
             case 1: this.confirmButtonText = 'Confirm';
-                    return !isTeamCompleted;
+                    return (!isTeamCompleted)&&(!isBetInitiated);
             case 2: if(!isSigned){
                         this.confirmButtonText = 'SignIn to Continue';
                         this.handleConfirmButton = this.handleLoginToParticipate;
@@ -103,6 +103,7 @@ const mapStateToProps = state=>{
         isTeamCompleted: (state.teams.numPlayers===11),
         isContestSelected: state.contest.selectedContest,
         sport: state.sports.sportSelected,
+        isBetInitiated: (state.bet.betAmount!==0),
     }
 }
 

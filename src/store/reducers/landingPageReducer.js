@@ -2,7 +2,7 @@ const initialState = {
     sportSelected: ""
 }
 
-export const landingPageReducer = (state = initialState, action) => {
+const landingPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case  'SPORT_SELECTED':
             return {
@@ -12,3 +12,5 @@ export const landingPageReducer = (state = initialState, action) => {
         default:return state;    
     }
 }
+
+export default landingPageReducer;
