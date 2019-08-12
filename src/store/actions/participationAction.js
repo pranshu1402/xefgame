@@ -11,19 +11,19 @@ export const setContestParticipationData = (state) => {
     const selectedContestType = state.contest.selectedContest.typeOfContest;
     const betAmount = state.bet.betAmount;
     const winAmount = state.bet.winAmount;
-    const isBettingGame = (betAmount!==0);
-    const entryFee = isBettingGame?betAmount:state.contest.selectedContest.entryFee; 
+    const isBettingGame = (betAmount !== 0);
+    const entryFee = isBettingGame ? betAmount : state.contest.selectedContest.entryFee;
     const newPoints = state.auth.user.points - entryFee;
     //set new coins in redux
     state.auth.user.points = newPoints;
-    
-    const matchObj = isBettingGame?(
+
+    const matchObj = isBettingGame ? (
         {
             matchId,
-            contest:{ 
-                [contestId] :{
-                'contestType': selectedContestType,
-                'teamId': teamId
+            contest: {
+                [contestId]: {
+                    'contestType': selectedContestType,
+                    'teamId': teamId
                 }
             },
             teamId,
@@ -31,39 +31,38 @@ export const setContestParticipationData = (state) => {
                 [teamId]: selectedPlayers
             }
         }
-    ):(
-        {
-            matchId,
-            teamId,
-            betAmount,
-            winAmount,
-            paid: false,
-            status: 'pending',
-        }
-    );
+    ) : (
+            {
+                matchId,
+                teamId,
+                betAmount,
+                winAmount,
+                paid: false,
+                status: 'pending',
+            }
+        );
 
     return dispatch => {
-    firebase.firestore().collection("users").doc(userId).update(
-        {
-            profile: {
-                points: newPoints
-            },
-
-            sports:
+        firebase.firestore().collection("users").doc(userId).update(
             {
-                [sport]: firebase.firestore.FieldValue.arrayUnion(matchObj)
+                profile: {
+                    points: newPoints
+                },
+
+                sports:
+                {
+                    [sport]: firebase.firestore.FieldValue.arrayUnion(matchObj)
+                },
             },
-        },
-        {
-            merge: true
-        }
-    ).then(function () {
-        console.log("Document successfully written!");
-    }).catch(function (error) {
-        console.error("Error writing document: ", error);
+            {
+                merge: true
+            }
+        ).then(function () {
+            console.log("Document successfully written!");
+        }).catch(function (error) {
+            console.error("Error writing document: ", error);
+        });
+        dispatch({ type: 'MATCH_RESET' });
+        dispatch({ type: 'RESET_ACTIVE_STEP' });
     }
-    );
-    dispatch({type: 'MATCH_RESET'});
-    dispatch({type: 'RESET_ACTIVE_STEP'});    
-}
 }

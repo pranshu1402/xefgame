@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import HomeTabs from '../../components/HomeTabs/HomeTabs';
 import Leaderboard from '../../components/HomeTabs/Tabs/LeaderBoard/Leaderboard';
-import MyMatches from '../../components/HomeTabs/Tabs/MyMatches/MyMatches';
+import MyGames from '../../components/HomeTabs/Tabs/MyGames/MyGames';
 import Profile from '../Profile/Profile';
+import {connect} from 'react-router-dom';
+import { loadMyGamesData } from '../../utility/firebaseOps/getMyGamesData';
 
 class Home extends Component {
+    constructor(props){
+        super(props);
+        props.fetchGames();
+    }
+
     render() {
         return (
                 <HomeTabs>
-                    <div label="MY CONTESTS">
-                        <MyMatches/>
+                    <div label="MY GAMES">
+                        <MyGames/>
                     </div>
 
                     <div label="LEADERBOARD">
@@ -24,4 +31,10 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapDispatchToProps = dispatch =>{
+    return {
+        fetchGames: ()=> dispatch(loadMyGamesData()),    
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Home);

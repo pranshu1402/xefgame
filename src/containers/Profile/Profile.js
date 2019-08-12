@@ -8,40 +8,46 @@ import './Profile.css';
 
 class Profile extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        props.fetchFormData(props.userData); 
+        props.fetchFormData(props.userData);
     }
 
-    componentDidUpdate(){
-        const {editLabel} = this.props;
-        if((editLabel!==null && editLabel!=='photoURL')){
+    componentDidUpdate() {
+        const { editLabel } = this.props;
+        if ((editLabel !== null && editLabel !== 'photoURL')) {
             document.getElementById(editLabel).focus();
         }
     }
 
-    resetChanges = ()=>{
+    resetChanges = () => {
         this.props.fetchFormData(this.props.userData);
     }
 
     render() {
 
         let formElements = [];
-        const {inputs, editLabel, toggleEditHandler, inputEditHandler, submitHandler} = this.props;
-        for(let inputKey in inputs){
-            formElements.push(<EditInput key={inputKey}
-                                         label={inputKey}
-                                         value={inputs[inputKey][0]}
-                                         type={inputs[inputKey][1]}
-                                         editLabel={editLabel}
-                                         changeHandler={inputEditHandler}
-                                         childClassName="editButton">
-                                    <IconButton color="secondary" 
-                                                aria-label="editInput" 
-                                                onClick={()=>toggleEditHandler(inputKey)}>
-                                        <EditIcon fontSize='small'/>
-                                    </IconButton>
-                              </EditInput>
+        const { inputs, editLabel, toggleEditHandler, inputEditHandler, submitHandler } = this.props;
+        let disableIconButton = false;
+
+        for (let inputKey in inputs) {
+            formElements.push(
+                <EditInput key={inputKey}
+                    label={inputKey}
+                    value={inputs[inputKey][0]}
+                    type={inputs[inputKey][1]}
+                    editLabel={editLabel}
+                    changeHandler={inputEditHandler}
+                    childClassName="editButton">
+                    {disableIconButton = (inputs[inputKey][1] === "email") ? true : false}
+                    <IconButton color="secondary"
+                        aria-label="editInput"
+                        disabled={disableIconButton}
+                        onClick={() => toggleEditHandler(inputKey)}>
+                        <EditIcon fontSize='small' />
+                    </IconButton>
+
+                </EditInput>
             );
         }
 
@@ -49,14 +55,14 @@ class Profile extends Component {
             <div className="profileContainer">
                 <form onSubmit={submitHandler} className="profileElements">
                     {formElements}
-                    <button type="submit" 
-                            value="Submit"
-                            className="profileButton">
-                                Save
+                    <button type="submit"
+                        value="Submit"
+                        className="profileButton">
+                        Save
                     </button>
                     <button onClick={this.resetChanges}
-                            className="profileButton">
-                                Cancel
+                        className="profileButton">
+                        Cancel
                     </button>
                 </form>
             </div>
@@ -75,11 +81,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchFormData: (userData)=> dispatch(actions.fetchFormData(userData)),
-        submitHandler: ()=> dispatch(actions.submitForm()),
-        inputEditHandler: (event)=> dispatch(actions.editFormInput(event)),
-        toggleEditHandler: (editLabel)=> dispatch(actions.editToggle(editLabel)),
+        fetchFormData: (userData) => dispatch(actions.fetchFormData(userData)),
+        submitHandler: () => dispatch(actions.submitForm()),
+        inputEditHandler: (event) => dispatch(actions.editFormInput(event)),
+        toggleEditHandler: (editLabel) => dispatch(actions.editToggle(editLabel)),
     };
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

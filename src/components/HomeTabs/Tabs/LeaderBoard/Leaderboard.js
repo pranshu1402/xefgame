@@ -2,45 +2,36 @@ import React, { Component } from 'react';
 
 import './LeaderBoard.css';
 
-import PlayerPoints from './PlayerPoints';
-import LeaderboardTeamRank from './LeaderboardTeamRank';
-import { getLeaderboardSelectContestData, contestData } from '../../../../utility/firebaseOps/leaderboardDataGet';
 import { connect } from 'react-redux';
+import { getMyTeamOrPlayer } from '../../../../utility/firebaseOps/getMyTeamOrPlayer';
 
 class Leaderboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { contestData: [] };
-    }
-
-    componentDidMount() {
-        getLeaderboardSelectContestData(this.props.stateRef);
-    
-    }
-
     render() {
-        return (
-            <div className="rootLeaderboard">
-                <div className="leaderboardChoser">
-                    <span>Choose Contest</span>
-                    <ul>{
-                        this.state.contestData.length > 0 && this.state.contestData.map((item, index) =>
-                            <li key={index}>{item.match}, {item.date} {item.entryFee}</li>)
-                    }
-                    </ul>
-                </div>
-                <div className="leaderboardContent">
-                    <PlayerPoints />
-                    <LeaderboardTeamRank />
-                </div>
+        const { selectedMatchToShow } = this.props;
+        let myTeamOrPlayer;
+        if (selectedMatchToShow != null) {
+             myTeamOrPlayer = getMyTeamOrPlayer(selectedMatchToShow["team/Player"], selectedMatchToShow.BetOn);
 
-            </div>
+        }
+        return (
+            selectedMatchToShow?
+            <div className="rootLeaderboard">
+                <div className="matchStartTag">Match To Start: <span>{selectedMatchToShow.date},{selectedMatchToShow.time}</span></div>
+                {
+                    selectedMatchToShow["team/Player"].map((team) =>
+                        <li>{team.name}:<span>0</span></li>
+                    )
+                }
+                <div className="myPlayer">My Player : <span>{myTeamOrPlayer[0].name}</span> Bet: <span>500</span></div>
+                <div className="playerStatus">You are winning</div>
+
+            </div>:<div style={{ width:"200px",color: "red", fontSize:"25px", margin:"auto"}}>Select  a Game from Game Tab</div>
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-        stateRef: state
+        selectedMatchToShow: state.tabs.matchToShowOnLeaderboard
     }
 }
 export default connect(mapStateToProps)(Leaderboard);

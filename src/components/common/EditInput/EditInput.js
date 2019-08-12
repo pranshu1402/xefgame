@@ -1,6 +1,7 @@
 import React from 'react';
 
 function EditInput(props) {
+
     return (
         <div className="profileInputBox">
             {
