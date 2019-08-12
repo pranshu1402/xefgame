@@ -23,7 +23,7 @@ class Leaderboard extends Component {
                     )
                 }
                 <div className="myPlayer">My Player : <span>{myTeamOrPlayer[0].name}</span> Bet: <span>500</span></div>
-                <div className="playerStatus">You win</div>
+                <div className="playerStatus">You are winning</div>
 
             </div>:<div style={{ width:"200px",color: "red", fontSize:"25px", margin:"auto"}}>Select  a Game from Game Tab</div>
         )

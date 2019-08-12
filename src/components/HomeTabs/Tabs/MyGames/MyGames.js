@@ -25,7 +25,7 @@ class MyMatches extends Component {
                     {
                         myGamesKeys.map((myGamesKey) =>
                             this.props.myEnrolledGames[myGamesKey].map((enrolledMatch, index) =>
-                                <div>
+                                <div className="gameSection">
                                     <label className="myGameTag">{myGamesKey}</label>
                                     <div onClick={() => this.props.makeChangeTab(
                                         {
