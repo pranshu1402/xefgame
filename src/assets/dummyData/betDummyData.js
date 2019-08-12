@@ -20,17 +20,65 @@ export const betFoosBallData = [
         imgUrl: "",
     },
 ];
-    // {
-    //     team: "kushal",
-    //     rating: 9.2,
-    //     bettingPrice: 142,
-    //     imgUri: "",
-    //     role:"attacker"
-    // },
-    // {
-    //     team: "Ashish",
-    //     rating: 7.5,
-    //     bettingPrice: 115,
-    //     imgUri: "",
-    //     role:"attacker/defender"
-    // },
+
+export const betCarromData = [
+    {
+        teamName: "Panthers",
+        teamRating: 8,
+        players: [
+            {name: 'Kushal',rating: 4, role: 'Attacker'}, 
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+    {
+        teamName: "Strikers",
+        teamRating: 9,
+        players: [
+            {name: 'Ashish', rating: 4.5, role: 'Attacker'}, 
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+    {
+        teamName: "Legends",
+        teamRating: 9,
+        players: [
+            {name: 'Gaurav', rating: 5, role: 'Attacker'},
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+    {
+        teamName: "Royals",
+        teamRating: 9,
+        players: [ 
+            {name: 'Amit', rating: 3, role: 'Defender'}
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+];
+
+export const betTableTennisData = [
+    {
+        teamName: "NU",
+        teamRating: 8,
+        players: [
+            {name: 'Nitin',rating: 5, role: ''}, 
+            {name: 'Udit',rating: 4, role: ''}
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+    {
+        teamName: "MM",
+        teamRating: 9,
+        players: [
+            {name: 'Mayank', rating: 4.5, role: ''}, 
+            {name: 'Mridul', rating: 4.5, role: ''}
+        ],
+        winningPrize: 125,
+        imgUrl: "",
+    },
+];

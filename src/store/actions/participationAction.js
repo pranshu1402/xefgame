@@ -2,36 +2,20 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 export const setContestParticipationData = (state) => {
+    const userId = String(state.auth.user.uid);
     const sport = state.sports.sportSelected;
     const matchId = state.matches.selectedMatchId;
-    const contestId = state.contest.selectedContest.id;
-    const teamId = matchId + contestId;
-    const userId = String(state.auth.user.uid);
-    const selectedPlayers = state.teams.selectedPlayers;
-    const selectedContestType = state.contest.selectedContest.typeOfContest;
+    
     const betAmount = state.bet.betAmount;
-    const winAmount = state.bet.winAmount;
     const isBettingGame = (betAmount !== 0);
-    const entryFee = isBettingGame ? betAmount : state.contest.selectedContest.entryFee;
-    const newPoints = state.auth.user.points - entryFee;
-    //set new coins in redux
-    state.auth.user.points = newPoints;
-
-    const matchObj = isBettingGame ? (
-        {
-            matchId,
-            contest: {
-                [contestId]: {
-                    'contestType': selectedContestType,
-                    'teamId': teamId
-                }
-            },
-            teamId,
-            players: {
-                [teamId]: selectedPlayers
-            }
-        }
-    ) : (
+    let matchObj;
+    let entryFee;
+    
+    if(isBettingGame){
+        const winAmount = state.bet.winAmount;
+        const teamId = state.bet.selected;
+        entryFee = betAmount;
+        matchObj = (
             {
                 matchId,
                 teamId,
@@ -41,21 +25,39 @@ export const setContestParticipationData = (state) => {
                 status: 'pending',
             }
         );
+    }else{
+        const contestId = state.contest.selectedContest.id;
+        const selectedPlayers = state.teams.selectedPlayers;
+        const selectedContestType = state.contest.selectedContest.typeOfContest;
+        const teamId = matchId + contestId;
+        entryFee = state.contest.selectedContest.entryFee;
+        matchObj = (
+            {
+                matchId,
+                contest: {
+                    [contestId]: {
+                        'contestType': selectedContestType,
+                        'teamId': teamId
+                    }
+                },
+                teamId,
+                players: {
+                    [teamId]: selectedPlayers
+                }
+            }
+        );
+    }
+
+    const newPoints = state.auth.user.points - entryFee;
+    //set new coins in redux
+    state.auth.user.points = newPoints;
+    const sportKey = "sports."+ sport;
 
     return dispatch => {
         firebase.firestore().collection("users").doc(userId).update(
             {
-                profile: {
-                    points: newPoints
-                },
-
-                sports:
-                {
-                    [sport]: firebase.firestore.FieldValue.arrayUnion(matchObj)
-                },
-            },
-            {
-                merge: true
+                "profile.points": newPoints,
+                [sportKey]: firebase.firestore.FieldValue.arrayUnion(matchObj),
             }
         ).then(function () {
             console.log("Document successfully written!");

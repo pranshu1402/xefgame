@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { betFoosBallData } from '../../../assets/dummyData/betDummyData';
+import { betFoosBallData, betCarromData, betTableTennisData } from '../../../assets/dummyData/betDummyData';
 import BetCard from '../../../components/Bet/BetCard';
 import {connect} from 'react-redux';
 import './BettingContainer.css';
@@ -27,7 +27,17 @@ class Bet extends Component {
     }
 
     render() {
-        const betDummyData = betFoosBallData;
+        let betDummyData;
+        switch (this.props.sportName) {
+            case 'Carrom': betDummyData= betCarromData;
+                break;
+            case 'FoosBall': betDummyData= betFoosBallData;
+                break;
+            case 'TableTennis': betDummyData= betTableTennisData;
+                break;
+            default: betDummyData= null;
+        }
+
         return (
             <div className="bettingCardsContainer">
                 <div className="betTeamCards">
@@ -71,6 +81,7 @@ const mapStateToProps = state => {
         selected: state.bet.selected,
         winAmount: state.bet.winAmount,
         matchUniqueId: state.matches.selectedMatchId,
+        sportName: state.sports.sportSelected
     }
 };
 
