@@ -9,7 +9,6 @@ class MyGames extends Component {
 
     render() {
         let myGameskeys = [];
-        
         if(this.props.myEnrolledGames!==null)
             myGameskeys = Object.keys(this.props.myEnrolledGames);
         
