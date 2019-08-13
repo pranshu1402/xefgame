@@ -7,7 +7,9 @@ export const myGamesReducer = (state = initialState, action) => {
         case 'ADD_MY_GAMES': return {
             ...state,
             myEnrolledGames: {...state.myEnrolledGames, 
-                [action.enrolledGamesKey]: action.newEnrolledMatches}
+                [action.enrolledGamesKey]: { 
+                    matches: action.newEnrolledMatches,
+                    teams: action.teamsData}}
         }
         default: return state
     }

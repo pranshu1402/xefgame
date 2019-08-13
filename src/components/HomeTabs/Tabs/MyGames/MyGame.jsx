@@ -1,9 +1,5 @@
 import React from 'react';
 
-function getMyTeamOrPlayer(teams,teamId){
-    return teams.filter((team)=>team.teamId==teamId);
-}
-
 const MyGame = (props) => {
     //let myBettedPlayer = getMyTeamOrPlayer(props.gameData["team/Player"],props.gameData.BetOn);
     //if(myBettedPlayer===undefined){

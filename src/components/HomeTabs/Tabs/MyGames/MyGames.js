@@ -21,10 +21,10 @@ class MyGames extends Component {
                                     <label className="myGameTag">
                                         {myGameKey}
                                     </label>
-                                {this.props.myEnrolledGames[myGameKey].map((enrolledMatch, index) => (
+                                {this.props.myEnrolledGames[myGameKey].matches.map((enrolledMatch, index) => (
                                     <div key={index}
                                         onClick={() => this.props.makeChangeTab({label: "LEADERBOARD",
-                                            matchToShowOnLeaderboard: enrolledMatch
+                                            matchToShowOnLeaderboard: {enrolledMatch, sport: myGameKey}
                                         })}
                                     >
                                             <MyGame gameData={enrolledMatch} />

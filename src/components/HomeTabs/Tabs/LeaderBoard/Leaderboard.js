@@ -4,24 +4,25 @@ import { dummyMatchData} from './leaderboardDummyData';
 import './LeaderBoard.css';
 
 class Leaderboard extends Component {
-    getMyTeamOrPlayer = (teams,teamId) => {
-        return teams.filter((team)=>team.teamId==teamId);
-    }
     
     render() {
-        const { selectedMatchToShow } = this.props;
+        const { selectedMatchToShow, gamesData, selectedSport } = this.props;
         let myTeamOrPlayer;
         if (selectedMatchToShow != null) {
-             myTeamOrPlayer = this.getMyTeamOrPlayer(selectedMatchToShow["team/Player"], selectedMatchToShow.BetOn);
-
+             console.log(gamesData, selectedSport);
+             const allTeams = gamesData[selectedSport].teams;
+             myTeamOrPlayer = allTeams[selectedMatchToShow.teamId];
+             console.log("my Team ", myTeamOrPlayer);
+             if(myTeamOrPlayer===null)
+                return (<div>Team Not found</div>);
         }
         return (
             selectedMatchToShow?
             <div className="rootLeaderboard">
                 <div className="matchStartTag">Match To Start: <span>{selectedMatchToShow.date},{selectedMatchToShow.time}</span></div>
                 {
-                    selectedMatchToShow["team/Player"].map((team) =>
-                        <li>{team.name}:<span>0</span></li>
+                    myTeamOrPlayer.players.map( player =>
+                        <li>{player.name}:<span>0</span></li>
                     )
                 }
                 {/* <div className="myPlayer">My Player : <span>{myTeamOrPlayer[0].name}</span> Bet: <span>500</span></div> */}
@@ -33,7 +34,9 @@ class Leaderboard extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        selectedMatchToShow: state.tabs.matchToShowOnLeaderboard
+        selectedSport: state.tabs.matchToShowOnLeaderboard.sport,
+        selectedMatchToShow: state.tabs.matchToShowOnLeaderboard.enrolledMatch,
+        gamesData: state.myGames.myEnrolledGames
     }
 }
 export default connect(mapStateToProps)(Leaderboard);
