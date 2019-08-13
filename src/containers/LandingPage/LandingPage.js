@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
-import SportCards from './SportCards';
+import SportCards from '../../components/sportCard/SportCards';
 import { onSportSelected } from '../../store/actions/landingPageActions';
 import {connect} from 'react-redux';
 
@@ -18,7 +18,7 @@ class LandingPage extends Component {
         return (
             <div className="sportsCardContainer">
                 {
-                    ["Cricket", "FoosBall", "Carrom", "TableTennis"].map((sport,index) => 
+                    ["Carrom", "TableTennis"].map((sport,index) => 
                         <SportCards key={index}
                                     sportName={sport} 
                                     loadGames={this.loadGames}

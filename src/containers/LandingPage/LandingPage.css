@@ -78,7 +78,7 @@
     
     .sportsCard{
         position: relative;
-        width: 80%;
+        width: 70%;
     }
 
     .sportsGenre{
@@ -94,6 +94,13 @@
         text-align: justify;
     }
    
+}
+
+@media only screen and (max-width: 800px) {
+
+    .sportsCard{
+        width: 85%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -122,3 +129,12 @@
    
 }
   
+@media only screen and (max-width: 400px) {
+    .sportsCard{
+        height: 150px;
+    }
+
+    .sportsCard img{
+        height: 150px;
+    }
+}

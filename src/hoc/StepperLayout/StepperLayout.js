@@ -44,10 +44,20 @@ class StepperLayout extends React.Component {
         switch(activeStep){
             case 0: this.confirmButtonText = 'Enter';
                     return !isMatchSelected;
-            case 1: this.confirmButtonText = 'Confirm';
-                    return (!isTeamCompleted)&&(!isBetInitiated);
+            case 1: if(isBetInitiated){
+                        if(!isSigned){
+                            this.confirmButtonText = 'Sign In';
+                            this.handleConfirmButton = this.handleLoginToParticipate;
+                        }else{
+                            this.confirmButtonText = 'Participate';
+                        }
+                        return !isBetInitiated;
+                    }else{
+                        this.confirmButtonText = 'Participate';
+                        return !isTeamCompleted;
+                    }
             case 2: if(!isSigned){
-                        this.confirmButtonText = 'SignIn to Continue';
+                        this.confirmButtonText = 'Sign In';
                         this.handleConfirmButton = this.handleLoginToParticipate;
                     }else{
                         this.confirmButtonText = 'Participate';

@@ -1,11 +1,14 @@
 import React from 'react';
-import { getMyTeamOrPlayer } from '../../../../utility/firebaseOps/getMyTeamOrPlayer';
+
+function getMyTeamOrPlayer(teams,teamId){
+    return teams.filter((team)=>team.teamId==teamId);
+}
 
 const MyGame = (props) => {
-    let myBettedPlayer=getMyTeamOrPlayer(props.gameData["team/Player"],props.gameData.BetOn);
-    if(myBettedPlayer===undefined){
-        return null;
-    }
+    //let myBettedPlayer = getMyTeamOrPlayer(props.gameData["team/Player"],props.gameData.BetOn);
+    //if(myBettedPlayer===undefined){
+    //    return null;
+    //}
     return (
         <div className="myMatch">
             <p className="myMatchDate">{props.gameData.date},{props.gameData.time}</p>

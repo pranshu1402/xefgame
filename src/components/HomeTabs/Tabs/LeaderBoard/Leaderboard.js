@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { dummyMatchData} from './leaderboardDummyData';
 import './LeaderBoard.css';
 
-import { connect } from 'react-redux';
-import { getMyTeamOrPlayer } from '../../../../utility/firebaseOps/getMyTeamOrPlayer';
-
 class Leaderboard extends Component {
+    getMyTeamOrPlayer = (teams,teamId) => {
+        return teams.filter((team)=>team.teamId==teamId);
+    }
+    
     render() {
         const { selectedMatchToShow } = this.props;
         let myTeamOrPlayer;
         if (selectedMatchToShow != null) {
-             myTeamOrPlayer = getMyTeamOrPlayer(selectedMatchToShow["team/Player"], selectedMatchToShow.BetOn);
+             myTeamOrPlayer = this.getMyTeamOrPlayer(selectedMatchToShow["team/Player"], selectedMatchToShow.BetOn);
 
         }
         return (

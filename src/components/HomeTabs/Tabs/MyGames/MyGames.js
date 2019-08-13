@@ -1,46 +1,39 @@
 import React, { Component } from 'react';
-
-import './MyGames.css';
-import { loadMyGamesData } from '../../../../utility/firebaseOps/getMyGamesData';
-import { connect } from 'react-redux';
 import MyGame from './MyGame';
-import {  changeTabOnGameClick } from '../../../../store/actions/tabsAction';
+import Spinner from '../../../../components/common/Spinner/Spinner';
+import { changeTabOnGameClick } from '../../../../store/actions/tabsAction';
+import { connect } from 'react-redux';
+import './MyGames.css';
 
-class MyMatches extends Component {
-
-    componentDidMount() {
-        loadMyGamesData();
-    }
+class MyGames extends Component {
 
     render() {
-        let myGamesKeys;
-        if (this.props.myEnrolledGames !== null) {
-            myGamesKeys = Object.keys(this.props.myEnrolledGames);
-            // console.log("keys", this.props.myEnrolledGames, myGamesKeys);
-        }
-
+        let myGameskeys = [];
+        
+        if(this.props.myEnrolledGames!==null)
+            myGameskeys = Object.keys(this.props.myEnrolledGames);
+        
         return (
-            myGamesKeys ?
+            (myGameskeys.length!== 0)? (
                 <div className="rootMyMatches">
-                    {
-                        myGamesKeys.map((myGamesKey) =>
-                            this.props.myEnrolledGames[myGamesKey].map((enrolledMatch, index) =>
-                                <div className="gameSection">
-                                    <label className="myGameTag">{myGamesKey}</label>
-                                    <div onClick={() => this.props.makeChangeTab(
-                                        {
-                                            label: "LEADERBOARD",
-                                            matchToShowOnLeaderboard:enrolledMatch
-                                        }
-                                        )}>
-                                        <MyGame key={index} gameData={enrolledMatch} />
+                    { myGameskeys.map( myGameKey => (
+                                <div key={myGameKey} className="gameSection">
+                                    <label className="myGameTag">
+                                        {myGameKey}
+                                    </label>
+                                {this.props.myEnrolledGames[myGameKey].map((enrolledMatch, index) => (
+                                    <div key={index}
+                                        onClick={() => this.props.makeChangeTab({label: "LEADERBOARD",
+                                            matchToShowOnLeaderboard: enrolledMatch
+                                        })}
+                                    >
+                                            <MyGame gameData={enrolledMatch} />
                                     </div>
-
+                                ))}
                                 </div>
-                            ))
-                    }
-
-                </div> : <div></div>
+                    ))}
+                </div>
+            ) : <Spinner />
         )
     }
 }
@@ -54,4 +47,4 @@ const mapDispatchToProps = (dispatch) => {
         makeChangeTab: (data) => dispatch(changeTabOnGameClick(data))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MyMatches);
+export default connect(mapStateToProps, mapDispatchToProps)(MyGames);
