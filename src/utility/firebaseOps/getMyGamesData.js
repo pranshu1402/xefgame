@@ -28,7 +28,9 @@ export const loadMyGamesData = () => {
                             })
 
                             let newEnrolledMatches = [...filteredMatches];
-                            dispatch({ type: 'ADD_MY_GAMES', newEnrolledMatches, enrolledGamesKey });
+                            const teamsData = sportData.data().teams;
+
+                            dispatch({ type: 'ADD_MY_GAMES', newEnrolledMatches, teamsData, enrolledGamesKey});
                         })
                         return 0;
                 }) 

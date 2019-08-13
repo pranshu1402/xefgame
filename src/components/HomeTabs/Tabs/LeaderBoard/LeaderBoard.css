@@ -1,32 +1,50 @@
 .rootLeaderboard {
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   width: 33%;
-   margin: auto;
-   font-size: 2rem;
-   font-weight: bold;
-   color: purple;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    margin: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    color: purple;
 }
+
 /* .matchStartTag{
 
 } */
-.playerStatus{
-color: green;
-font-size: 1.4rem;
+.playerStatus {
+    color: green;
+    font-size: 1.4rem;
 }
-.myPlayer{
-color: green;
-font-size: 1.4rem;
+
+.myPlayer {
+    color: green;
+    font-size: 1.4rem;
 }
-.rootLeaderboard li{
+
+.rootLeaderboard li {
     list-style-type: none;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    font-weight: normal;
 }
-.rootLeaderboard li span{
+
+.rootLeaderboard li span {
     color: black;
 }
-.rootLeaderboard div span{
+
+.rootLeaderboard div span {
     color: black;
     font-size: 1.2rem;
+}
+
+.allPlayersScore {
+    display: flex;
+}
+
+.leaderboardTeamName , .rootLeaderboard label {
+    display: block;
+    margin: 4px;
+    font-size: 1.1rem;
+    color: green;
+    margin-left: 0;
 }
