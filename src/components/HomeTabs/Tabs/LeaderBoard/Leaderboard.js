@@ -6,11 +6,11 @@ class Leaderboard extends Component {
 
     render() {
         const { selectedMatchToShow, gamesData } = this.props;
-        let myPlayersInSelectedMatch, teamsKeys=[];
+        let myPlayersInSelectedMatch, teamsKeys = [];
         if (selectedMatchToShow != null) {
             myPlayersInSelectedMatch = gamesData[selectedMatchToShow.sport].teams[selectedMatchToShow.enrolledMatch.teamId]["players"];
-            for(let key in gamesData[selectedMatchToShow.sport].teams){
-                if(selectedMatchToShow.enrolledMatch.teams.includes(key)){
+            for (let key in gamesData[selectedMatchToShow.sport].teams) {
+                if (selectedMatchToShow.enrolledMatch.teams.includes(key)) {
                     teamsKeys.push(key);
                 }
             }
@@ -19,13 +19,14 @@ class Leaderboard extends Component {
         return (
             selectedMatchToShow ?
                 <div className="rootLeaderboard">
-                    <div className="matchStartTag">Match To Start: <span>{selectedMatchToShow.date},
-                    {selectedMatchToShow.time}</span></div>
+                    <div className="matchStartTag">Match To Start: <span>{new Date(selectedMatchToShow.enrolledMatch.date).toDateString()},
+                    {selectedMatchToShow.enrolledMatch.time}</span></div>
 
                     <label>My Team</label>
+                    <label>{selectedMatchToShow.enrolledMatch.teamId}</label>
                     {
                         myPlayersInSelectedMatch.map(player =>
-                            <li>{selectedMatchToShow.enrolledMatch.teamId}:{player.name}:<span>0</span></li>
+                            <li>{player.name}:<span>0</span></li>
                         )
                     }
 

@@ -38,18 +38,22 @@ export default function MatchCard(props) {
                 <div className="matchTeams">
                 {props.match.teams.map( team => (
                         <p key={team}>
-                            {team.slice(0,2).toUpperCase()}
+                            {team}
                         </p>
                         )
                 )}
                 </div>    
             </CardContent>
             );
+         let disableClassName=  props.disabled? "disableCard":"";
         return (
-            <div onClick={() => props.onClicked(props.match.unique_id)}>
+            <div className={disableClassName}
+             onClick={() => props.onClicked(props.match.unique_id)}>
+                
                 <Card className={"matchCard" + (props.isFocus ? " matchCardFocused" : "")}>
                     <CardHeader
                         title={props.match.date} />
+                         {props.disabled?<span className="betted">Betted</span>:undefined}
                     {cardContent}
                 </Card>
             </div>

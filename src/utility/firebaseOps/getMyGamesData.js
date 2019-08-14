@@ -20,7 +20,6 @@ export const loadMyGamesData = () => {
                                             ...myMatchData,
                                             ...filteredMatch
                                         }
-                                        console.log(filteredMatchData);
                                         return filteredMatchData;
                                     });
 

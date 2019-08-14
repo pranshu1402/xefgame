@@ -6,7 +6,7 @@ import timer from '../../utility/timer';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/participationAction';
 import './Participate.css';
-import { getEntryFeeForMatch } from '../../utility/getEntryFeeForMatch';
+import { getEntryFeeForMatch, getdateFormatch } from '../../utility/getDataByperformingOps';
 
 class Participate extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Participate extends Component {
 
     componentDidMount() {
         this.tick = setInterval(() => {
-            this.setState({ timeLeft: timer("2019-08-29T10:00:00.000Z") });
+            this.setState({ timeLeft: timer(getdateFormatch(this.props.matchData,this.props.selectedMatchId)) });
         }, Infinity);
     }
 
@@ -61,13 +61,14 @@ class Participate extends Component {
                         {entryFee}
                         </p>
                 </div>
-                {/* change this condition when implementing payment portal */}
-                {false ? (
+                
+                {balancedCoins.user.points<entryFee ? (
                     <div className="addCoins">
-                        <input className="inputCoins" 
+                        {/* <input className="inputCoins" 
                             type="text" 
                             placeholder="amount" />
-                        <button className="addCash">ADD CASH</button>
+                        <button className="addCash">ADD CASH</button> */}
+                        <span>your cash is low, contact your admin</span>
                     </div>
                 ) : (
                         <button className="btnEnroll"

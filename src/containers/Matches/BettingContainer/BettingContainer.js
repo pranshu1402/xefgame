@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { betFoosBallData, betCarromData, betTableTennisData } from '../../../assets/dummyData/betDummyData';
 import BetCard from '../../../components/Bet/BetCard';
 import {connect} from 'react-redux';
 import './BettingContainer.css';

@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { getEntryFeeForMatch } from '../../utility/getEntryFeeForMatch';
+import { getEntryFeeForMatch } from '../../utility/getDataByperformingOps';
 
 export const setContestParticipationData = (state) => {
     const userId = String(state.auth.user.uid);

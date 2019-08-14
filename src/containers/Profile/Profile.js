@@ -53,6 +53,7 @@ class Profile extends Component {
 
         return (
             <div className="profileContainer">
+               <span className="myCoins">Your Coins:{this.props.userData.points}</span>
                 <form onSubmit={submitHandler} className="profileElements">
                     {formElements}
                     <button type="submit"
@@ -65,6 +66,7 @@ class Profile extends Component {
                         Cancel
                     </button>
                 </form>
+
             </div>
         );
     }

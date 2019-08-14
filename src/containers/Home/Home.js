@@ -3,15 +3,9 @@ import HomeTabs from '../../components/HomeTabs/HomeTabs';
 import Leaderboard from '../../components/HomeTabs/Tabs/LeaderBoard/Leaderboard';
 import MyGames from '../../components/HomeTabs/Tabs/MyGames/MyGames';
 import Profile from '../Profile/Profile';
-import {connect} from 'react-redux';
-import { loadMyGamesData } from '../../utility/firebaseOps/getMyGamesData';
+
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-        props.fetchGames();
-    }
-
     render() {
         return (
                 <HomeTabs>
@@ -31,10 +25,5 @@ class Home extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch =>{
-    return {
-        fetchGames: ()=> dispatch(loadMyGamesData()),    
-    }
-}
 
-export default connect(null,mapDispatchToProps)(Home);
+export default Home;

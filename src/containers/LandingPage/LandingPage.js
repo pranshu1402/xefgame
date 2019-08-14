@@ -4,6 +4,7 @@ import SportCards from '../../components/sportCard/SportCards';
 import { onSportSelected } from '../../store/actions/landingPageActions';
 import {connect} from 'react-redux';
 
+
 class LandingPage extends Component {
     constructor(props){
         super(props);
@@ -11,6 +12,7 @@ class LandingPage extends Component {
     }
 
     loadGames=()=>{
+
 
     }
 
@@ -34,7 +36,7 @@ class LandingPage extends Component {
 const mapDispatchToProps=(dispatch)=>{
     return {
        resetMatches: ()=> dispatch({type: 'MATCH_RESET'}),
-       onSportSelected:(sport)=>dispatch(onSportSelected(sport))
+       onSportSelected:(sport)=>dispatch(onSportSelected(sport)), 
     }
 }
 

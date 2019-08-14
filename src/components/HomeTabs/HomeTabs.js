@@ -13,7 +13,7 @@ class HomeTabs extends Component {
                 <div className="allTabs">{
 
                     this.props.children.map((child, index) => {
-                        if (this.props.tab == child.props.label) {
+                        if (this.props.tab === child.props.label) {
                             applyClass = "selectedTab";
                         }
                         else
