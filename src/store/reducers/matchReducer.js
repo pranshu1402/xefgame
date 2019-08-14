@@ -4,6 +4,7 @@ const initialState = {
     matchData: [],
     selectedMatchId: 0,
     loading: true,
+    teams:null
 };
 
 function checkSelectedMatchId(state, newSelectedmatchId){
@@ -17,6 +18,7 @@ function checkSelectedMatchId(state, newSelectedmatchId){
 const matchReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.ADD_MATCHES: return { ...state, loading: false, matchData: action.payload };
+        case actions.ADD_TEAMS: return {...state,teams:action.payload}
         case actions.MATCH_REQUEST_FAILED: return state;
         case actions.MATCH_SELECTED: return checkSelectedMatchId(state, action.matchId);
         case actions.AUTH_LOGOUT: return initialState;

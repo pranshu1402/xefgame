@@ -3,7 +3,7 @@ import Spinner from '../../../components/common/Spinner/Spinner';
 import MatchCard from '../../../components/MatchCard/MatchCard';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { fetchData } from '../../../store/actions/matchAction';
+import { fetchData, fetchTeam } from '../../../store/actions/matchAction';
 import {MATCH_SELECTED} from '../../../store/actions/actionTypes';
 import { connect } from 'react-redux';
 import './MatchCardsContainer.css';
@@ -13,6 +13,8 @@ class MatchCards extends Component {
     constructor(props) {
         super();
         props.onReceiveMatchDetails(props.sportSelected);
+        props.getTheTeams(props.sportSelected);
+        
     }
 
     render() {
@@ -53,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onReceiveMatchDetails: (sportSelected) => dispatch(fetchData(sportSelected)),
         onMatchCardClicked: (matchId) => dispatch({type: MATCH_SELECTED, matchId}),
+        getTheTeams:(sportSelected)=>dispatch(fetchTeam(sportSelected))
     }
 }
 

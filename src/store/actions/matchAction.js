@@ -8,9 +8,17 @@ export const addMatches = parsedJson => ({
   payload: parsedJson
 })
 
+
 export const matchRequestFailed = () => ({
   type: actions.MATCH_REQUEST_FAILED
 })
+
+export const addTeams = (teams) => {
+  return {
+    type: actions.ADD_TEAMS,
+    payload: teams
+  }
+}
 
 function getTeamNameAliasMap() {
   return new Map(
@@ -61,10 +69,10 @@ export const fetchData = (sport) => {
           const parsedData = matchesData.map(matchData => {
             const date = new Date(matchData.date).toDateString();
             return {
-                ...matchData,
-                unique_id: matchData.matchId,
-                type: matchData.matchType,
-                date
+              ...matchData,
+              unique_id: matchData.matchId,
+              type: matchData.matchType,
+              date
             };
           });
 
@@ -75,4 +83,19 @@ export const fetchData = (sport) => {
         });
     }
   }
+}
+
+
+export const fetchTeam = (sport) => {
+  return dispatch => {
+    firebase.firestore().collection('sports').doc(sport).get()
+      .then(response => {
+        const teamsData = response.data().teams;
+        dispatch(addTeams(teamsData));
+      })
+      .catch(error => {
+        dispatch(matchRequestFailed(error));
+      });
+  }
+
 }

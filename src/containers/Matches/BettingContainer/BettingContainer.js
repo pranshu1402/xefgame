@@ -3,6 +3,7 @@ import { betFoosBallData, betCarromData, betTableTennisData } from '../../../ass
 import BetCard from '../../../components/Bet/BetCard';
 import {connect} from 'react-redux';
 import './BettingContainer.css';
+import { getTeamsInSelectedMatch } from '../../../utility/firebaseOps/getTeamsForMatch';
 
 class Bet extends Component {
 
@@ -12,6 +13,8 @@ class Bet extends Component {
             this.props.history.replace('/matches');
         }
         // props.setAllTeams(props.teamData);
+      this.TeamsInSelectedMatch =getTeamsInSelectedMatch(this.props.teamsInSport,this.props.matchUniqueId,this.props.matches);
+           
     }
 
     betCardSelectHandler = (teamName) => {
@@ -27,22 +30,11 @@ class Bet extends Component {
     }
 
     render() {
-        let betDummyData;
-        switch (this.props.sportName) {
-            case 'Carrom': betDummyData= betCarromData;
-                break;
-            case 'FoosBall': betDummyData= betFoosBallData;
-                break;
-            case 'TableTennis': betDummyData= betTableTennisData;
-                break;
-            default: betDummyData= null;
-        }
-
         return (
             <div className="bettingCardsContainer">
                 <div className="betTeamCards">
                     {
-                        betDummyData.map((data, index) => (
+                        this.TeamsInSelectedMatch.map((data, index) => (
                             <BetCard 
                                     key={index}
                                     teamData={data} 
@@ -81,7 +73,9 @@ const mapStateToProps = state => {
         selected: state.bet.selected,
         winAmount: state.bet.winAmount,
         matchUniqueId: state.matches.selectedMatchId,
-        sportName: state.sports.sportSelected
+        sportName: state.sports.sportSelected,
+        teamsInSport:state.matches.teams,
+        matches:state.matches.matchData
     }
 };
 

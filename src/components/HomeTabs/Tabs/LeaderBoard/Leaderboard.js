@@ -6,10 +6,14 @@ class Leaderboard extends Component {
 
     render() {
         const { selectedMatchToShow, gamesData } = this.props;
-        let myPlayersInSelectedMatch, teamsKeys;
+        let myPlayersInSelectedMatch, teamsKeys=[];
         if (selectedMatchToShow != null) {
             myPlayersInSelectedMatch = gamesData[selectedMatchToShow.sport].teams[selectedMatchToShow.enrolledMatch.teamId]["players"];
-            teamsKeys = Object.keys(gamesData[selectedMatchToShow.sport].teams);
+            for(let key in gamesData[selectedMatchToShow.sport].teams){
+                if(selectedMatchToShow.enrolledMatch.teams.includes(key)){
+                    teamsKeys.push(key);
+                }
+            }
 
         }
         return (

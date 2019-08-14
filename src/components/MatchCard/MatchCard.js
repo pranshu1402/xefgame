@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import './MatchCard.css';
 
 export default function MatchCard(props) {
-    console.log(props.match);
     if (props.match !== undefined) {
         const cardContent = props.sport === 'Cricket' ? (
             <CardContent className="matchContent">
