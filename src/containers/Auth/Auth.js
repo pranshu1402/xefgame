@@ -22,6 +22,7 @@ class Auth extends Component {
     handleClose = () => {
         this.setState({ open: false });
         this.props.history.goBack();
+        console.log("history",this.props.history);
     }
 
     render() {

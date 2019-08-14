@@ -12,7 +12,6 @@ class Bet extends Component {
         if (this.props.matchUniqueId === 0) {
             this.props.history.replace('/matches');
         }
-        // props.setAllTeams(props.teamData);
       this.TeamsInSelectedMatch =getTeamsInSelectedMatch(this.props.teamsInSport,this.props.matchUniqueId,this.props.matches);
            
     }

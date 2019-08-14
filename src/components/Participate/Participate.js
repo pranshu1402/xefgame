@@ -6,6 +6,7 @@ import timer from '../../utility/timer';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/participationAction';
 import './Participate.css';
+import { getEntryFeeForMatch } from '../../utility/getEntryFeeForMatch';
 
 class Participate extends Component {
     constructor(props) {
@@ -32,8 +33,9 @@ class Participate extends Component {
         if (!this.props.data.matches.selectedMatchId){
             return <Redirect to='/' />;
         }
-        const {participatedContest, balancedCoins, betAmount} = this.props;
-        const entryFee = participatedContest===null?betAmount: participatedContest.entryFee;  
+        
+        const {participatedContest, balancedCoins} = this.props;
+        const entryFee = participatedContest===null?getEntryFeeForMatch(this.props.matchData,this.props.selectedMatchId): participatedContest.entryFee;
 
         return (
             <div className="participateSection">
@@ -53,7 +55,7 @@ class Participate extends Component {
                 </div>
                 <hr />
                 <div className="entry">
-                    <p className="entryTag">Entry</p>
+                    <p className="entryTag">Entry Fee</p>
                     <p className="entryValue">
                         <FontAwesomeIcon className="rupeeIcon" icon={faRupeeSign} />
                         {entryFee}
@@ -84,7 +86,8 @@ const mapStateToProps = state => {
         data: state,
         participatedContest: state.contest.selectedContest,
         balancedCoins: state.auth,
-        betAmount: state.bet.betAmount,
+        matchData:state.matches.matchData,
+        selectedMatchId:state.matches.selectedMatchId
     }
 }
 

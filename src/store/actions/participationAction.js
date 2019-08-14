@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { getEntryFeeForMatch } from '../../utility/getEntryFeeForMatch';
 
 export const setContestParticipationData = (state) => {
     const userId = String(state.auth.user.uid);
@@ -9,12 +10,11 @@ export const setContestParticipationData = (state) => {
     const betAmount = state.bet.betAmount;
     const isBettingGame = (betAmount !== 0);
     let matchObj;
-    let entryFee;
+    let entryFee=getEntryFeeForMatch(state.matches.matchData,state.matches.selectedMatchId);
     
     if(isBettingGame){
         const winAmount = state.bet.winAmount;
         const teamId = state.bet.selected;
-        entryFee = betAmount;
         matchObj = (
             {
                 matchId,

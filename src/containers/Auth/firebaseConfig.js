@@ -1,4 +1,5 @@
 import {auth} from 'firebase/app';
+import { isNewUser } from '../../store/actions/authActions';
 
 export const uiConfig = {
   callbacks: {
@@ -6,6 +7,7 @@ export const uiConfig = {
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
+      isNewUser(authResult.additionalUserInfo.isNewUser);
       console.log('SignIn succesfull');
       return true;
     },
