@@ -1,21 +1,22 @@
 const initialState = {
     isModalOpen: false,
     prizeMoneyDist: {},
-    contests: {'hotContests':[], 'headToHead': [], 'megaContest':[] },
+    contests: { 'hotContests': [], 'headToHead': [], 'megaContest': [] },
     loading: true,
     selectedContest: null,
+    snackbarOpenOnEnrollment: false
 }
 
-function addContest(contests, contestType, contestsData){
-    let newContests = {...contests};
+function addContest(contests, contestType, contestsData) {
+    let newContests = { ...contests };
     newContests[contestType] = contestsData;
     return newContests;
 }
 
-function checkSelected(prevSelected, currSelected){
-    if(!prevSelected || prevSelected.id!==currSelected.id){
+function checkSelected(prevSelected, currSelected) {
+    if (!prevSelected || prevSelected.id !== currSelected.id) {
         return currSelected;
-    }else{
+    } else {
         return null;
     }
 }
@@ -23,15 +24,20 @@ function checkSelected(prevSelected, currSelected){
 const contestReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'IS_MODAL_OPEN': return {
-            ...state, 
+            ...state,
             isModalOpen: action.isModalOpen
         };
+
+        case 'SNACKBAR_OPEN_ON_ENROLLMENT': return {
+            ...state,
+            snackbarOpenOnEnrollment:action.isSnackbarOpen
+        };
         case 'ADD_PRIZE_DIST': return {
-            ...state, 
+            ...state,
             prizeMoneyDist: action.prizeMoneyDist
         };
         case 'ADD_CONTESTS': return {
-            ...state, 
+            ...state,
             contests: addContest(state.contests, action.contestType, action.contestsData)
         };
         case 'ADD_CONTESTS_SUCCESSFUL': return {

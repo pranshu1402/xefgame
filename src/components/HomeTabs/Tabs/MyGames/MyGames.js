@@ -4,8 +4,15 @@ import Spinner from '../../../../components/common/Spinner/Spinner';
 import { changeTabOnGameClick } from '../../../../store/actions/tabsAction';
 import { connect } from 'react-redux';
 import './MyGames.css';
+import MySnackbar from '../../../common/SnackBar/Snackbar'
+import { loadMyGamesData } from '../../../../utility/firebaseOps/getMyGamesData';
 
 class MyGames extends Component {
+    constructor(props){
+        super(props);
+        props.fetchGames();
+
+    }
 
     render() {
         let myGameskeys = [];
@@ -13,8 +20,9 @@ class MyGames extends Component {
             myGameskeys = Object.keys(this.props.myEnrolledGames);
 
         return (
-            (myGameskeys.length !== 0) ? (
+            (this.props.isUserEnrolled)?((myGameskeys.length !== 0) ? (
                 <div className="rootMyMatches">
+                     {this.props.isSnackbarOpen ? <MySnackbar /> : undefined}
                     {myGameskeys.map(myGameKey => (
                         <div key={myGameKey} className="gameSection">
                             <label className="myGameTag">
@@ -34,18 +42,22 @@ class MyGames extends Component {
                         </div>
                     ))}
                 </div>
-            ) : <Spinner />
+            ) : <Spinner />):<span>Please enrolled in some matches</span>
+            
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-        myEnrolledGames: state.myGames.myEnrolledGames
+        myEnrolledGames: state.myGames.myEnrolledGames,
+        isSnackbarOpen: state.contest.snackbarOpenOnEnrollment,
+        isUserEnrolled:state.myGames.isUserEnrolled
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        makeChangeTab: (data) => dispatch(changeTabOnGameClick(data))
+        makeChangeTab: (data) => dispatch(changeTabOnGameClick(data)),
+        fetchGames:()=>dispatch(loadMyGamesData())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MyGames);

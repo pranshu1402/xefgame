@@ -4,6 +4,7 @@ import './HomeTabs.css';
 import { changeTab } from '../../store/actions/tabsAction.js';
 import { connect } from 'react-redux';
 
+
 class HomeTabs extends Component {
 
     render() {
@@ -34,6 +35,7 @@ class HomeTabs extends Component {
                         })
                     }
                 </div>
+               
             </div>
         )
     }
@@ -46,7 +48,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        tab: state.tabs.selectedTab
+        tab: state.tabs.selectedTab,
+        
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomeTabs);

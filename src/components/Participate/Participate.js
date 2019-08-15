@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/participationAction';
 import './Participate.css';
 import { getEntryFeeForMatch, getdateFormatch } from '../../utility/getDataByperformingOps';
+import { snackbaropenOnEnrollment } from '../../store/actions/contestAction';
+import MySnackbar from '../common/SnackBar/Snackbar'
 
 class Participate extends Component {
     constructor(props) {
@@ -16,7 +18,7 @@ class Participate extends Component {
 
     componentDidMount() {
         this.tick = setInterval(() => {
-            this.setState({ timeLeft: timer(getdateFormatch(this.props.matchData,this.props.selectedMatchId)) });
+            this.setState({ timeLeft: timer(getdateFormatch(this.props.matchData, this.props.selectedMatchId)) });
         }, Infinity);
     }
 
@@ -27,15 +29,17 @@ class Participate extends Component {
     enrollContest = () => {
         this.props.onParticipate(this.props.data);
         this.props.history.push('/home');
+        this.props.setSnackbarOpenClose(true);
+
     }
 
     render() {
-        if (!this.props.data.matches.selectedMatchId){
+        if (!this.props.data.matches.selectedMatchId) {
             return <Redirect to='/' />;
         }
-        
-        const {participatedContest, balancedCoins} = this.props;
-        const entryFee = participatedContest===null?getEntryFeeForMatch(this.props.matchData,this.props.selectedMatchId): participatedContest.entryFee;
+
+        const { participatedContest, balancedCoins } = this.props;
+        const entryFee = participatedContest === null ? getEntryFeeForMatch(this.props.matchData, this.props.selectedMatchId) : participatedContest.entryFee;
 
         return (
             <div className="participateSection">
@@ -51,7 +55,7 @@ class Participate extends Component {
                     <p className="coinsValue">
                         <FontAwesomeIcon className="coinIcon" icon={faCoins} />
                         {balancedCoins.user.points}
-                        </p>
+                    </p>
                 </div>
                 <hr />
                 <div className="entry">
@@ -59,10 +63,10 @@ class Participate extends Component {
                     <p className="entryValue">
                         <FontAwesomeIcon className="rupeeIcon" icon={faRupeeSign} />
                         {entryFee}
-                        </p>
+                    </p>
                 </div>
-                
-                {balancedCoins.user.points<entryFee ? (
+
+                {balancedCoins.user.points < entryFee ? (
                     <div className="addCoins">
                         {/* <input className="inputCoins" 
                             type="text" 
@@ -77,6 +81,8 @@ class Participate extends Component {
                         </button>
                     )
                 }
+
+               
             </div>
         )
     }
@@ -87,14 +93,17 @@ const mapStateToProps = state => {
         data: state,
         participatedContest: state.contest.selectedContest,
         balancedCoins: state.auth,
-        matchData:state.matches.matchData,
-        selectedMatchId:state.matches.selectedMatchId
+        matchData: state.matches.matchData,
+        selectedMatchId: state.matches.selectedMatchId,
+       
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onParticipate: (data)=> dispatch(actions.setContestParticipationData(data))
+        onParticipate: (data) => dispatch(actions.setContestParticipationData(data)),
+        setSnackbarOpenClose: (flag) => dispatch(snackbaropenOnEnrollment(flag))
     }
 }
 

@@ -16,7 +16,6 @@ class MatchCards extends Component {
         props.fetchGames()
         props.getTheTeams(props.sportSelected);
         props.onReceiveMatchDetails(props.sportSelected);
-
     }
 
     render() {
@@ -25,16 +24,17 @@ class MatchCards extends Component {
                 <div className="matchCardsContainer">
                     <GridList cols={3.4} className="matchCardList">
                         {this.props.matchData.map(match => {
-                              
-                              //handle the case of timeup lock
+
+                            //handle the case of timeup lock
                             let timemLeftInMatch = new Date(`${match.date} ${match.time}`) - new Date();
                             timemLeftInMatch = timemLeftInMatch / 3600000;
 
                             //handle the case of betted games
-                            let disableMatch = this.props.myEnrolledGames[this.props.sportSelected].matches
-                                .filter(myEnrolledGame => myEnrolledGame.matchId === match.matchId);
-
-
+                            let disableMatch;
+                            if (this.props.myEnrolledGames[this.props.sportSelected] !== null&&this.props.myEnrolledGames[this.props.sportSelected]!==undefined) {
+                                 disableMatch = this.props.myEnrolledGames[this.props.sportSelected].matches
+                                    .filter(myEnrolledGame => myEnrolledGame.matchId === match.matchId)
+                            }
 
 
                             let isFocus = (this.props.selectedMatchId === match.unique_id);
@@ -43,7 +43,7 @@ class MatchCards extends Component {
                                     <MatchCard match={match}
                                         isFocus={isFocus}
                                         timesUp={timemLeftInMatch <= 2}
-                                        disabled={disableMatch.length > 0}
+                                        disabled={disableMatch!==undefined?disableMatch.length > 0:false}
                                         onClicked={this.props.onMatchCardClicked}
                                         sport={this.props.sportSelected} />
                                 </GridListTile>

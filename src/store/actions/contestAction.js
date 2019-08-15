@@ -6,6 +6,13 @@ export const isModalOpen = (isModalOpen) => ({
   isModalOpen,
 })
 
+export const snackbaropenOnEnrollment=(isSnackbarOpen)=>{
+  return {
+    type:'SNACKBAR_OPEN_ON_ENROLLMENT',
+    isSnackbarOpen
+  }
+}
+
 export const addPrizeDist = (prizeMoneyDist) => ({
   type: 'ADD_PRIZE_DIST',
   prizeMoneyDist
