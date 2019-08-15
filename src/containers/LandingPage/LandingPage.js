@@ -11,6 +11,18 @@ class LandingPage extends Component {
         props.resetMatches();
     }
 
+    componentDidMount(){
+        if(!this.props.isSigned){
+            this.props.history.replace('/auth');
+        }
+    }
+
+    componentDidUpdate(){
+        if(!this.props.isSigned){
+            this.props.history.replace('/auth');
+        }
+    }
+
     loadGames=()=>{
 
 
@@ -33,6 +45,12 @@ class LandingPage extends Component {
     }
 }
 
+const mapStateToProps = state=> {
+    return {
+        isSigned: !!state.auth.user,
+    }
+}
+
 const mapDispatchToProps=(dispatch)=>{
     return {
        resetMatches: ()=> dispatch({type: 'MATCH_RESET'}),
@@ -40,4 +58,4 @@ const mapDispatchToProps=(dispatch)=>{
     }
 }
 
-export default connect(null,mapDispatchToProps)(LandingPage);
+export default connect(mapStateToProps,mapDispatchToProps)(LandingPage);
