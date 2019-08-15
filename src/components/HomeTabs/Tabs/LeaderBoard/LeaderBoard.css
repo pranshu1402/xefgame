@@ -54,3 +54,10 @@ color: green;
     border: 1px solid black;
     text-align: center;
 }
+.leaderboardTeamNScore{
+    display: flex;
+    margin-right: 5px;
+}
+.teamPoints{
+    width: 25px;
+}
