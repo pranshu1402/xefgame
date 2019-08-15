@@ -45,7 +45,7 @@ export default function MatchCard(props) {
                 </div>    
             </CardContent>
             );
-         let disableClassName=  props.disabled? "disableCard":"";
+         let disableClassName=  props.disabled || props.timesUp? "disableCard":"";
         return (
             <div className={disableClassName}
              onClick={() => props.onClicked(props.match.unique_id)}>
@@ -54,6 +54,7 @@ export default function MatchCard(props) {
                     <CardHeader
                         title={props.match.date} />
                          {props.disabled?<span className="betted">Betted</span>:undefined}
+                         {props.timesUp && !props.disabled?<span className="betted timesUp">TimesUp</span>:undefined}
                     {cardContent}
                 </Card>
             </div>
