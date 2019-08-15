@@ -31,8 +31,7 @@ class Matches extends Component {
             route = <Redirect to='/' />
         }
         return (
-            
-                <StepperLayout {...this.props} isMatchSelected={this.props.matchSelected}>
+                <StepperLayout {...this.props}>
                     <Switch>
                         <Route path='/matches/team' component={CreateTeamContainer}/>
                         <Route path='/matches/bet' component={BettingContainer}/>
@@ -47,7 +46,6 @@ class Matches extends Component {
 
 const mapStateToProps = state =>{
     return {
-        matchSelected : state.matches.selectedMatchId,
         sport: state.sports.sportSelected,
     }
 }

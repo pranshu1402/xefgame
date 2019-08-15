@@ -12,7 +12,6 @@ class Bet extends Component {
             this.props.history.replace('/matches');
         }
       this.TeamsInSelectedMatch =getTeamsInSelectedMatch(this.props.teamsInSport,this.props.matchUniqueId,this.props.matches);
-           
     }
 
     betCardSelectHandler = (teamName) => {

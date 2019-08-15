@@ -13,39 +13,45 @@ class MatchCards extends Component {
 
     constructor(props) {
         super();
-        props.fetchGames()
-        props.getTheTeams(props.sportSelected);
+        if(props.isSigned){
+            props.fetchGames();
+            props.getTheTeams(props.sportSelected);
+        }
         props.onReceiveMatchDetails(props.sportSelected);
     }
 
     render() {
+        const {isSigned, isLoading, matchData, myEnrolledGames, sportSelected, selectedMatchId, onMatchCardClicked} = this.props;
+
         return (
-            this.props.isGameLoading || this.props.isLoading ? <Spinner /> : (
+            isLoading ? <Spinner /> : (
                 <div className="matchCardsContainer">
                     <GridList cols={3.4} className="matchCardList">
-                        {this.props.matchData.map(match => {
+                        {matchData.map(match => {
 
                             //handle the case of timeup lock
                             let timemLeftInMatch = new Date(`${match.date} ${match.time}`) - new Date();
                             timemLeftInMatch = timemLeftInMatch / 3600000;
 
                             //handle the case of betted games
-                            let disableMatch;
-                            if (this.props.myEnrolledGames[this.props.sportSelected] !== null&&this.props.myEnrolledGames[this.props.sportSelected]!==undefined) {
-                                 disableMatch = this.props.myEnrolledGames[this.props.sportSelected].matches
-                                    .filter(myEnrolledGame => myEnrolledGame.matchId === match.matchId)
+                            let disableMatch=false;
+                            if(isSigned){
+                                if (myEnrolledGames[sportSelected] !== null&&myEnrolledGames[sportSelected]!==undefined) {
+                                     disableMatch = myEnrolledGames[sportSelected].matches
+                                        .filter(myEnrolledGame => myEnrolledGame.matchId === match.matchId)
+                                }
                             }
 
 
-                            let isFocus = (this.props.selectedMatchId === match.unique_id);
+                            let isFocus = (selectedMatchId === match.unique_id);
                             return (
                                 <GridListTile className="matchCardTile" key={match.unique_id}>
                                     <MatchCard match={match}
                                         isFocus={isFocus}
                                         timesUp={timemLeftInMatch <= 2}
                                         disabled={disableMatch!==undefined?disableMatch.length > 0:false}
-                                        onClicked={this.props.onMatchCardClicked}
-                                        sport={this.props.sportSelected} />
+                                        onClicked={onMatchCardClicked}
+                                        sport={sportSelected} />
                                 </GridListTile>
                             )
                         }
@@ -60,6 +66,7 @@ class MatchCards extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        isSigned: !!state.auth.user,
         matchData: state.matches.matchData,
         selectedMatchId: state.matches.selectedMatchId,
         isLoading: state.matches.loading,
