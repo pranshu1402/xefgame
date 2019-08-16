@@ -24,18 +24,33 @@ class Leaderboard extends Component {
             myPlayersInSelectedMatch = gamesData[selectedMatchToShow.sport].teams[selectedMatchToShow.enrolledMatch.teamId]["players"];
             for (let key in gamesData[selectedMatchToShow.sport].teams) {
                 if (selectedMatchToShow.enrolledMatch.teams.includes(key)) {
-                    teamsKeys.push(key);
+                    if(key===selectedMatchToShow.enrolledMatch.teamId){
+                        teamsKeys[0]=key
+                    }
+                    else{
+                        teamsKeys[1]=key
+                    }
+                    
                 }
             }
             //listening realtime score updates
             for (let teamKey in teams) {
                 if (this.props.selectedMatchToShow.enrolledMatch.teams.includes(teamKey)) {
-                    teamsForScoreUpdates.push({
-                        [teamKey]: teams[teamKey]
-                    })
+                    if(teamKey===selectedMatchToShow.enrolledMatch.teamId){
+                        teamsForScoreUpdates[0]={
+                            [teamKey]: teams[teamKey]
+                        }
+                    }
+                    else{
+                        teamsForScoreUpdates[1]={
+                            [teamKey]: teams[teamKey]
+                        }
+                    }
+                    
                 }
             }
-
+           
+           console.log(teamsForScoreUpdates,"kfajsdkfjlks");
             message = getMatchStatusMessage(teamsForScoreUpdates, selectedMatchToShow.enrolledMatch.teamId, selectedMatchToShow.enrolledMatch.status);
 
         }
