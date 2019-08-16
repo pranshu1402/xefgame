@@ -36,32 +36,23 @@ class Leaderboard extends Component {
                 }
             }
 
-            message = getMatchStatusMessage(teamsForScoreUpdates, selectedMatchToShow.enrolledMatch.teamId,selectedMatchToShow.enrolledMatch.status);
+            message = getMatchStatusMessage(teamsForScoreUpdates, selectedMatchToShow.enrolledMatch.teamId, selectedMatchToShow.enrolledMatch.status);
 
         }
         return (
             selectedMatchToShow ?
                 <div className="rootLeaderboard">
-                    <div className="matchStartTag">Match Status:
-                    <span>{matchStatus} {matchStatus === 'Live' ? '' : ` ${new Date(selectedMatchToShow.enrolledMatch.date).toDateString()} ${selectedMatchToShow.enrolledMatch.time}`}
-                        </span></div>
-
-                    <div className="leaderboardMyTeam">
-                        <span>My Team</span>
-                        <label>{selectedMatchToShow.enrolledMatch.teamId}</label>
-                        {
-                            myPlayersInSelectedMatch.map(player =>
-                                <li>{player.name}</li>
-                            )
-                        }
+                    <div className="matchStartTag">{`Match Status: `}
+                        <span className="matchStartTagContent">{matchStatus} {matchStatus === 'Live' ? '' :
+                            `, ${new Date(selectedMatchToShow.enrolledMatch.date).toDateString()}, ${selectedMatchToShow.enrolledMatch.time}`}
+                        </span>
                     </div>
-
 
                     <div className="allPlayersScore">
                         <div className="playerScoreTags">
                             <span>Team</span>
                             <span>Set</span>
-                            <span>Score</span>    
+                            <span>Score</span>
                         </div>
                         {
                             teamsKeys.map((key, index) => {
@@ -84,7 +75,21 @@ class Leaderboard extends Component {
                         }
 
                     </div>
-                    <div className="playerStatus">{message ? message : "Error"}</div>
+
+                    <div className="leaderboardMyTeam">
+                        <span>My Team</span>
+                        <label>{selectedMatchToShow.enrolledMatch.teamId}</label>
+                        {
+                            myPlayersInSelectedMatch.map(player =>
+                                <li>{player.name}</li>
+                            )
+                        }
+                        <span className="leaderboardBet">Bet Amount: <label>{selectedMatchToShow.enrolledMatch.betAmount}</label></span>
+                    </div>
+
+                    <div className="playerStatus">
+                        {message ? message : "Error"}
+                    </div>
 
                 </div> : <div style={{ width: "200px", color: "red", fontSize: "25px", margin: "auto" }}>Select  a Game from Game Tab</div>
         )

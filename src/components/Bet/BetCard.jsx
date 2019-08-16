@@ -11,7 +11,7 @@ const BetCard = (props) => {
                 <div className="playerListLabel"
                      key={index}>
                     <div className="labelPlayer">{player.name}</div>
-                    <div className="labelRole">{player.role}</div>
+                    {/* <div className="labelRole">{player.role}</div> */}
                     <div className="labelRating">{player.rating}</div>
                 </div>
             ))}
@@ -31,7 +31,7 @@ const BetCard = (props) => {
                     </div> */}
                     <div className="playerListLabel">
                         <div className="labelPlayer">Player</div>
-                        <div className="labelRole">Role</div>
+                        {/* <div className="labelRole">Role</div> */}
                         <div className="labelRating">Rating</div>
                     </div>
             </div>
