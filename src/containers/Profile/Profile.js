@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditInput from '../../components/common/EditInput/EditInput';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/profileActions';
 import './Profile.css';
@@ -56,15 +57,16 @@ class Profile extends Component {
                <span className="myCoins">Your Coins:{this.props.userData.points}</span>
                 <form onSubmit={submitHandler} className="profileElements">
                     {formElements}
-                    <button type="submit"
+                    <Button type="submit"
                         value="Submit"
+                        variant="outlined"
                         className="profileButton">
                         Save
-                    </button>
-                    <button onClick={this.resetChanges}
+                    </Button>
+                    <Button onClick={this.resetChanges}
                         className="profileButton">
                         Cancel
-                    </button>
+                    </Button>
                 </form>
 
             </div>

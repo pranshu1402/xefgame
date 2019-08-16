@@ -7,9 +7,13 @@ div .navbar{
     right: 10px;
     color: white;
 }
+.navbar{
+    background: #6C1D5F!important;
+}
 
-.navItems,.navItems span{
+.navItems,.navItems button{
     color: white!important;
+    background: #6C1D5F!important;
     text-decoration: none;
     margin: 0 3px;
 }
@@ -31,7 +35,7 @@ div .navbar{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #3f51b5;
+    background-color: #6C1D5F;
     width: 100%;
     height: 50px;
     color: white;

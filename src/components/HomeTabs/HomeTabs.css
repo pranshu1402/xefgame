@@ -6,7 +6,7 @@
 
 .allTabs {
     display: flex;
-    background: rgb(27, 45, 151);
+    background: #6c1d6c;
     justify-content: space-between;
     align-items: center;
     height: 50px;
@@ -32,7 +32,7 @@
 }
 .selectedTab{
     background: white;
-    color: blue;
+    color: #6c1d6c;;
     border-radius: 5px;
 }
 
