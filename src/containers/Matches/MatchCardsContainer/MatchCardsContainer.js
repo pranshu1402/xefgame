@@ -24,7 +24,7 @@ class MatchCards extends Component {
         const {isSigned, isLoading, matchData, myEnrolledGames, sportSelected, selectedMatchId, onMatchCardClicked} = this.props;
 
         return (
-            isLoading ? <Spinner /> : (
+          this.props.isGameLoading ||  isLoading ? <Spinner /> : (
                 <div className="matchCardsContainer">
                     <GridList cols={3.4} className="matchCardList">
                         {matchData.map(match => {
@@ -35,7 +35,7 @@ class MatchCards extends Component {
 
                             //handle the case of betted games
                             let disableMatch=false;
-                            if(isSigned){
+                            if(isSigned && myEnrolledGames){
                                 if (myEnrolledGames[sportSelected] !== null&&myEnrolledGames[sportSelected]!==undefined) {
                                      disableMatch = myEnrolledGames[sportSelected].matches
                                         .filter(myEnrolledGame => myEnrolledGame.matchId === match.matchId)
