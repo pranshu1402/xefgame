@@ -3,10 +3,15 @@ import HomeTabs from '../../components/HomeTabs/HomeTabs';
 import Leaderboard from '../../components/HomeTabs/Tabs/LeaderBoard/Leaderboard';
 import MyGames from '../../components/HomeTabs/Tabs/MyGames/MyGames';
 import Profile from '../Profile/Profile';
-
+import {connect} from 'react-redux';
 
 class Home extends Component {
+
     render() {
+        if(!this.props.isSigned){
+            this.props.history.replace('/');
+        }
+
         return (
                 <HomeTabs>
                     <div label="MY GAMES">
@@ -25,5 +30,10 @@ class Home extends Component {
     }
 }
 
+const mapStateToProps = state =>{
+    return {
+        isSigned: !!state.auth.user,
+    }
+}
 
-export default Home;
+export default connect(mapStateToProps)(Home);
