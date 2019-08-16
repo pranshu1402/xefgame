@@ -68,3 +68,7 @@ img~.editButton Button{
     bottom: 6px;
     right: 6px;
 }
+
+div .profileButton{
+    margin: 5px 5px!important;
+}

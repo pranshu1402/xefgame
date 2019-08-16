@@ -29,7 +29,7 @@ class Profile extends Component {
 
         let formElements = [];
         const { inputs, editLabel, toggleEditHandler, inputEditHandler, submitHandler } = this.props;
-        let disableIconButton = false;
+        let disableIconButton = true;
 
         for (let inputKey in inputs) {
             formElements.push(
@@ -40,7 +40,7 @@ class Profile extends Component {
                     editLabel={editLabel}
                     changeHandler={inputEditHandler}
                     childClassName="editButton">
-                    {disableIconButton = (inputs[inputKey][1] === "email") ? true : false}
+                    {/* {disableIconButton = (inputs[inputKey][1] === "email") ? true : false} */}
                     <IconButton color="secondary"
                         aria-label="editInput"
                         disabled={disableIconButton}
@@ -64,7 +64,8 @@ class Profile extends Component {
                         Save
                     </Button>
                     <Button onClick={this.resetChanges}
-                        className="profileButton">
+                        className="profileButton"
+                        variant="outlined">
                         Cancel
                     </Button>
                 </form>

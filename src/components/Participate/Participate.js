@@ -8,7 +8,6 @@ import * as actions from '../../store/actions/participationAction';
 import './Participate.css';
 import { getEntryFeeForMatch, getdateFormatch } from '../../utility/getDataByperformingOps';
 import { snackbaropenOnEnrollment } from '../../store/actions/contestAction';
-import MySnackbar from '../common/SnackBar/Snackbar'
 
 class Participate extends Component {
     constructor(props) {
