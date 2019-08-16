@@ -8,7 +8,7 @@ import MySnackbar from '../../../common/SnackBar/Snackbar'
 import { loadMyGamesData } from '../../../../utility/firebaseOps/getMyGamesData';
 
 class MyGames extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         props.fetchGames();
 
@@ -20,30 +20,30 @@ class MyGames extends Component {
             myGameskeys = Object.keys(this.props.myEnrolledGames);
 
         return (
-            (this.props.isUserEnrolled)?((myGameskeys.length !== 0) ? (
-                <div className="rootMyMatches">
-                     {this.props.isSnackbarOpen ? <MySnackbar /> : undefined}
-                    {myGameskeys.map(myGameKey => (
-                        <div key={myGameKey} className="gameSection">
-                            <label className="myGameTag">
+            (this.props.loading) ? <Spinner /> : (
+                (myGameskeys.length !== 0) ? (
+                    <div className="rootMyMatches">
+                        {this.props.isSnackbarOpen ? <MySnackbar /> : undefined}
+                        {myGameskeys.map(myGameKey => (
+                            <div key={myGameKey} className="gameSection">
+                                <label className="myGameTag">
                                     {myGameKey}
                                 </label>
-                            <div className="gamesCardRow">
-                                {this.props.myEnrolledGames[myGameKey].matches.map((enrolledMatch, index) => (
-                                    <div key={index}
-                                        onClick={() => this.props.makeChangeTab({
-                                            label: "LEADERBOARD",
-                                            matchToShowOnLeaderboard: { enrolledMatch, sport: myGameKey }
-                                        })}>
-                                        <MyGame gameData={enrolledMatch} />
-                                    </div>
-                                ))}
+                                <div className="gamesCardRow">
+                                    {this.props.myEnrolledGames[myGameKey].matches.map((enrolledMatch, index) => (
+                                        <div key={index}
+                                            onClick={() => this.props.makeChangeTab({
+                                                label: "LEADERBOARD",
+                                                matchToShowOnLeaderboard: { enrolledMatch, sport: myGameKey }
+                                            })}>
+                                            <MyGame gameData={enrolledMatch} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            ) : <Spinner />):<span>Please enrolled in some matches</span>
-            
+                        ))}
+                    </div>) : <span className="enrolledTag">Please enroll in some matches</span>)
+
         )
     }
 }
@@ -51,13 +51,14 @@ const mapStateToProps = (state) => {
     return {
         myEnrolledGames: state.myGames.myEnrolledGames,
         isSnackbarOpen: state.contest.snackbarOpenOnEnrollment,
-        isUserEnrolled:state.myGames.isUserEnrolled
+        isUserEnrolled: state.myGames.isUserEnrolled,
+        loading: state.myGames.loading
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         makeChangeTab: (data) => dispatch(changeTabOnGameClick(data)),
-        fetchGames:()=>dispatch(loadMyGamesData())
+        fetchGames: () => dispatch(loadMyGamesData())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MyGames);

@@ -1,7 +1,7 @@
 const initialState = {
     myEnrolledGames: null,
     loading: true,
-    isUserEnrolled:false
+    isUserEnrolled:false,
 }
 
 export const myGamesReducer = (state = initialState, action) => {
