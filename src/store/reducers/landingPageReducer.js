@@ -9,6 +9,7 @@ const landingPageReducer = (state = initialState, action) => {
                 ...state,
                 sportSelected:action.sportSelected
             }
+        case 'AUTH_LOGOUT': return initialState;
         default:return state;    
     }
 }

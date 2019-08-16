@@ -71,14 +71,13 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .betTeamCard {
-    width: 125px;
-  }
+  /* .betTeamCard {
+    width: 250px;
+  } */
 }
 
 @media only screen and (max-width: 500px) {
   .betTeamCard {
-    margin-right: auto;
-    margin-top: 10px;
+    margin: 10px auto;
   }
 }

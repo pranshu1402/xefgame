@@ -25,7 +25,6 @@ class LandingPage extends Component {
 
     loadGames=()=>{
 
-
     }
 
     render() {

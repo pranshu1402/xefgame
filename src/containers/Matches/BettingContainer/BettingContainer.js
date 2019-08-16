@@ -30,6 +30,7 @@ class Bet extends Component {
         return (
             <div className="bettingCardsContainer">
                 <div className="betTeamCards">
+                    <div className="betContainerMessage">Select a team to bet!</div>
                     {
                         this.TeamsInSelectedMatch.map((data, index) => (
                             <BetCard 

@@ -12,6 +12,14 @@
     box-shadow: 0 0 15px 2px #ddd;
 }
 
+.betContainerMessage{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+}
+
 .betTeamCards {
     width: 80%;
     display: flex;
@@ -57,4 +65,31 @@
 #outputBetBox:active, 
 #outputBetBox:focus {
     outline: none;
+}
+
+@media screen and (max-width: 700px){
+    .betTeamCards{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .bettingCardsContainer{
+        width: 90%;
+    }
+
+    .betBox,.winChanceBox{
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .betBoxesContainer{
+        flex-direction: column;
+    }
+
+    .betTeamCards{
+        width: 100%;
+    }
 }

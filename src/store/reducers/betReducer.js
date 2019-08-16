@@ -2,7 +2,7 @@ const initialState = {
     teams: {},
     selected: '',
     betAmount: 0,
-    winAmount: 100,
+    winAmount: 200,
 }
 
 const betReducer = (state= initialState, action) => {

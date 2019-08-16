@@ -22,6 +22,7 @@ export const myGamesReducer = (state = initialState, action) => {
             ...state,
             loading: false
         }
+        case 'AUTH_LOGOUT': return initialState;
         default: return state
     }
 

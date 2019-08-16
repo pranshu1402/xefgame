@@ -50,6 +50,7 @@ const profileReducer = (state = initialState, action) => {
         case actionTypes.EDIT_TOGGLE: return { ...state, edit: toggleEditLabel(state.edit,action.editLabel)};
         case actionTypes.EDIT_PROFILE: return { ...state, ...editProfile(state.inputs, action) };
         case actionTypes.SET_PROFILE: return { ...state, edit: null };
+        case actionTypes.AUTH_LOGOUT: return initialState;
         default: return state;
     }
 }
