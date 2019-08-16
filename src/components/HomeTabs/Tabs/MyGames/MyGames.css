@@ -11,9 +11,15 @@
     margin-top: 6px;
     margin-left: 20px;
     border-radius: 5px;
-    background: linear-gradient(to right,rgb(143, 137, 196),rgb(90, 123, 189));
-    color: rgb(255, 255, 255);
+    background: white;
+    color: purple;
     text-align: center;
+    border: 1px solid purple;
+    cursor: pointer;
+}
+.myMatch:hover{
+    background: linear-gradient(to right, rgb(202, 120, 191), rgb(121, 22, 104));
+    color: white;
 }
 
 .myMatch p{
@@ -22,7 +28,6 @@
 .myMatchDate{
     padding-top: 5px;
     font-size: 1.4rem;
-    color: greenyellow;
 }
 
 .myMatchTeamID{
@@ -40,7 +45,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 3px 0px 4px;
-    color: gold;
+
 }
 .myGameTag{
     display: block;

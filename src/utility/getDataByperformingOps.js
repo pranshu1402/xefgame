@@ -3,12 +3,18 @@ export const getEntryFeeForMatch = (matches, selectedMatch) => matches.filter(ma
 export const getdateFormatch = (matches, selectedMatch) => matches.filter(match => match.matchId === selectedMatch).map(filteredMatch => new Date(filteredMatch.date).toISOString());
 
 
-export const getMatchStatusMessage = (teamsForScoreUpdates, myTeam) => {
-    console.log("a");
+export const getMatchStatusMessage = (teamsForScoreUpdates, myTeam,status) => {
+
     let message = "", team1, team2, otherTeam;
-    console.log("a", teamsForScoreUpdates, myTeam);
+
+   if(status==="upcoming")
+   return " ";
+   
     if (teamsForScoreUpdates.length <= 0)
         return "teams Not Fetched";
+
+       
+
     [team1] = Object.keys(teamsForScoreUpdates[0]);
     [team2] = Object.keys(teamsForScoreUpdates[1]);
     otherTeam = myTeam === team1 ? team2 : team1;

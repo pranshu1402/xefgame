@@ -29,6 +29,13 @@ div .stepper{
 .stepperControls Button{
     margin: 0 10px;
     min-width: 100px;
+    background: #6c1d6c;
+    border: 1px solid purple!important;
+    color: white;
+}
+
+.stepperControls Button:hover{
+    background: rgb(141, 44, 160);
 }
 
 @media screen and (max-width: 600px) {

@@ -5,8 +5,9 @@ div .matchCard {
     margin-top: 20px;
     text-align: center;
     border-radius: 10px;
-    background-image: linear-gradient(to right, rgb(70, 140, 206), rgb(122, 122, 202));
-    color: whitesmoke;
+
+    background:white;
+    color: purple;
 }
 
 div .matchCard:hover{
@@ -14,9 +15,12 @@ div .matchCard:hover{
 }
 
 div .matchCardFocused {
-    background-image: linear-gradient(to right, rgb(99, 219, 62), rgba(231, 228, 19, 0.747));
+    background-image: linear-gradient(to right, rgb(202, 120, 191), rgb(121, 22, 104));
+    color: whitesmoke;
 }
-
+/* div .matchCardFocused .matchTeams{
+    color: purple;
+} */
 .matchCard .matchTeamAvatar {
     width: 65px;
     height: 65px;
@@ -50,7 +54,7 @@ div .matchContents{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: white;
+;
 }
 
 ::-webkit-scrollbar {

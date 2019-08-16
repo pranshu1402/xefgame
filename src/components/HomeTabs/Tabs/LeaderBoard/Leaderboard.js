@@ -17,9 +17,9 @@ class Leaderboard extends Component {
 
         const { selectedMatchToShow, gamesData, teams } = this.props;
         let matchStatus;
-        let myPlayersInSelectedMatch, teamsKeys = [], teamsForScoreUpdates = [],message;
+        let myPlayersInSelectedMatch, teamsKeys = [], teamsForScoreUpdates = [], message;
         if (selectedMatchToShow != null) {
-            const {status}=selectedMatchToShow.enrolledMatch;
+            const { status } = selectedMatchToShow.enrolledMatch;
             matchStatus = status;
             myPlayersInSelectedMatch = gamesData[selectedMatchToShow.sport].teams[selectedMatchToShow.enrolledMatch.teamId]["players"];
             for (let key in gamesData[selectedMatchToShow.sport].teams) {
@@ -35,38 +35,47 @@ class Leaderboard extends Component {
                     })
                 }
             }
-        
-             message= getMatchStatusMessage(teamsForScoreUpdates,selectedMatchToShow.enrolledMatch.teamId);
+
+            message = getMatchStatusMessage(teamsForScoreUpdates, selectedMatchToShow.enrolledMatch.teamId,selectedMatchToShow.enrolledMatch.status);
 
         }
         return (
             selectedMatchToShow ?
                 <div className="rootLeaderboard">
-                    <div className="matchStartTag">Match Status: 
-                    <span>{matchStatus} {matchStatus==='Live'?'': ` ${new Date(selectedMatchToShow.enrolledMatch.date).toDateString()}${selectedMatchToShow.enrolledMatch.time}`}
-                    </span></div>
+                    <div className="matchStartTag">Match Status:
+                    <span>{matchStatus} {matchStatus === 'Live' ? '' : ` ${new Date(selectedMatchToShow.enrolledMatch.date).toDateString()} ${selectedMatchToShow.enrolledMatch.time}`}
+                        </span></div>
 
-                    <label>My Team</label>
-                    <label>{selectedMatchToShow.enrolledMatch.teamId}</label>
-                    {
-                        myPlayersInSelectedMatch.map(player =>
-                            <li>{player.name}</li>
-                        )
-                    }
+                    <div className="leaderboardMyTeam">
+                        <span>My Team</span>
+                        <label>{selectedMatchToShow.enrolledMatch.teamId}</label>
+                        {
+                            myPlayersInSelectedMatch.map(player =>
+                                <li>{player.name}</li>
+                            )
+                        }
+                    </div>
+
 
                     <div className="allPlayersScore">
+                        <div className="playerScoreTags">
+                            <span>Team</span>
+                            <span>Set</span>
+                            <span>Score</span>    
+                        </div>
                         {
                             teamsKeys.map((key, index) => {
                                 return (
                                     <div>
-                                        <div className="leaderboardTeamNScore"><lable className="leaderboardTeamName">{key}</lable>
-                                            <span>{teamsForScoreUpdates.length > 0 ? teamsForScoreUpdates[index][key]["setWon"] : 0}</span>
+                                        <div className="leaderboardTeamNScore">
+                                            <span className="leaderboardTeamName">{key}</span>
+                                            <label>{teamsForScoreUpdates.length > 0 ? teamsForScoreUpdates[index][key]["setWon"] : 0}</label>
+                                            <label className="teamPoints">{teamsForScoreUpdates.length > 0 ? teamsForScoreUpdates[index][key]["score"] : 0}</label>
                                         </div>
-                                        <label className="teamPoints">{teamsForScoreUpdates.length > 0 ? teamsForScoreUpdates[index][key]["score"] : 0}</label>
                                         {
-                                            gamesData[selectedMatchToShow.sport].teams[key]["players"].map(item => {
-                                                return (<li className="leaderboardPlayerName" key={item.name}>{item.name}</li>)
-                                            })
+                                            // gamesData[selectedMatchToShow.sport].teams[key]["players"].map(item => {
+                                            //     return (<li className="leaderboardPlayerName" key={item.name}>{item.name}</li>)
+                                            // })
                                         }
                                     </div>
 
@@ -75,7 +84,7 @@ class Leaderboard extends Component {
                         }
 
                     </div>
-                    <div className="playerStatus">{message?message:"Error"}</div>
+                    <div className="playerStatus">{message ? message : "Error"}</div>
 
                 </div> : <div style={{ width: "200px", color: "red", fontSize: "25px", margin: "auto" }}>Select  a Game from Game Tab</div>
         )
