@@ -31,7 +31,7 @@ class LandingPage extends Component {
         return (
             <div className="sportsCardContainer">
                 {
-                    ["TableTennis","Carrom"].map((sport,index) => 
+                    ["TableTennis"].map((sport,index) => 
                         <SportCards key={index}
                                     sportName={sport} 
                                     loadGames={this.loadGames}
