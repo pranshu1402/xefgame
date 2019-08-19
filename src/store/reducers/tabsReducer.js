@@ -17,7 +17,8 @@ export const tabsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedTab: action.changeTab,
-                matchToShowOnLeaderboard: action.matchToShowOnLeaderboard
+                matchToShowOnLeaderboard: action.matchToShowOnLeaderboard,
+                isWinningMoneyAdded:action.isWinningMoneyAdded
             }
 
         case 'FETCH_TEAM_FOR_SCORE_UPDATES':

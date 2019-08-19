@@ -1,5 +1,6 @@
 
 const timer = (date) => {
+    console.log(date);
    
     let distance = new Date(date) - new Date();
    

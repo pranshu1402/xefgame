@@ -4,7 +4,7 @@ export const loadMyGamesData = () => {
     return dispatch => {
         firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
             .then((userData) => {
-                console.log(userData.data().sports);
+               
                 if (userData.data().sports !== undefined) {
                     const enrolledGamesData = userData.data().sports;
                     const enrolledGamesKeys = Object.keys(enrolledGamesData);
@@ -19,7 +19,7 @@ export const loadMyGamesData = () => {
                                         .map(filteredMatch => {
                                             const filteredMatchData = {
                                                 ...myMatchData,
-                                                ...filteredMatch
+                                                ...filteredMatch,
                                             }
                                             return filteredMatchData;
                                         });

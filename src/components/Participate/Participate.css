@@ -53,21 +53,12 @@
 .timeLeft {
     font-weight: 400;
     font-size: 15px;
+    background: red;
     color: white;
-    animation: blinkTime 1s infinite;
+    border-radius: 3px;
+    
 }
 
-@keyframes blinkTime {
-    from {
-        background: white;
-        border-radius: 4px;
-    }
-
-    to {
-        background: rgb(235, 39, 65);
-        border-radius: 4px;
-    }
-}
 
 .coinIcon {
     color: gold;
@@ -85,7 +76,7 @@
 }
 
 .rupeeIcon {
-    color: blue;
+    color: gold;
 }
 
 .btnEnroll {
@@ -102,6 +93,7 @@
         0 2px 1px -1px rgba(0, 0, 0, 0.12),
         0 1px 3px 0 rgba(0, 0, 0, 0.2);
     transition: background-color 0.5s;
+    cursor: pointer;
 
 }
 

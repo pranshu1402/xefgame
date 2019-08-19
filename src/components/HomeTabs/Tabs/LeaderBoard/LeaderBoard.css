@@ -62,7 +62,8 @@ font-size: 1.6rem;
     font-weight: lighter;
     font-size: 20px;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 
 .leaderboardTeamNScore{
@@ -95,14 +96,24 @@ font-size: 1.6rem;
     font-size: 1.1rem;
     font-weight: normal;
 }
-
+.leaderboardTeamScore{
+    display: flex;
+    
+}
+.leaderboardScoreTags{
+    display: flex;
+}
 @media screen and (max-width: 600px){
     .rootLeaderboard{
         margin: 0;
         width: 100%;
     }
 
-    .allPlayersScore{
+    .allPlayersScore , .leaderboardScoreTags,.leaderboardTeamScore{
         width: 100%;
     }
+    .leaderboardTeamScore label,.leaderboardScoreTags label{
+        width: 80px;
+    }
+   
 }

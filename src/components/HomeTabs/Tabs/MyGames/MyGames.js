@@ -34,7 +34,7 @@ class MyGames extends Component {
                                         <div key={index}
                                             onClick={() => this.props.makeChangeTab({
                                                 label: "LEADERBOARD",
-                                                matchToShowOnLeaderboard: { enrolledMatch, sport: myGameKey }
+                                                matchToShowOnLeaderboard: { enrolledMatch, sport: myGameKey}
                                             })}>
                                             <MyGame gameData={enrolledMatch} />
                                         </div>

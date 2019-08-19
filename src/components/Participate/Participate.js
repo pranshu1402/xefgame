@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoins, faRupeeSign, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faCoins, faClock } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from 'react-router-dom';
 import timer from '../../utility/timer';
 import { connect } from 'react-redux';
@@ -38,10 +38,11 @@ class Participate extends Component {
         }
 
         const { participatedContest, balancedCoins } = this.props;
-        const entryFee = participatedContest === null ? getEntryFeeForMatch(this.props.matchData, this.props.selectedMatchId) : participatedContest.entryFee;
-
+        let [entryFee] = participatedContest === null ? getEntryFeeForMatch(this.props.matchData, this.props.selectedMatchId) : participatedContest.entryFee;
+          let totalAmount=entryFee+this.props.betAmount;
         return (
             <div className="participateSection">
+
                 <div className="teamAndTimeleft">
                     <p className="teams">Team1 vs Team2</p>
                     <p className="timeLeft">
@@ -57,15 +58,37 @@ class Participate extends Component {
                     </p>
                 </div>
                 <hr />
-                <div className="entry">
-                    <p className="entryTag">Entry Fee</p>
-                    <p className="entryValue">
-                        <FontAwesomeIcon className="rupeeIcon" icon={faRupeeSign} />
+
+                <div className="coins">
+                    <p className="coinsRemain">Bet Amount</p>
+                    <p className="coinsValue">
+                        <FontAwesomeIcon className="coinIcon" icon={faCoins} />
+                        {this.props.betAmount}
+                    </p>
+                </div>
+                <hr />
+
+
+                <div className="coins">
+                    <p className="coinsRemain">Match Charges</p>
+                    <p className="coinsValue">
+                        <FontAwesomeIcon className="coinIcon" icon={faCoins} />
                         {entryFee}
                     </p>
                 </div>
+                <hr />
 
-                {balancedCoins.user.points < entryFee ? (
+
+
+                <div className="entry">
+                    <p className="entryTag">Total Payable Fee</p>
+                    <p className="entryValue">
+                        <FontAwesomeIcon className="rupeeIcon" icon={faCoins} />
+                        {totalAmount}
+                    </p>
+                </div>
+
+                {balancedCoins.user.points < totalAmount ? (
                     <div className="addCoins">
                         {/* <input className="inputCoins" 
                             type="text" 
@@ -94,6 +117,7 @@ const mapStateToProps = state => {
         balancedCoins: state.auth,
         matchData: state.matches.matchData,
         selectedMatchId: state.matches.selectedMatchId,
+        betAmount:state.bet.betAmount
        
 
     }

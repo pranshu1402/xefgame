@@ -6,13 +6,14 @@ export const setContestParticipationData = (state) => {
     const userId = String(state.auth.user.uid);
     const sport = state.sports.sportSelected;
     const matchId = state.matches.selectedMatchId;
-    
+
     const betAmount = state.bet.betAmount;
     const isBettingGame = (betAmount !== 0);
     let matchObj;
-    let entryFee=getEntryFeeForMatch(state.matches.matchData,state.matches.selectedMatchId);
-    
-    if(isBettingGame){
+    let [entryFee] = getEntryFeeForMatch(state.matches.matchData, state.matches.selectedMatchId);
+    entryFee += state.bet.betAmount;
+
+    if (isBettingGame) {
         const winAmount = state.bet.winAmount;
         const teamId = state.bet.selected;
         matchObj = (
@@ -25,7 +26,7 @@ export const setContestParticipationData = (state) => {
                 status: 'pending',
             }
         );
-    }else{
+    } else {
         const contestId = state.contest.selectedContest.id;
         const selectedPlayers = state.teams.selectedPlayers;
         const selectedContestType = state.contest.selectedContest.typeOfContest;
@@ -51,7 +52,7 @@ export const setContestParticipationData = (state) => {
     const newPoints = state.auth.user.points - entryFee;
     //set new coins in redux
     state.auth.user.points = newPoints;
-    const sportKey = "sports."+ sport;
+    const sportKey = "sports." + sport;
 
     return dispatch => {
         firebase.firestore().collection("users").doc(userId).update(
